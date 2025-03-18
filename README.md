@@ -20,8 +20,8 @@ The tool performs the following checks:
 ## Installation
 1. Clone the repository:
    ```sh
-   git clone <repository-url>
-   cd <repository-folder>
+   git clone https://github.com/rahulsavaria/Performance-tool.git
+   cd Performance-tool
    ```
 
 ## Usage
