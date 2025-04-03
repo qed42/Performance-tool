@@ -161,32 +161,8 @@ def check_inline_styles_scripts(custom_theme_path):
 
     return warnings
 
-
 # ============================
-# Check 4: Missing Alt Attributes
-# ============================
-def check_missing_alt_attributes(custom_theme_path):
-    """Check for missing alt attributes in <img> tags."""
-    warnings = []
-    img_pattern = re.compile(r'<img[^>]+(?!alt=["\']).*?>')
-
-    for root, _, files in os.walk(custom_theme_path):
-        for file in files:
-            if file.endswith(".twig"):
-                file_path = os.path.join(root, file)
-                with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
-                    content = f.read()
-                    matches = img_pattern.findall(content)
-                    if matches:
-                        warnings.append(
-                            f"⚠️ [Twig] {file_path}\n   - Some <img> tags are missing `alt` attributes. Add descriptive alt text for accessibility."
-                        )
-
-    return warnings
-
-
-# ============================
-# Check 5: Large Images in CSS/Twig
+# Check 4: Large Images in CSS/Twig
 # ============================
 def check_large_images(custom_theme_path):
     """Check if any images referenced in CSS or Twig are larger than 500 KB."""
@@ -223,7 +199,7 @@ def check_large_images(custom_theme_path):
 
 
 # ============================
-# Check 6: Missing Async/Defer in <script>
+# Check 5: Missing Async/Defer in <script>
 # ============================
 def check_inline_script_attributes(custom_theme_path):
     """Check for missing async or defer attributes in inline <script> tags."""
@@ -265,10 +241,6 @@ def main():
         "Inline CSS/JS in Twig": {
             "warnings": check_inline_styles_scripts(custom_theme_path),
             "icon": "🎨",
-        },
-        "Missing Alt Attributes in <img>": {
-            "warnings": check_missing_alt_attributes(custom_theme_path),
-            "icon": "🔍",
         },
         "Large Images in CSS/Twig": {
             "warnings": check_large_images(custom_theme_path),
