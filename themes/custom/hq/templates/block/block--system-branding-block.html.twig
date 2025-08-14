@@ -1,9 +1,0 @@
-{% extends "block.html.twig" %}
-
-{% block content %}
-  {% if site_logo %}
-    <a href="{{ path('<front>') }}" rel="home" class="site-logo" title="Link to Homepage" aria-label="Open main page of the site">
-      <img src="{{ site_logo }}" alt="{{ 'Home'|t }}" />
-    </a>
-  {% endif %}
-{% endblock %}

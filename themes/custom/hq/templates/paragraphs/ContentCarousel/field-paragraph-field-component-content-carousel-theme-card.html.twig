@@ -1,7 +1,0 @@
-{% set items_amount = items|length %}
-  <span class="card-carousel-items hidden">{{items_amount}}</span>
-{% for item in items %}
-  <div {{ attributes.addClass('swiper-slide') }}>
-    {{ item.content }}
-  </div>
-{% endfor %}
