@@ -1,0 +1,94 @@
+{#
+/**
+ * @file
+ * Theme override to display a block with tabs for different regions.
+ *
+ * Available variables:
+ * - plugin_id: The ID of the block implementation.
+ * - label: The configured label of the block if visible.
+ * - configuration: A list of the block's configuration values.
+ * - content: The content of this block.
+ * - attributes: array of HTML attributes populated by modules.
+ * - title_attributes: HTML attributes for the title tag.
+ * - title_prefix: Additional output before the title tag.
+ * - title_suffix: Additional output after the title tag.
+ *
+ * @see template_preprocess_block()
+ */
+#}
+{% if is_rtl %}
+  {{ attach_library('hq/block.tabs.resources-by-region-rtl') }}
+{% else %}
+  {{ attach_library('hq/block.tabs.resources-by-region') }}
+{% endif %}
+{%
+  set classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    attributes.id|clean_class,
+  ]
+%}
+
+{% if drupal_view_result('resource_by_region', 'block_1', 'all') is not empty %}
+  <section{{ attributes.addClass(classes) }}>
+    <div class="container">
+      {{ title_prefix }}
+      {% if label %}
+        <h2{{ title_attributes }}>
+          {{ label }}
+        </h2>
+      {% endif %}
+      {{ title_suffix }}
+
+      <div class="row resources-region__wrapper">
+        <div class="col-12 col-md-4 p-md-0 resources-region__left-column">
+          <div class="nav flex-column d-none d-md-block">
+            {% for region in [
+              {'id': 'all', 'label': 'All'},
+              {'id': 2281, 'label': 'Africa'},
+              {'id': 2286, 'label': 'America and the Caribbean'},
+              {'id': 1294, 'label': 'Arab States/North Africa'},
+              {'id': 2283, 'label': 'Asia and the Pacific'},
+              {'id': 2284, 'label': 'Europe and Central Asia'},
+              {'id': 2287, 'label': 'Liaison Offices'},
+            ] %}
+              {% if drupal_view_result('resource_by_region', 'block_1', region.id) is not empty %}
+                <a class="nav-link{% if loop.first %} active{% endif %}" id="resource-region-{{ region.id }}" data-toggle="tab" href="#resource-region-link-{{ region.id }}" role="tab" aria-controls="resource-region-link-{{ region.id }}" aria-selected="{{ loop.first ? 'true' : 'false' }}">
+                  {{ region.label|t }}
+                </a>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="col-12 col-md-8 resources-region__right-column">
+          <div class="tab-content" id="resource-region__tab-content">
+            {% for region in [
+              {'id': 'all', 'label': 'All'},
+              {'id': 2281, 'label': 'Africa'},
+              {'id': 2286, 'label': 'America and the Caribbean'},
+              {'id': 1294, 'label': 'Arab States/North Africa'},
+              {'id': 2283, 'label': 'Asia and the Pacific'},
+              {'id': 2284, 'label': 'Europe and Central Asia'},
+              {'id': 2287, 'label': 'Liaison Offices'},
+            ] %}
+              {% if drupal_view_result('resource_by_region', 'block_1', region.id) is not empty %}
+                <div class="tab-pane fade{% if loop.first %} show active{% endif %}" id="resource-region-link-{{ region.id }}" role="tabpanel" aria-labelledby="resource-region-{{ region.id }}">
+                  <div class="d-block d-md-none tab-heading" role="tab" id="resource-region-heading-{{ region.id }}">
+                    <a data-toggle="collapse" href="#resource-region-{{ region.id }}" aria-expanded="false" aria-controls="resource-region-{{ region.id }}">
+                      {{ region.label|t }}
+                      <i class="icon-arrow-left"></i>
+                    </a>
+                  </div>
+                  <div id="resource-region-{{ region.id }}" class="collapse{% if loop.first %} show{% endif %}" role="tabpanel" aria-labelledby="resource-region-heading-{{ region.id }}" data-parent="#resource-region__tab-content">
+                    {{ drupal_view('resource_by_region', 'block_1', region.id) }}
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endif %}

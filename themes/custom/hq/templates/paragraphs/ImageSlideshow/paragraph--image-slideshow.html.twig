@@ -1,0 +1,62 @@
+{% set classes = [
+    'paragraph',
+    'paragraph--type--' ~ (paragraph.bundle|clean_class),
+    view_mode ? 'paragraph--view-mode--' ~ (view_mode|clean_class),
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ] %}
+
+{{ attach_library('hq/swiper_library') }}
+
+{% block paragraph %}
+  {% if content.paragraph_view_mode.0|render|striptags|trim == 'vertical_image_slider' %}
+    {% if is_rtl %}
+      {{ attach_library('hq/paragraph-vertical-image-slider-rtl') }}
+    {% else %}
+      {{ attach_library('hq/paragraph-vertical-image-slider') }}
+    {% endif %}
+  <div class="vertical-image-slider__wrapper" tabindex="0" aria-label="{{'image carousel press enter for slide change'|t}}">
+    {% set currentcount = 0 %}
+    {% for key in content.field_media_image|keys %}
+      {% if key >= 0 %}
+        {% set currentcount = currentcount + 1 %}
+      {% endif %}
+    {% endfor %}
+    <span class="sr-only carousel-count">{{currentcount}}</span>
+    <div class="vertical-image-slider__content">
+      <div class="swiper-container swiper-container-vertical vertical-image-slider">
+        <div class="swiper-wrapper">
+          {{ content.field_media_image }}
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <nav class="carouselNav-wrapper my-20 ">
+        <button class="swiper-button-prev btn btn-primary icon icon-arrow-left"><span class="sr-only">swipe left</span></button>
+        <button class="swiper-button-next btn btn-primary icon icon-arrow-right"><span class="sr-only">swipe right</span></button>
+      </nav>
+    </div>
+  </div>
+  {% else %}
+    <div {{ attributes.addClass(classes) }}>
+      <div class="container image-slider-container">
+        <div class="swiper-container">
+          <div class="gallery-top">
+            <div class="swiper-wrapper">
+              {{ content.field_media_image }}
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+
+        <div class="swiper-container gallery-thumbs">
+          <ul class="swiper-wrapper">
+            {{ content.field_media_image }}
+          </ul>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}

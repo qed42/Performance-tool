@@ -1,0 +1,108 @@
+{%
+  set classes = [
+    'node',
+    'node--type-news-and-stories',
+    'node--type-' ~ node.bundle|clean_class,
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+
+<article{{ attributes.addClass(classes) }}>
+  {% block node %}
+    {% set basicHeroBanner = null %}
+
+    {% if content.field_hero_banner|render|length %}
+      {% set paragraph_type = content.field_hero_banner.0['#paragraph'] %}
+      {% if paragraph_type.field_select_hero_type.0.value|trim ==  'basic_hero_banner' %}
+        {% set basicHeroBanner = true %}
+      {% endif %}
+      {% if basicHeroBanner == null %}
+        <div class="container-fluid">
+          <div class="row">
+            <div class="hq-hero-banner__wrapper">
+              {{content.field_hero_banner}}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endif %}
+
+    {% if content.field_hero_banner|render|length == 0 or basicHeroBanner %}
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-8">
+            <header class="story-header">
+              {% if content.field_tag.0 %}
+                <div class="story-tag">{{ content.field_tag }}</div>
+              {% endif %}
+
+              {{ title_prefix }}
+              <h1 class="story-title">{{ label }}</h1>
+              {{ title_suffix }}
+
+              {% if content.field_subtitle.0 %}
+                <h2 class="story-subtitle">{{ content.field_subtitle['0']['#context']['value']|raw }}</h2>
+              {% endif %}
+
+              {% if content.field_story_publication_date.0 or content.field_author.0 %}
+                <div class="story-author-date">
+                  {% if content.field_story_publication_date.0 %}
+                    {{ content.field_story_publication_date }}
+                  {% endif %}
+                  {% if content.field_story_publication_date.0 and content.field_author.0 %}
+                    <div class="story-border"></div>
+                  {% endif %}
+                  {% if content.field_author.0 %}
+                    <div class="author">{{ content.field_author }}</div>
+                  {% endif %}
+                </div>
+              {% endif %}
+
+              {{ drupal_block("social_sharing_buttons_block") }}
+
+            </header>
+          </div>
+        </div>
+      </div>
+      {% if basicHeroBanner %}
+        <div class="container-fluid">
+          <div class="row">
+            <div class="hq-hero-banner__wrapper no-content">
+              {{content.field_hero_banner}}
+            </div>
+          </div>
+        </div>
+      {% else %}
+        {% if content.field_hero_type.0['#markup'] == 'hero_video' %}
+          <div class="embed-container">{{ content.field_video_hero }}</div>
+        {% elseif content.field_hero_type.0['#markup'] == 'hero_image' %}
+          <figure class="story-image parallax-image">
+            {{ content.field_media_image_hero }}
+
+            {% if media_caption %}
+              <div class="container">
+                <figcaption class="story-caption">
+                  {{ media_caption }}
+                </figcaption>
+              </div>
+            {% endif %}
+          </figure>
+        {% endif %}
+      {% endif %}
+
+    {% endif %}
+
+    {% if content.body.0 %}
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            {{ content.body }}
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+    {{ content.field_builder }}
+
+  {% endblock %}
+</article>

@@ -1,0 +1,67 @@
+.paragraph--type--basic-text-image {
+  h2 {
+    margin-top: 30px;
+    color: #181818;
+    margin-bottom: 0;
+  }
+
+  .field--name-field-body {
+    @include typography-body;
+
+    margin-top: 20px;
+    color: #333;
+  }
+
+  .image-container {
+    img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 15px;
+    }
+  }
+
+  article {
+    display: block;
+    max-width: 350px;
+    margin: 0;
+
+    &.align-left {
+      margin-right: 30px;
+    }
+
+    &.align-right {
+      margin-left: 30px;
+    }
+
+    @include media-breakpoint-down(sm) {
+      float: none;
+      margin: 0 auto;
+
+      &.align-left,
+      &.align-right {
+        float: none;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  figure {
+    .image-container {
+      img {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  article,
+  figure {
+    &.align-left {
+      margin-left: -8.33333%;
+    }
+
+    &.align-right {
+      margin-right: -8.33333%;
+    }
+  }
+
+}

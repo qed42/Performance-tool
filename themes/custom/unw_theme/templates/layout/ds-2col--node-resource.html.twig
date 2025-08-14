@@ -1,0 +1,100 @@
+{#
+/**
+ * @file
+ * Display Suite 2 column template.
+ *
+ * Available variables:
+ * - outer_wrapper: outer wrapper element
+ * - left_wrapper: wrapper element around left region
+ * - right_wrapper: wrapper element around right region
+ * - attributes: layout attributes
+ * - left_attributes: attributes for left region
+ * - right_attributes: attributes for right region
+ * - left: content of left region
+ * - right: content of right region
+ */
+#}
+<{{ outer_wrapper }}{{ attributes.addClass('ds-2col', 'clearfix') }}>
+
+  {{ title_suffix.contextual_links }}
+
+  <{{ left_wrapper }}{{ left_attributes.addClass('group-left') }}>
+   <h1>{{ content.field_title['0']['#context']['value']|raw }}</h1>
+    {{ content.field_subtitle }}
+    {{ content.field_author_speaker }}
+    <div class="doc-description">
+      {% if content.field_media_image|render %}
+        {{ content.field_media_image }}
+      {% else %}
+        <img src="/{{ directory }}/images/icon-document-blue.png">
+      {% endif %}
+      <div>
+        {{ content.body }}
+
+        {% if content.field_attachments.0 %}
+          <h2>{{ 'View online/download'|t }}</h2>
+          {{ content.field_attachments }}
+        {% endif %}
+
+        <h2>{{ 'Bibliographic information'|t }}</h2>
+        {% if content.field_region|render or content.field_country|render %}
+          <div class="mb-2"><strong>{{ 'Geographic coverage: '|t }}</strong>
+
+            {% if content.field_country|render %}
+              {%- for item in content.field_region['#items'] -%}
+                <a href="{{ path('<front>') }}/docs?f[0]=region_docs:{{ item.entity.tid.value }}">
+                  {{ item.entity.label -}}
+                </a> {{- ';' -}}
+              {%- endfor -%}
+
+              {%- for item in content.field_country['#items'] -%}
+                <a href="{{ path('<front>') }}/docs?f[0]=country_docs:{{ item.entity.tid.value }}">
+                  {{ item.entity.label -}}
+                </a>
+                {%- if not loop.last %}
+                  {{- ';' -}}
+                {% endif -%}
+              {%- endfor -%}
+            
+            {% else %}
+
+              {%- for item in content.field_region['#items'] -%}
+                <a href="{{ path('<front>') }}/docs?f[0]=region_docs:{{ item.entity.tid.value }}">
+                  {{ item.entity.label -}}
+                </a>
+                {%- if not loop.last %}
+                  {{- ';' -}}
+                {% endif -%}
+              {%- endfor -%}
+
+              {%- for item in content.field_country['#items'] -%}
+                <a href="{{ path('<front>') }}/docs?f[0]=country_docs:{{ item.entity.tid.value }}">
+                  {{ item.entity.label -}}
+                </a>
+                {%- if not loop.last %}
+                  {{- ';' -}}
+                {% endif -%}
+              {%- endfor -%}
+
+            {% endif %}
+          </div>
+        {% endif %}
+        {{ content.field_subject_area }}
+        {{ content.field_resource_type }}
+        {{ content.field_story_publication_date }}
+        {{ content.field_publishing_entity }}
+        {{ content.field_governing_body }}
+      </div>
+    </div>
+    
+    {{ content.field_builder }}
+
+  </{{ left_wrapper }}>
+
+  <{{ right_wrapper }}{{ right_attributes.addClass('group-right') }}>
+    {{ drupal_region('right_content') }}
+
+    {{ right }}
+  </{{ right_wrapper }}>
+
+</{{ outer_wrapper }}>

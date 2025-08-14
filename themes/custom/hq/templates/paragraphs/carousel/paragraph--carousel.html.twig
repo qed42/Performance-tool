@@ -1,0 +1,15 @@
+{% extends "paragraph.html.twig" %}
+
+{% block content %}
+  <article class="slick-wrapper" dir="rtl">
+
+    <header class="container container-small">
+      <h2 class="mb-3">{{ content.field_label.0 }}</h2>
+    </header>
+
+    <div class="paragraph-slick-carousel">
+      {{ content|without('field_label') }}
+    </div>
+
+  </article>
+{% endblock %}

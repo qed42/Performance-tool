@@ -1,0 +1,7 @@
+{% for item in items %}
+  <a class="link-full-content" href="{{ item.content['#url_title'] }}" 
+     aria-label="Go to {{ item.content['#title'] }}"
+     title="{{ item.content['#title'] }}">
+    <span class="sr-only">{{ item.content['#title'] }}</span>
+  </a>
+{% endfor %}

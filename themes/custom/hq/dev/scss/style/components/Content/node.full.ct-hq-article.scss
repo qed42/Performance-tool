@@ -1,0 +1,33 @@
+@import "../../../../../node_modules/bootstrap/scss/functions";
+@import "../../../../../node_modules/bootstrap/scss/mixins";
+@import "../../../custom";
+@import "../../../bootstrap-override/mixins";
+@import "../../../mixins";
+
+.block {
+  &-views-block-news-and-stories-block-3 {
+    padding-top: 40px;
+  }
+
+  &--related_articles {
+    padding: 0 $gutter 70px;
+
+    h2 {
+      &:before {
+        content: '';
+        height: 1px;
+        background: $border-tags;
+        margin-bottom: 57px;
+        display: block;
+
+        @include media-breakpoint-down(md) {
+          margin-bottom: 50px;
+        }
+
+        @include media-breakpoint-down(sm) {
+          margin-bottom: 18px;
+        }
+      }
+    }
+  }
+}

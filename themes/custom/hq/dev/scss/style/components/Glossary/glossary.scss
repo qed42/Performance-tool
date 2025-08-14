@@ -1,0 +1,268 @@
+@import "../../../../../node_modules/bootstrap/scss/functions";
+@import "../../../../../node_modules/bootstrap/scss/mixins/breakpoints";
+@import "../../../custom";
+@import "../../../mixins";
+
+.block-glossary-listing {
+  padding-top: 40px;
+
+  @include media-breakpoint-down(sm) {
+    padding-top: 20px;
+  }
+
+  &__alphabet-filter {
+    .glossary-letters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 24px 32px;
+      margin-bottom: 72px;
+
+      @include media-breakpoint-down(sm) {
+        gap: 24px 42px;
+        text-align: center;
+      }
+
+      .views-summary {
+        @include typography-bodyl-b;
+
+        color: $text-disabled;
+
+        a {
+          font-weight: 700;
+          color: $darkish-gray;
+
+          &.is-active {
+            padding: 2px 10px;
+            border-radius: 6px;
+            background: $blue-100;
+            color: $white;
+
+            &:hover,
+            &:focus {
+              color: $white;
+              background: $blue;
+            }
+          }
+
+          &:hover,
+          &:focus {
+            color: $blue;
+          }
+        }
+      }
+    }
+  }
+
+  &--row-title {
+    @include typography-h4-b;
+
+    width: fit-content;
+    margin-bottom: 52px;
+    padding: 10px $gutter;
+    text-transform: uppercase;
+    color: $black;
+    background: $pink_new;
+    border-radius: 10px;
+  }
+
+  .views-field {
+    &-copy-icon {
+      position: relative;
+      min-width: 340px;
+      margin-bottom: 62px;
+      padding-left: 0;
+      background: none;
+      border: none;
+
+      &:focus,
+      &:hover {
+        outline: 0;
+
+        .views-field-copy-quote {
+          color: $blue-100;
+        }
+      }
+    }
+
+    &-copy-quote {
+      @include typography-body-sb;
+
+      color: $blue;
+      text-transform: uppercase;
+      text-align: left;
+
+      img {
+        margin-right: 10px;
+        margin-bottom: 5px;
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    &-title {
+      @include typography-h2;
+
+      margin-bottom: 26px;
+
+      a {
+        color: $text-gray;
+      }
+    }
+
+    &-body {
+      @include typography-body;
+
+      color: $text-gray;
+    }
+
+    &-field-source {
+      margin-bottom: 40px;
+
+      .views-label {
+        @include typography-h6-b;
+
+        margin-right: 5px;
+        color: $text-gray;
+      }
+
+      .field-content {
+        @include typography-h6;
+
+        a {
+          color: $text-gray;
+          word-break: break-all;
+          text-decoration-line: underline;
+
+          &:hover,
+          &:focus {
+            color: $blue;
+          }
+        }
+      }
+    }
+  }
+
+  .copied-button {
+    @include typography-body-sb;
+
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    padding: 10px 34px;
+    color: $white;
+    text-align: center;
+    background: $dark-gray;
+    border: 0;
+    border-radius: 6px;
+    filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
+  }
+
+  #views-exposed-form-glossary-listing-page-1 {
+    position: relative;
+    margin-bottom: 86px;
+
+    @include media-breakpoint-down(sm) {
+      margin-bottom: 74px;
+    }
+
+    .form-item-text {
+      label {
+        display: none;
+      }
+
+      input {
+        @include btn-input;
+
+        width: 88%;
+        margin-top: 0;
+        padding-inline: 40px;
+        color: $text-gray;
+        text-transform: none;
+        background: $white url('/themes/custom/hq/img/search.svg') no-repeat 12px center;
+        border: 1px solid $pink_new;
+        box-shadow: 0px 1px 4px 0px rgba(16, 24, 40, 0.05);
+        box-sizing: border-box;
+
+        &:focus {
+          border-color: $blue;
+        }
+
+        &::placeholder {
+          color: $pale-sky;
+        }
+
+        @include media-breakpoint-down(md) {
+          width: 85%;
+        }
+
+        @include media-breakpoint-down(sm) {
+          width: 100%;
+        }
+      }
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+      column-gap: 26px;
+      margin-top: 30px;
+
+      @include media-breakpoint-down(sm) {
+        display: flex;
+        flex-direction: column;
+        row-gap: 30px;
+      }
+
+      #edit-submit-glossary-listing{
+        @include btn;
+        @include btn-primary;
+
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: auto;
+        height: auto;
+
+        @include media-breakpoint-down(sm) {
+          position: relative;
+        }
+      }
+
+      #edit-reset {
+        @include btn;
+        @include btn-primary;
+
+        width: auto;
+        height: auto;
+      }
+
+      #edit-download-pdf {
+        @include btn;
+        @include btn-outline-primary;
+        
+        position: relative;
+        padding-left: 40px;
+
+        &::before {
+          content: '';
+          position: absolute;
+          width: 20px;
+          height: 20px;
+          background: url('/themes/custom/hq/img/download.svg') no-repeat center;
+          left: 15px;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
+    }
+  }
+
+  .no-result {
+    @include typography-h4-b;
+
+    padding: 30px 0;
+    color: $text-gray;
+  }
+}

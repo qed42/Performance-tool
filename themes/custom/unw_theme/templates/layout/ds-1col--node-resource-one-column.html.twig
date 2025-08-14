@@ -1,0 +1,53 @@
+{#
+/**
+ * @file
+ * Display Suite 1 column template.
+ *
+ * Available variables:
+ * - ds_content_wrapper: wrapper around content
+ * - attributes: content region attributes
+ * - ds_content: content region
+ */
+#}
+<{{ ds_content_wrapper }}{{ attributes.addClass('ds-1col', 'clearfix') }}>
+
+  {{ title_suffix.contextual_links }}
+  <h1>{{ content.field_title['0']['#context']['value']|raw }}</h1>
+    {{ content.field_subtitle }}
+    {{ content.field_author_speaker }}
+    <div class="doc-description">
+      {% if content.field_media_image|render %}
+        {{ content.field_media_image }}
+      {% else %}
+        <img src="/{{ directory }}/images/icon-document-blue.png">
+      {% endif %}
+      <div>
+        {{ content.body }}
+
+        {% if content.field_attachments.0 %}
+          <h2>{{ 'View online/download'|t }}</h2>
+          {{ content.field_attachments }}
+        {% endif %}
+
+        <h2>{{ 'Bibliographic information'|t }}</h2>
+        {% if content.field_region|render or content.field_country|render %}
+          <div class="mb-2"><strong>{{ 'Geographic coverage: '|t }}</strong>
+            {% for item in content.field_region['#items'] %}
+              {{ item.entity.label }}
+            {% endfor %}
+            {% for item in content.field_country['#items'] %}
+              {{ item.entity.label }}
+            {% endfor %}
+          </div>
+        {% endif %}
+        {{ content.field_subject_area }}
+        {{ content.field_resource_type }}
+        {{ content.field_story_publication_date }}
+        {{ content.field_publishing_entity }}
+        {{ content.field_governing_body }}
+      </div>
+    </div>
+    
+    {{ content.field_builder }}
+
+</{{ ds_content_wrapper }}>

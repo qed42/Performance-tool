@@ -1,0 +1,68 @@
+{#
+/**
+ * @file
+ * Theme override for main view template.
+ *
+ * Available variables:
+ * - attributes: Remaining HTML attributes for the element.
+ * - css_name: A css-safe version of the view name.
+ * - css_class: The user-specified classes names, if any.
+ * - header: The optional header.
+ * - footer: The optional footer.
+ * - rows: The results of the view query, if any.
+ * - empty: The content to display if there are no rows.
+ * - pager: The optional pager next/prev links to display.
+ * - exposed: Exposed widget form/info to display.
+ * - feed_icons: Optional feed icons to display.
+ * - more: An optional link to the next page of results.
+ * - title: Title of the view, only used when displaying in the admin preview.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the view title.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the view title.
+ * - attachment_before: An optional attachment view to be displayed before the
+ *   view content.
+ * - attachment_after: An optional attachment view to be displayed after the
+ *   view content.
+ * - dom_id: Unique id for every view being printed to give unique class for
+ *   Javascript.
+ *
+ * @see template_preprocess_views_view()
+ */
+#}
+{{ attach_library('hq/swiper_library') }}
+{% if is_rtl %}
+  {{ attach_library('hq/block.related-resources.explore-issues-rtl') }}
+{% else %}
+  {{ attach_library('hq/block.related-resources.explore-issues') }}
+{% endif %}
+
+{# Generate a unique class for each Swiper instance #}
+{% set unique_id = 'swiper-instance-' ~ random() %}
+
+{% set row_classes = [
+  'swiper-slide',
+] %}
+
+<div class="hq-carousel-global-card cards_container pb-0 pt-0 position-relative card-carousel-init {{ unique_id }}">
+  <div class="swiperHeader-wrapper">
+    <nav class="carouselNav-wrapper">
+      {{ view_all_link }}
+      <button class="swiper-button-prev btn btn-primary icon icon-arrow-left {{ unique_id }}-prev">
+        <span class="sr-only">swipe left</span>
+      </button>
+      <button class="swiper-button-next btn btn-primary icon icon-arrow-right {{ unique_id }}-next">
+        <span class="sr-only">swipe right</span>
+      </button>
+    </nav>
+  </div>
+  <div class="swiper-container {{ unique_id }}-container">
+    <div class="swiper-wrapper">
+      {% for row in rows %}
+        <div {{ row.attributes.addClass(row_classes) }}>
+          {{- row.content -}}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

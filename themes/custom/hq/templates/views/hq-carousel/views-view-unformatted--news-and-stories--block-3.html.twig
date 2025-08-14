@@ -1,0 +1,41 @@
+{% set default_attribute = create_attribute() %}
+{% set items_amount = rows|length %}
+{% set row_classes = [
+  'swiper-slide',
+  'views-row',
+] %}
+{% set disabledBtn = (items_amount <= 4) ? 'swiper-button-disabled' : '' %}
+{{ attach_library('hq/swiper_library') }}
+{% if is_rtl %}
+  {{ attach_library('hq/globalCardsCarousel-rtl') }}
+{% else %}
+  {{ attach_library('hq/globalCardsCarousel') }}
+{% endif %}
+{% block blockCustomClass %}
+  <div class="hq-carousel-global-card cards_container pt-0 position-relative">
+    <span class="card-carousel-items hidden">{{items_amount}}</span>
+  {% endblock %}
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      {% for row in rows %}
+        <div {{ row.attributes.addClass(row_classes) }}>
+          {{- row.content -}}
+        </div>
+      {% endfor %}
+    </div>
+    <div class="swiper-scrollbar d-md-none"></div>
+  </div>
+  <div class="swiperHeader-wrapper">
+    <nav class="carouselNav-wrapper">
+      {% if items_amount > 4  %}
+        {{view_all_link}}
+      {% endif %}
+      <button class="swiper-button-prev btn btn-primary icon icon-arrow-left {{disabledBtn}}">
+        <span class="sr-only">swipe left</span>
+      </button>
+      <button class="swiper-button-next btn btn-primary icon icon-arrow-right {{disabledBtn}}">
+        <span class="sr-only">swipe right</span>
+      </button>
+    </nav>
+  </div>
+</div>

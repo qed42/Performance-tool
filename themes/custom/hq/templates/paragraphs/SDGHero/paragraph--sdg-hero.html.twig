@@ -1,0 +1,54 @@
+{{ attach_library('hq/sdg-hero') }}
+{%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]
+%}
+
+{%
+  set sdg_color = content.field_sdg_number.0['#markup']
+%}
+
+{% block paragraph %}
+  <div{{ attributes.addClass(classes) }}>
+    {% block content %}
+      <div class="sdg-hero" role="region">
+        <div class="sdg-hero__wrapper">
+          <div class="sdg-hero__content sdg-border-{{ sdg_color }}">
+            {# Render the total indicators if it exists #}
+            {% if content.field_total_indicator is not empty %}
+              <div class="sdg-hero__indicators">
+                <span id="total-indicators-{{ sdg_color }}" class="sdg-hero__number" aria-labelledby="{{ 'gender-specific-indicators-label-' ~ sdg_color|t }}">
+                  {{ content.field_total_indicator.0['#context'].value }}
+                </span>
+                <span id="total-indicators-label-{{ sdg_color }}" class="sdg-hero__label">{% trans %}Total indicators{% endtrans %}</span>
+              </div>
+            {% endif %}
+
+            <div class="seperator sdg-color-{{ sdg_color }}" aria-hidden="true"></div>
+
+            {# Render the gender-specific indicators if it exists #}
+            {% if content.field_gender_specific_indicator is not empty %}
+              <div class="sdg-hero__indicators">
+                <span id="gender-specific-indicators-{{ sdg_color }}" class="sdg-hero__number" aria-labelledby="{{ 'gender-specific-indicators-label-' ~ sdg_color|t }}">
+                  {{ content.field_gender_specific_indicator }}
+                </span>
+                <span id="gender-specific-indicators-label-{{ sdg_color }}" class="sdg-hero__label">{% trans %}Gender-specific indicators{% endtrans %}</span>
+              </div>
+            {% endif %}
+          </div>
+
+          {# Render the SDG hero icon if it exists #}
+          {% if content.field_sdg_hero_icon is not empty %}
+            <div class="sdg-hero__icon" role="img">
+              {{ content.field_sdg_hero_icon }}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    {% endblock %}
+  </div>
+{% endblock paragraph %}

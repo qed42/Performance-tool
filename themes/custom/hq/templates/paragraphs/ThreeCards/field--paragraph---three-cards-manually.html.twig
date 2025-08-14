@@ -1,0 +1,12 @@
+{%
+  set classes = [
+    'field',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+    'col-12 col-md-6'
+  ]
+%}
+{% for item in items %}
+  {{ item.content }}
+{% endfor %}

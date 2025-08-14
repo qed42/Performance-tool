@@ -1,0 +1,137 @@
+@import "./custom";
+
+.authoring-unwomen:not(.node-type--hq-profile):not(.node-type--news-and-stories):not(.node-type--hq-complex-page):not(.page-node-type-hq-complex-page):not(.page-node-type-hq-profile):not(.page-node-type-news-and-stories):not(.theme-switch.page-node-type-event):not(.theme-switch.page-node-type-event):not(.theme-switch.page-node-type-video):not(.theme-switch.page-node-type-topics):not(.theme-switch.page-node-type-podcast):not(.node-type-hq-article):not(.page-node-type-hq-article):not(.node-type-topics):not(.page-node-type-topics):not(.node-type--courses):not(.page-node-type-courses):not(.page-node-type-publication):not(.page-node-type-ro-co-s-homepage) {
+  #block-hq-content {
+    display: flex;
+    flex-direction: column;
+
+    .form-login-header {
+      order: 0;
+    }
+
+    .user-login-form {
+      order: 3;
+    }
+
+    .openid-connect-login-form {
+      order: 1;
+    }
+  }
+
+  .or-element {
+    max-width: 355px;
+    position: relative;
+    width: 100%;
+    z-index: 2;
+    margin: 40px 11% 40px auto;
+    order: 2;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    &::after,
+    &::before {
+      content: "";
+      display: flex;
+      height: 1px;
+      background: white;
+      width: 100px;
+    }
+  }
+
+  .search {
+    display: none;
+  }
+
+  .block-system {
+    article {
+      background: #fff;
+      padding: 60px 30px;
+      margin: 80px 11% 80px auto;
+      max-width: 355px;
+      position: relative;
+      width: 100%;
+      z-index: 2;
+    }
+  }
+
+  main {
+    background-image: url('../img/authoring-login.jpeg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    &::after {
+      background: linear-gradient(270deg, rgba(25,72,106,0) 0%, rgba(25,72,106,0.6) 100%);
+      content: "";
+      height: 100%;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transform: scaleX(-1);
+      width: 720px;
+    }
+
+    .scroll-top {
+      display: none;
+    }
+  }
+
+  .form-login-header {
+    @include typography-h1;
+
+    color: #ffffff;
+    margin: 80px 11% 80px auto;
+    max-width: 355px;
+    position: relative;
+    width: 100%;
+    z-index: 2;
+    
+    span {
+      color: $pink-new;
+      display: inline-block;
+    }
+  }
+
+  .user-login-form {
+    margin: 0 11% 120px auto;
+
+    input.form-text {
+      @include typography-body;
+
+      box-sizing: border-box;
+      height: 50px;
+      border: 1px solid $blue-100;
+      border-radius: 6px;
+      color: #333333;
+    }
+  }
+
+  .openid-connect-login-form {
+    margin: 0 11% 0 auto;
+
+    input.button {
+      @include btn;
+      @include btn-primary;
+      margin: auto;
+      height: auto;
+      width: auto;
+    }
+  }
+
+  .user-login-form,
+  .openid-connect-login-form {
+    max-width: 355px;
+    position: relative;
+    width: 100%;
+    z-index: 2;
+  }
+
+  .page__footer {
+    padding: 0 0 22px;
+  }
+}

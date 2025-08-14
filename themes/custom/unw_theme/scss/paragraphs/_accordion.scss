@@ -1,0 +1,54 @@
+.paragraph--type--accordions {
+  margin-bottom: rem-calc(18);
+}
+
+.paragraph--type--accordions-item {
+  border: 1px solid #999999;
+  border-image: none;
+  clear: both;
+  margin: rem-calc(18 0 0);
+  padding: rem-calc(16);
+  width: 100%;
+
+  .field--name-field-title {
+    color: $makara;
+    font-family: $font-bitter;
+    font-size: rem-calc(25);
+    font-weight: $bitter-regular;
+    line-height: 1.5;
+    margin: rem-calc(0 0 12 0);
+  }
+
+  .field--name-field-body {
+    display: none; // jQuery action.
+
+    p {
+      margin-bottom: rem-calc(12);
+    }
+  }
+
+  .field--name-field-open-accordion-text {
+    color: $blue;
+    cursor: pointer;
+    padding-bottom: rem-calc(5);
+
+    &:after {
+      content: '▼';
+      display: inline-block;
+      margin-left: rem-calc(4);
+      transform: rotate(0);
+      transition: transform .4s ease;
+    }
+  }
+
+  .close-accordion-action {
+    color: $blue;
+    cursor: pointer;
+    display: none; // jQuery action.
+    padding-bottom: rem-calc(5);
+
+    &:after {
+      content: '▲';
+    }
+  }
+}

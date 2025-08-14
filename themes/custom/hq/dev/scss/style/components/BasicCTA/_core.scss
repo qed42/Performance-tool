@@ -1,0 +1,60 @@
+.paragraph--type--basic-cta {
+  max-width: 100vw;
+  overflow: hidden;
+  padding: 64px 0;
+
+  .row {
+    @include media-breakpoint-down(sm) {
+      flex-direction: column-reverse;
+    }
+  }
+
+  .body {
+    @include media-breakpoint-up(lg) {
+      max-width: 450px;
+      margin-right: 25px;
+    }
+  }
+
+  .image-wrapper {
+    @include media-breakpoint-down(sm) {
+      padding: 0;
+    }
+  }
+
+  .image-link {
+    display: block;
+    height: 100%;
+
+    img {
+      object-fit: cover;
+      height: 100%;
+      width: 50vw;
+
+      @include media-breakpoint-down(md) {
+        width: 100%;
+        max-height: none;
+      }
+    }
+  }
+
+  .image {
+    height: 100%;
+    width: 100%;
+
+    @include media-breakpoint-down(md) {
+      margin-bottom: 40px;
+    }
+  }
+
+  .field--name-field-body {
+    @include typography-body;
+
+    margin-bottom: 30px;
+    color: #333;
+  }
+
+  .field.btn {
+    text-transform: uppercase;
+  }
+}

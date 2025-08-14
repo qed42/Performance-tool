@@ -1,0 +1,68 @@
+{% set classes = [
+  'paragraph',
+  'paragraph--type--' ~ (paragraph.bundle|clean_class),
+  view_mode ? 'paragraph--view-mode--' ~ (view_mode|clean_class),
+  not paragraph.isPublished() ? 'paragraph--unpublished'
+] %}
+
+{% block paragraph %}
+  {% if content.background_hex_code|render|striptags|trim|length > 0 %}
+    <div class="block-quote__bg-wrapper" style="background-color: {{ content.background_hex_code }};">
+      <div {{ attributes.addClass(classes) }}>
+        {% block content %}
+          <div class="container">
+            <figure class="block-quote-text-image">
+              {% if content.field_media_image[0] %}
+                <div class="quote-image">
+                  {{ content.field_media_image }}
+                </div>
+              {% endif %}
+
+              <div class="justify-content-center quote-text {% if content.field_media_image[0] %} include-image {% endif %}">
+                {% if content.field_body[0] %}
+                  <blockquote class="quote-body">
+                    {{ content.field_body }}
+                  </blockquote>
+                {% endif %}
+
+                {% if content.field_author[0] %}
+                  <footer class="quote-author">
+                    {{- '—' -}}<cite>{{ content.field_author[0] }}</cite>
+                  </footer>
+                {% endif %}
+              </div>
+            </figure>
+          </div>
+        {% endblock %}
+      </div>
+    </div>
+  {% else %}
+    <div {{ attributes.addClass(classes) }}>
+      {% block else_content %}
+        <div class="container">
+          <figure class="block-quote-text-image">
+            {% if content.field_media_image[0] %}
+              <div class="quote-image">
+                {{ content.field_media_image }}
+              </div>
+            {% endif %}
+
+            <div class="justify-content-center quote-text {% if content.field_media_image[0] %} include-image {% endif %}">
+              {% if content.field_body[0] %}
+                <blockquote class="quote-body">
+                  {{ content.field_body }}
+                </blockquote>
+              {% endif %}
+
+              {% if content.field_author[0] %}
+                <footer class="quote-author">
+                  {{- '—' -}}<cite>{{ content.field_author[0] }}</cite>
+                </footer>
+              {% endif %}
+            </div>
+          </figure>
+        </div>
+      {% endblock else_content %}
+    </div>
+  {% endif %}
+{% endblock %}

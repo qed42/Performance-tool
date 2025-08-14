@@ -1,0 +1,61 @@
+{#
+/**
+ * @file
+ * Default theme implementation to each level of menu.
+ */
+#}
+{% import _self as menu %}
+
+{{ menu.menu_links(items, attributes, 0) }}
+
+{% macro menu_links(items, attributes, menu_level) %}
+  <ul{{attributes.addClass(['menu', 'menu-level-'~items|first.menu_level])}}>
+    {% for key, item in items %}
+      {% if key|first != '#' %}
+        {% if item.content.field_highlighted_menu.0|render == 'On' %}
+          {% set menuHide = true %}
+        {% else %}
+            {% set menuHide = false %}
+        {% endif %}
+
+        {% set menu_item_classes = [
+          'menu-item',
+          item.is_expanded ? 'menu-item--expanded',
+          item.is_collapsed ? 'menu-item--collapsed',
+          item.in_active_trail ? 'menu-item--active-trail',
+          menuHide ? 'hidden',
+        ] %}
+        {% if item.content.field_highlighted_menu.0|render != 'On' %}
+        {% endif %}
+        <li{{item.attributes.addClass(menu_item_classes)}}>
+          {% set rendered_content = item.content|without('field_hover_text', 'field_highlighted_menu', 'field_image')|render %}
+          {% set menu_link_attribute = create_attribute() %}
+          {% set titleText = item.content.field_hover_text.0 ? item.content.field_hover_text.0 : item.title %}
+          {% set linkTarget = item.url.getOption('attributes').target ? item.url.getOption('attributes').target : '_self' %}
+          {% set menu_link_classes = ['nav-link'] %}
+          {% if item.url|render|length %}
+            <a {{ menu_link_attribute.addClass(menu_link_classes) }} href="{{item.url}}" title="{{titleText}}" target={{linkTarget}}>
+              <span>{{item.title}}</span>
+            </a>
+          {% else %}
+            <a {{ menu_link_attribute.addClass(menu_link_classes) }} href="javascript:void(0)" title="{{titleText}}" tabindex="-1">
+              <span class="no-link">{{item.title}}</span>
+            </a>
+          {% endif %}
+
+          {% if rendered_content %}
+            {{ rendered_content }}
+            {% if menuHide %}
+              <li class="menu-item menu-item__image hidden">
+                <a {{ menu_link_attribute.addClass(menu_link_classes) }} href="{{item.url}}" title="{{titleText}}" target={{linkTarget}}>
+                  {{item.content.field_image.0}}
+                  {{item.title}}
+                </a>
+              </li>
+            {% endif %}
+          {% endif %}
+        </li>
+      {% endif %}
+  {% endfor %}
+  </ul>
+{% endmacro %}

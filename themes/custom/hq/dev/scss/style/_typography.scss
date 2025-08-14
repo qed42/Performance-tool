@@ -1,0 +1,183 @@
+* {
+  font-family: $font-family-base;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+h1,
+.h1 {
+  @include typography-h1;
+
+  margin-bottom: 20px;
+
+  &.medium {
+    font-weight: 500;
+  }
+  &.semibold {
+    font-weight: 600;
+  }
+  &.regular {
+    font-weight: 400;
+  }
+}
+
+h2,
+.h2 {
+  @include typography-h2;
+
+  margin-bottom: 20px;
+
+  &.medium {
+    font-weight: 500;
+  }
+  &.semibold {
+    font-weight: 600;
+  }
+  &.regular {
+    font-weight: 400;
+  }
+}
+
+h3,
+.h3 {
+  @include typography-h3;
+
+  margin-bottom: 26px;
+  color: $text-gray;
+
+  &.medium {
+    font-weight: 500;
+  }
+  &.semibold {
+    font-weight: 600;
+  }
+  &.bold {
+    font-weight: 700;
+  }
+}
+
+h4,
+.h4 {
+  @include typography-h4;
+
+  margin-bottom: 20px;
+  color: $darkish-gray;
+
+  &.medium {
+    font-weight: 500;
+  }
+  &.semibold {
+    font-weight: 600;
+  }
+  &.bold {
+    font-weight: 700;
+  }
+}
+
+h5,
+.h5 {
+  @include typography-h5;
+
+  &.medium {
+    font-weight: 500;
+  }
+  &.semibold {
+    font-weight: 600;
+  }
+  &.bold {
+    font-weight: 700;
+  }
+}
+
+h6,
+.h6 {
+  @include typography-h6;
+
+  &.medium {
+    font-weight: 500;
+  }
+  &.semibold {
+    font-weight: 600;
+  }
+  &.bold {
+    font-weight: 700;
+  }
+}
+
+.text-highlight {
+  @include typography-bodyl-b;
+
+
+  margin-bottom: 25px;
+  color: $blue;
+
+  @include media-breakpoint-down(lg) {
+    margin-bottom: 10px;
+  }
+
+  @include media-breakpoint-down(sm) {
+    margin-bottom: 25px;
+  }
+
+  &--aside {
+    line-height: 2;
+
+    @include media-breakpoint-up(lg) {
+      max-width: 320px;
+      text-align: right;
+    }
+  }
+}
+
+.fa-b:before {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+}
+
+.regular-title {
+  h5 {
+    text-transform: inherit;
+    margin-bottom: 15px;
+  }
+}
+
+.heading-bottom-line {
+  padding-bottom: 8px;
+  position: relative;
+  margin-bottom: 40px;
+
+  &:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    border-radius: $border-radius;
+    background-color: #c6cbd0;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+  }
+}
+
+a,
+.field {
+  &:focus {
+    box-shadow: unset;
+    outline: none;
+  }
+}
+
+h3 a:hover,
+.link-full-content:hover {
+  text-decoration: underline;
+}
+
+figcaption,
+caption,
+.caption {
+  @include typography-label;
+}

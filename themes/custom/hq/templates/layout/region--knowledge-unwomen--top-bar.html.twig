@@ -1,0 +1,44 @@
+{#
+/**
+ * @file
+ * Theme override to display a region.
+ *
+ * Available variables:
+ * - content: The content for this region, typically blocks.
+ * - attributes: HTML attributes for the region div.
+ * - region: The name of the region variable as defined in the theme's
+ *   .info.yml file.
+ *
+ * @see template_preprocess_region()
+ */
+#}
+
+{%
+  set classes = [
+    'region',
+    'region-' ~ region|clean_class,
+    theme_region_class,
+] %}
+
+{% if content %}
+  {% if is_rtl %}
+    {{ attach_library('hq/region-bt-top-header-rtl') }}
+    {{ attach_library('hq/top-header-menu-rtl') }}
+  {% else %}
+    {{ attach_library('hq/region-bt-top-header') }}
+    {{ attach_library('hq/top-header-menu') }}
+  {% endif %}
+  <div{{ attributes.addClass(classes) }}>
+    <div class="top-header__wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="top-header__content">
+              {{ content }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}

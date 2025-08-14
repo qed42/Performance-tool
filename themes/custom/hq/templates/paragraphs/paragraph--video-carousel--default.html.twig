@@ -1,0 +1,100 @@
+{# 
+  Set CSS classes for the paragraph wrapper.
+  Includes base class, bundle type, view mode, and unpublished status.
+#}
+{% set classes = [
+  'paragraph container',
+  'paragraph--type--' ~ paragraph.bundle|clean_class,
+  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+  not paragraph.isPublished() ? 'paragraph--unpublished'
+] %}
+
+{# Attach RTL or LTR specific carousel library based on language direction #}
+{% if is_rtl %}
+  {{ attach_library('hq/paragraph-video-carousel-rtl') }}
+{% else %}
+  {{ attach_library('hq/paragraph-video-carousel') }}
+{% endif %}
+
+{# Calculate total number of items and items per view #}
+{% set total_items = paragraph.field_component_items|length %}
+{% set items_per_view = paragraph.field_items_per_view.value %}
+{% set swiper_classes = ['swiper-container'] %}
+{% if items_per_view == 3 %}
+  {% set swiper_classes = swiper_classes|merge(['three']) %}
+{% endif %}
+
+{# If there are at least two items, render the carousel #}
+{% if total_items >= 2 and items_per_view >=2 %}
+
+{# Attach Swiper.js library for carousel functionality #}
+{{ attach_library('hq/swiper_library') }}
+
+{% set swiper_id = 'swiper-' ~ paragraph.id() %}
+
+<div {{ attributes.addClass(classes) }}>
+  <div class="swiperHeader-wrapper">
+    <div class="header-left">
+      <span class="header-title">
+        {{ content.field_title }}
+      </span>
+    </div>
+    <div class="header-right">
+      {% if content.view_all_link is defined %}
+        <div class="header-link" tabindex="0" role="link" aria-label="View All">
+          {{ content.view_all_link|render }}
+        </div>
+      {% endif %}
+      <nav class="carouselNav-wrapper">
+        <button class="swiper-button-prev btn btn-primary icon icon-arrow-left" data-swiper-target="{{ swiper_id }}" aria-label="Previous slide" tabindex="0" role="button">
+          <span class="sr-only">Swipe left</span>
+        </button>
+        <button class="swiper-button-next btn btn-primary icon icon-arrow-right" data-swiper-target="{{ swiper_id }}" aria-label="Next slide" tabindex="0" role="button">
+          <span class="sr-only">Swipe right</span>
+        </button>
+      </nav>
+    </div>
+  </div>
+
+  {# Swiper container with unique ID #}
+  <div id="{{ swiper_id }}" class="{{ swiper_classes|join(' ') }}" data-items-per-view="{{ items_per_view }}">
+    {{ content|without('field_title', 'view_all_link', 'field_items_per_view', 'paragraph_view_mode')|render }}
+  </div>
+</div>
+
+{# 
+  If less than 2 items, render the single-card layout 
+  (fallback carousel alternative for single item)
+#}
+{% else %}
+  <div class="single-card">
+    {% set first_item = paragraph.field_component_items|first %}
+    {% if first_item.entity.field_content_reference.entity is not empty %}
+      {% set node = first_item.entity.field_content_reference.entity %}
+      <div {{ attributes.addClass(classes) }}>
+        <div class="video-crousel__wraper">
+          <div class="row">
+            <div class="col-12">
+              <div class="swiperHeader-wrapper">
+                <div class="header-left">
+                  <span class="header-title">
+                    {{ content.field_title }}
+                  </span>
+                </div>
+              </div>
+              {{ content|without('field_title', 'view_all_link', 'field_items_per_view', 'paragraph_view_mode')|render }}
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+{% endif %}
+
+{# Video Popup Overlay Markup #}
+<div id="video-popup-overlay" class="video-popup-overlay hidden" role="dialog" aria-modal="true">
+  <div class="video-popup-inner">
+    <button class="video-popup-close" aria-label="Close video popup">×</button>
+    <div class="video-popup-content"></div>
+  </div>
+</div>

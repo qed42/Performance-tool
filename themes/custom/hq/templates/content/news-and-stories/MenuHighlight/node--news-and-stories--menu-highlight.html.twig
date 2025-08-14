@@ -1,0 +1,24 @@
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+
+<article{{ attributes.addClass(classes) }}>
+  {% block node %}
+
+    {% if content.field_media_image_hero.0 %}
+      {{ attach_library('hq/rellax_library') }}
+      <figure class="story-image parallax-image">
+        <a href="{{ url }}" aria-label="Open highlighted story: {{ label.0 }}" title="Highlighted story: {{ label.0 }}">
+          {{ content.field_media_image_hero }}
+
+          {{ label }}
+        </a>
+      </figure>
+    {% endif %}
+
+  {% endblock %}
+</article>

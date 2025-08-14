@@ -1,0 +1,415 @@
+@import "../../../../../node_modules/bootstrap/scss/functions";
+@import "../../../../../node_modules/bootstrap/scss/mixins/breakpoints";
+@import "../../../custom";
+@import "../../../mixins";
+
+.hq-listing-page {
+  .views-exposed-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px 20px;
+    margin-bottom: 24px;
+    
+    @include media-breakpoint-down(sm) {
+      margin-bottom: 30px;
+    }
+  }
+
+  .js-form-type-textfield {
+    flex: 1;
+
+    input {
+      @include btn-input;
+
+      margin-top: 0;
+      padding-inline: 40px;
+      color: $text-gray;
+      text-transform: none;
+      background: $white url('/themes/custom/hq/img/search.svg') no-repeat 12px center;
+      border: 1px solid $pink_new;
+      box-shadow: 0px 1px 4px 0px rgba(16, 24, 40, 0.05);
+      box-sizing: border-box;
+
+      &:focus {
+        border-color: $blue;
+      }
+
+      &::placeholder {
+        color: $pale-sky;
+      }
+    }
+  }
+
+  .form-actions {
+    @include media-breakpoint-down(sm) {
+      width: 100%;
+    }
+
+    input {
+      @include btn;
+      @include btn-primary;
+
+      height: unset;
+    }
+  }
+
+  .js-form-type-select {
+    flex: 1;
+
+    @include media-breakpoint-down(md) {
+      flex: 0 0 calc(50% - 10px);
+    }
+
+    @include media-breakpoint-down(sm) {
+      flex: 0 0 100%;
+      width: 100%;
+    }
+  }
+
+  .clear-filter-btn {
+    @include btn;
+    @include btn-outline-primary;
+
+    
+
+    @include media-breakpoint-down(sm) {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  .block-facets-summary,
+  .views-filters-summary {
+    margin-bottom: 24px;
+
+    ul,
+    .items {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 16px;
+
+      .facet-summary-item--facet,
+      .item {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        a,
+        .value {
+          @include typography-tag;
+
+          margin: 0;
+          padding: 12px 20px;
+          color: $white;
+          background: $pink_new;
+          border: 0;
+          border-radius: 6px;
+
+          &:hover,
+          &:focus {
+            filter: brightness(95%);
+          }
+        }
+
+        a {
+          display: flex;
+          flex-direction: row-reverse;
+          align-items: center;
+        }
+
+        .facet-item__status,
+        .remove-filter {
+          display: block;
+          width: 20px;
+          height: 20px;
+          margin-left: 8px;
+          background: transparent url('/themes/custom/hq/img/cross-white.svg') no-repeat center;
+          font-size: 0;
+        }
+      }
+    }
+  }
+
+  .block-facets-summary {
+    ul {
+      padding-inline: $gutter;
+
+      @include media-breakpoint-down(sm) {
+        flex-direction: column;
+      }
+    }
+  }
+
+  .resource-list-no-rst {
+    @include typography-h4-b;
+
+    display: flex;
+    padding: 30px $gutter;
+    color: $text-gray;
+
+    @include media-breakpoint-down(md) {
+      padding-block: 0;
+    }
+  }
+
+  .search-results {
+    display: flex;
+    gap: 10px;
+    padding: 20px $gutter;
+    align-items: center;
+
+    @include media-breakpoint-down(sm) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    h2 {
+      margin-bottom: 0;
+    }
+
+    &__number {
+      @include typography-body-sb;
+
+      color: $text-gray;
+    }
+  }
+
+  .select2-widget {
+    display: none;
+  }
+
+  .facets-reset-button {
+    opacity: 0;
+
+    @include media-breakpoint-down(sm) {
+      flex: 0 0 100%;
+      max-width: 100%;
+      text-align: center;
+    }
+
+    .facets-reset-link {
+      @include btn;
+      @include btn-outline-primary;
+    }
+  }
+
+  .facet-inactive {
+    opacity: 0;
+    flex: 1;
+    width: unset;
+    max-width: unset;
+
+    @include media-breakpoint-down(md) {
+      flex: 0 0 calc(50% - 10px);
+    }
+
+    @include media-breakpoint-down(sm) {
+      flex: 0 0 100%;
+      width: 100%;
+      margin-bottom: 0;
+    }
+
+    .select2-selection__choice {
+      display: none !important;
+    }
+  }
+
+  .ph-wrapper {
+    flex: 0 0 100%;
+  }
+
+  .kp-filter-block {
+    padding-inline: $gutter;
+    max-width: 100vw;
+    overflow: hidden;
+
+    @include media-breakpoint-up(lg) {
+      min-height: 150px;
+    }
+
+    form {
+      display: flex;
+      flex-wrap: wrap;
+      flex: 0 0 100%;
+      max-width: 100%;
+      gap: 30px 20px;
+      opacity: 0;
+
+      label {
+        @include hidden-label;
+      }
+    }
+
+    .facet-inactive,
+    .facets-reset-button {
+      opacity: 1;
+    }
+
+    .facet-inactive {
+      .select2-search--inline {
+        input {
+          width: 100% !important;
+        }
+      }
+    }
+  }
+}
+
+.select2-container--default:not(.unw-kp-country__open) {
+  .select2-results {
+    &__options {
+      padding: 12px $gutter;
+      min-height: unset !important;
+      border-radius: 6px;
+      border: $border-light-gray;
+      background: rgba(255, 255, 255, 0.80);
+    }
+
+    &__option {
+      @include typography-select2-sb;
+
+      position: relative;
+      margin-bottom: 16px;
+      padding-left: 30px !important;
+      color: $darkish-gray !important;
+      word-break: break-word;
+
+      &:hover,
+      &.select2-results__option--highlighted[aria-selected] {
+        color: $blue !important;
+      }
+
+
+      &:before {
+        position: absolute;
+        top: 2px;
+        left: 0;
+        background: $white;
+        border-radius: 6px;
+        border: 1px solid $gray-500;
+      }
+
+      &[aria-selected="true"] {
+        &::before {
+          content: "";
+          background: url('/themes/custom/hq/img/checked.svg') no-repeat center;
+          border: none;
+        }
+      }
+    }
+
+    &__message {
+      padding: 0 !important;
+
+      &::before {
+        content: none;
+      }
+    }
+  }
+
+  .selection {
+    .select2-selection {
+      &--multiple {
+        position: relative;
+        height: 50px;
+        background: $white;
+        border-radius: 6px;
+        border: $border-yellow;
+        box-shadow: 0px 1px 4px 0px rgba(16, 24, 40, 0.05);
+
+        @include media-breakpoint-down(md) {
+          height: 46px;
+        }
+
+        &[aria-expanded="true"] {
+          border-color: $blue;
+        }
+
+        &:focus-within {
+          border-color: $blue;
+        }
+
+        input {
+          @include typography-select2-sb;
+
+          height: inherit;
+          margin-top: 0;
+          padding: 0 12px;
+          color: $darkish-gray;
+
+          ::placeholder {
+            @include typography-select2-sb;
+          }
+        }
+
+        &::after {
+          position: absolute;
+          content: "";
+          right: 12px;
+          top: 50%;
+          transform: translateY(-50%) rotate(180deg);
+          width: 14px;
+          height: 14px;
+          background: url('/themes/custom/hq/img/caret-down.svg') no-repeat center;
+          background-size: contain;
+          border: none;
+        }
+
+        &[aria-expanded="false"] {
+          &::after {
+            transform: translateY(-50%);
+          }
+        }
+      }
+
+      &__rendered {
+        height: inherit;
+        padding: 0;
+        
+        .select2-selection__choice,
+        .select2-selection__placeholder-text {
+          @include typography-select2-sb;
+
+          height: inherit;
+          max-width: 90%;
+          margin-top: 0;
+          padding: 0 $gutter;
+          color: $gray-800;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+          background: none;
+          border: 0;
+
+          &__remove {
+            display: none;
+          }
+        }
+
+        .select2-selection__choice {
+          display: none;
+
+          &:nth-last-child(2) {
+            display: block;
+          }
+        }
+
+        .select2-search--inline {
+          height: inherit;
+
+          &:first-of-type {
+            input {
+              width: 100% !important;
+
+              &::placeholder {
+                @include typography-select2-sb;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

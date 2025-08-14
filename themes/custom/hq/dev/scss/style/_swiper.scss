@@ -1,0 +1,97 @@
+.swiperHeader-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+
+  @include media-breakpoint-down(lg) {
+    padding-right: 0;
+  }
+
+  .swiperHeader_title {
+    margin-bottom: 0;
+    flex: 1;
+    padding-right: 30px;
+
+    @include media-breakpoint-down(lg) {
+      max-width: calc(100% - 100px);
+      padding-right: 0;
+    }
+
+    @include media-breakpoint-down(sm) {
+      max-width: 100%;
+    }
+  }
+}
+
+.swiper-slide {
+  overflow: 'auto';
+  -webkit-overflow-scrolling: touch;
+}
+
+.carouselNav-wrapper {
+  margin-left: auto;
+  
+  @include media-breakpoint-down(sm) {
+    display: none;
+  }
+
+  &.mobile-wrapper {
+    position: relative;
+    margin-top: 40px;
+    display: block;
+
+    @include media-breakpoint-up(md) {
+      display: none;
+    }
+
+    .swiper-button-disabled {
+      opacity: 0.5;
+    }
+
+    .swiper-button-prev {
+      margin-right: 20px;
+    }
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    position: unset;
+    margin-top: unset;
+    width: 40px;
+    height: 40px;
+    outline: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    &.icon {
+      color: $white;
+
+      &::after {
+        content: unset;
+      }
+    }
+
+    &::before {
+      font-size: 20px;
+    }
+  }
+
+  // Hide both buttons when they are both disabled
+  button.swiper-button-disabled {
+    &:has(+ .swiper-button-disabled) {
+      display: none;
+    }
+  }
+
+  .swiper-button-disabled {
+    & + .swiper-button-disabled {
+      display: none;
+    }
+  }
+
+
+  .swiper-button-disabled {
+    opacity: 0.5;
+  }
+}

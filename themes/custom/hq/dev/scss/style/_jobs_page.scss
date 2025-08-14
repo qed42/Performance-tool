@@ -1,0 +1,65 @@
+.vacancies-undp-jobs {
+  width: 100%;
+  max-width: 100%;
+  padding: 0px;
+  .jobs-note {
+    margin-bottom: 10px;
+    font-family: $font-family-base;
+  }
+  .jobs-note b {
+    color: $red;
+  }
+  .job-list {
+    border: 1px solid $gray-300;
+    padding: 25px;
+    margin-bottom: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    background-color: $gray-100;
+    .label {
+      color: $black;
+      margin: 0 0 5px;
+      font-size: 14px;
+      font-weight: 900;
+    }
+  }
+  .views-field-body {
+    margin-bottom: 20px;
+  }
+}
+
+.menu-top-fixed {
+  display: none;
+}
+
+.block-exposedformundp-vacancies-pageblock-1 form {
+  opacity: 1!important;
+}
+
+.hq-listing-page.jobs-listing-page {
+  .kp-filter-block {
+    padding-inline: 0px!important;
+  }
+  .block-facets-summary {
+    ul, .search-results {
+      padding-inline: 0px!important;
+    }
+  }
+  .facet-inactive {
+    padding: 0px;
+  }
+  .facets-reset-button {
+    padding: 0px;
+    .facets-reset-link {
+      line-height: 16px!important;
+      color: $blue;
+      &:hover {
+        border-color: initial;
+        box-shadow: none;
+      }
+    }
+  }
+  .kp-filter-block {
+    margin-top: 50px;
+  }
+}

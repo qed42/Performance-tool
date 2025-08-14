@@ -1,0 +1,57 @@
+{% set classes = [
+  'paragraph',
+  view_mode ? 'paragraph--view-mode--' ~ (view_mode|clean_class),
+  not paragraph.isPublished() ? 'paragraph--unpublished',
+  'hq-hero-banner',
+] %}
+{% if is_rtl %}
+  {{ attach_library('hq/paragraph.vm.hero-banner-large-rtl') }}
+{% else %}
+  {{ attach_library('hq/paragraph.vm.hero-banner-large') }}
+{% endif %}
+{% block paragraph %}
+  <div {{ attributes.addClass(classes) }}>
+    <div class="hq-hero-banner__img" tabindex="-1">
+      {{content.field_media_image.0}}
+    </div>
+    <div class="hq-hero-banner__wrapper {{content.field_text_position.0|render|lower}}">
+      <div class="container"> 
+        <div class="row"> 
+          {% if content.field_text_position.0|render|lower == 'left' %}
+            <div class="col-12 col-sm-10 col-md-7 col-lg-6"> 
+          {% elseif content.field_text_position.0|render|lower == 'right' %}    
+            <div class="col-12 col-sm-10 col-md-7 col-lg-6 offset-lg-6 offset-md-5 offset-sm-2">
+          {% else %}
+            <div class="col-12 col-sm-10 col-md-8 offset-sm-1 offset-md-2 text-center">
+          {% endif %}
+            <div class="hq-hero-banner__content">
+              {% if content.field_publication_date.0 %}
+                <div class="hq-hero-banner__date">
+                  {{content.field_publication_date.0}}
+                </div>
+              {% endif %}
+
+              {% if content.field_title_html.0 %}
+                <h2 class="hq-hero-banner__title">
+                  {{content.field_title_html.0}}
+                </h2>
+              {% endif %}
+
+              {% if content.field_body.0 %}
+                <div class="hq-hero-banner__body">
+                  {{content.field_body.0}}
+                </div>
+              {% endif %}
+
+              {% if content.field_link_limited.0['#url_title'] and content.field_link_limited.0['#title']  %}
+                <div class="hq-hero-banner__btn">
+                  {{content.field_link_limited}}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

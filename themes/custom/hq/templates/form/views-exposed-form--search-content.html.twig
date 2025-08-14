@@ -1,0 +1,33 @@
+{#
+/**
+ * @file
+ * Default theme implementation of a views exposed form.
+ *
+ * Available variables:
+ * - form: A render element representing the form.
+ *
+ * @see template_preprocess_views_exposed_form()
+ *
+ * @ingroup themeable
+ */
+#}
+
+{% if q is not empty %}
+  {#
+    This ensures that, if clean URLs are off, the 'q' is added first,
+    as a hidden form element, so that it shows up first in the POST URL.
+  #}
+{{ q }}
+{% endif %}
+
+  {{ form.search_api_fulltext }}
+  {# <button id="header-search-close" class="icon icon-close">
+    <span class="sr-only">close search</span>
+  </button> #}
+
+{# <button id="header-search" class="icon icon-search" aria-label="open search input">
+  <span class="sr-only">Open Search</span>
+</button>
+<div class="tablet icon icon-search">
+  {{ form | without('search_api_fulltext') }}
+</div> #}

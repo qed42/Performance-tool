@@ -1,0 +1,56 @@
+.page-node-type-event {
+  .node--type-event {
+    margin-bottom: rem-calc(11);
+    .doc-description a {
+      color: $blue;
+    }
+
+    .field--name-field-office-sponsoring {
+      margin: rem-calc(0 0 0 5);
+    }
+  }
+
+  h1 {
+    font-weight: 400;
+  }
+
+  h2 {
+    color: $makara;
+    font-family: $font-bitter;
+    font-size: rem-calc(25);
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 0 0 rem-calc(12) 0;
+  }
+
+  .doc-description {
+    .clearfix::after {
+      content: none;
+    }
+
+    .field--name-field-media-image {
+      float: right;
+    }
+  }
+
+  .event-summary,
+  .event-dates,
+  .event-location {
+    margin-bottom: rem-calc(12);
+  }
+
+  .event-summary {
+    .field--name-field-subheader-long p {
+      margin-bottom: 0;
+    }
+  }
+
+  .field--name-field-event-type {
+    margin-bottom: rem-calc(11);
+  }
+
+  .event-anchor {
+    color: $blue;
+    display: block;
+  }
+}

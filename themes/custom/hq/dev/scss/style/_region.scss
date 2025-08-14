@@ -1,0 +1,14 @@
+.region-footer {
+
+  @include media-breakpoint-down(md) {
+    padding-top: 0px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 20px;
+  }
+
+  @include media-breakpoint-down(sm) {
+    grid-template-columns: 1fr;
+    padding-top: 0;
+  }
+}

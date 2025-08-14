@@ -1,0 +1,36 @@
+{% set classes = [
+  'carousel',
+  'slide',
+  'carousel--tabs',
+] %}
+
+<div{{ attributes
+          .addClass(classes)
+          .setAttribute('id', 'carousel-' ~items.0.content['#paragraph'].id())
+          .setAttribute('data-ride', 'carousel')
+          .setAttribute('data-interval', '100000000') }}
+>
+  <div class="container-tabs container container-small">
+    <div class="wrap-indicators wrap-indicators--magic-line">
+      <ol class="carousel-indicators carousel-indicators--tabs js-wrap-magic-line carousel-indicators--with-label">
+        {% for item in items %}
+          <li data-target="#carousel-{{ items.0.content['#paragraph'].id() }}" data-slide-to="{{ loop.index0 }}" class="js-macgic-line {{ loop.first ? 'active' }}">
+            <span>
+              {{ drupal_field('field_label', 'paragraph', item.content['#paragraph'].id()) }}
+            </span>
+          </li>
+        {% endfor %}
+      </ol>
+      <div id="magic-line"></div>
+    </div>
+  </div>
+  <div class="carousel-inner carousel-inner--tabs pb-80 pb-md-100">
+    {% for item in items %}
+      <div class="carousel-item {{ loop.first ? 'active active-default' }}"  data-tab-order="{{ loop.index0 }}">
+        <div class="container {{ loop.first ? 'container-publications' }} {% if loop.index != 2 %} container-small {% endif %} overflow-hidden">
+          {{ item.content }}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>

@@ -1,0 +1,107 @@
+// Select 2 styles
+.select2-container--open .select2-dropdown--above {
+  margin-top: 256px;
+}
+.select2 {
+  margin-bottom: 40px;
+
+  & {
+    cursor: pointer;
+    outline: none;
+
+    & .select2-selection--single.select2-selection--single {
+      height: unset;
+      padding: 15px 50px 15px 15px;
+      border: 2px solid $blue-100;
+      outline: none;
+    }
+
+    @include media-breakpoint-up(lg) {
+      display: none;
+    }
+  }
+
+  .select2-selection--single.select2-selection--single {
+    .select2-selection__rendered,
+    .select2-selection__placeholder {
+      font-weight: 600;
+      color: #333333;
+    }
+  }
+
+  &.select2-container--open {
+    .select2-selection--single.select2-selection--single {
+      background-color: $blue-100;
+      color: $white;
+
+      .select2-selection__rendered,
+      .select2-selection__placeholder {
+        color: $white;
+      }
+    }
+  } 
+}
+
+.select2-selection__arrow {
+  top: 24px !important;
+  right: 14px !important;
+
+  &::after {
+    content: '\e806';
+    font-family: 'UN-Women';
+    transform: rotate(90deg);
+    display: block;
+  }
+
+  b {
+    display: none;
+  }
+}
+
+.select2-container--open {
+  .select2-selection__arrow {
+    top: 12px !important;
+    right: 14px !important;
+
+    &::after {
+      transform: rotate(-90deg);
+    }
+  }
+}
+
+.select2-dropdown {
+  border: 0 !important;
+}
+
+.select2-results .select2-results__option {
+  @include typography-select2;
+  
+  padding-left: 0;
+  margin: 0 0 6px 0;
+  background: transparent;
+  text-transform: initial;
+}
+.select-dropdown {
+  position: static;
+}
+.select2-container .select2-container--default .select2-container--open {
+  bottom:0 !important;
+}
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+  background-color: transparent !important;
+  color: $blue !important;
+}
+
+.select2-container--default .select2-results__option[aria-selected=true] {
+  color: $blue !important;
+  background-color: transparent !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__clear,
+.select2-search.select2-search--dropdown {
+  display: none;
+}
+
+.select2-container--default .select2-selection--single {
+  border-radius: 6px !important;
+}

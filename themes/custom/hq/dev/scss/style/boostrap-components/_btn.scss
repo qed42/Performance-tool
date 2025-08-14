@@ -1,0 +1,19 @@
+.btn {
+  @include btn;
+
+  &__text {
+    @include btn-text;
+  }
+}
+
+.btn-primary {
+  @include btn-primary;
+}
+
+.btn-secondary {
+  @include btn-secondary;
+}
+
+.btn-outline-primary {
+  @include btn-outline-primary;
+}

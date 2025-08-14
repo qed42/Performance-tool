@@ -1,0 +1,37 @@
+.hq-carousel-global-card .swiper-slide {
+  height: auto;
+}
+.hq-carousel-global-card .swiper-slide article {
+  height: 100%;
+}
+.hq-carousel-global-card .carouselNav-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+@media (max-width: 767.98px) {
+  .hq-carousel-global-card .carouselNav-wrapper button {
+    display: none;
+  }
+}
+.hq-carousel-global-card .carouselNav-wrapper a {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+  font-weight: 600;
+  margin-right: 20px;
+  transition: all 0.3s ease;
+}
+.hq-carousel-global-card .carouselNav-wrapper a:hover, .hq-carousel-global-card .carouselNav-wrapper a:focus {
+  margin-right: 30px;
+}
+@media (max-width: 767.98px) {
+  .hq-carousel-global-card .carouselNav-wrapper a {
+    margin-right: 0;
+    margin-left: 10px;
+  }
+}
+.hq-carousel-global-card .flex-100 {
+  flex: 0 0 100%;
+}

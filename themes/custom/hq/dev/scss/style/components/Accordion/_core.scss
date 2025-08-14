@@ -1,0 +1,109 @@
+.paragraph--type--accordion {
+  margin-bottom: 20px;
+
+  .accordion-title {
+    @include media-breakpoint-up(md) {
+      margin-top: 40px;
+      @include typography-h4-b;
+    }
+  }
+
+  .field--name-field-component>.field__item {
+    border-bottom: 1px solid $pink_new;
+
+    &:first-child {
+      border-top: 1px solid $pink_new;
+    }
+  }
+
+  .field--name-field-body {
+    @include typography-body;
+
+    text-align: left;
+    margin-bottom: 25px;
+    color: #333;
+  }
+
+  @at-root .line-body {
+    transition: all 0.75s 0.25s;
+
+    .collapsed & {
+      transition: all 0.75s 0.25s;
+    }
+  }
+
+  @at-root & .icon-arrow-left::before {
+    transition: all 0.5s 0.5s;
+    transform: rotate(90deg);
+    font-size: 19px;
+  }
+
+  @at-root & .collapsed .icon-arrow-left::before {
+    transition: all 0.5s 0.5s;
+    transform: rotate(-90deg);
+  }
+
+  .card-header {
+    @include typography-h6-b;
+
+    text-align: left;
+    padding: 16px 15px 16px 1px;
+    background-color: transparent;
+
+    .card-title {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      margin: 0;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &__img-wrapper {
+      max-width: 70px;
+      width: 100%;
+    }
+
+    &__details-wrapper {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      @include typography-h5-m;
+    }
+
+    &__icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      background-color: $blue-100;
+      border-radius: 50%;
+
+      .image-container {
+        display: flex;
+        align-items: center;
+      }
+
+      img {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    ul.field {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  .accordion__button-wrapper {
+    padding: 8px 0 46px;
+    @include media-breakpoint-up(md) {
+     padding: 0 0 25px;
+    }
+  }
+}

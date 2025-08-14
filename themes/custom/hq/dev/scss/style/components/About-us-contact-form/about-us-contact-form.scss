@@ -1,0 +1,49 @@
+@import "../../../../../node_modules/bootstrap/scss/functions";
+@import "../../../../../node_modules/bootstrap/scss/mixins";
+@import "../../../custom";
+@import "../../../bootstrap-override/mixins";
+@import "../../../mixins";
+
+.about-us {
+  &__contact-wrapper {
+    padding-block: 40px;
+
+    @include media-breakpoint-up(md) {
+      padding-block: 55px;
+    }
+
+    @include media-breakpoint-up(lg) {
+      padding-block: 110px;
+    }
+  }
+  &__contact-img {
+    height: 100%;
+    text-align: center;
+    @include media-breakpoint-down(md) {
+      margin-bottom: 40px;
+    }
+
+    div,
+    article,
+    picture {
+      display: block;
+      height: 100%;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      object-position: center;
+    }
+  }
+  &__contact-form {
+    .field--name-field-contact {
+      .field__label {
+        @include typography-h2;
+
+        margin-bottom: 32px;
+      }
+    }
+  }
+}

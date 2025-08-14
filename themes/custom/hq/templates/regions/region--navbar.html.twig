@@ -1,0 +1,15 @@
+{%
+  set classes = [
+    'region',
+    'region-' ~ region|clean_class,
+    theme_region_class,
+] %}
+
+{% if content %}
+  <div{{ attributes.addClass(classes) }}>
+    {{ content }}
+  </div>
+  <button id="toggle-menu" class="icon icon-menu">
+    <span class="sr-only">Open Menu</span>
+  </button>
+{% endif %}

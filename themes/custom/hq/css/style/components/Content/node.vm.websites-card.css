@@ -1,0 +1,42 @@
+.websites-card {
+  position: relative;
+  height: 190px;
+  padding: 20px 25px 30px;
+  background-color: #E5E5E5;
+  border: 1px solid #d3dae2;
+}
+@media (max-width: 767.98px) {
+  .websites-card {
+    padding: 20px 25px 40px;
+  }
+}
+.websites-card__icon {
+  margin-bottom: 14px;
+}
+.websites-card__icon-image {
+  width: 42px;
+  height: 42px;
+}
+*.node--view-mode-full .websites-card__icon img {
+  width: 42px;
+  height: 42px;
+}
+.websites-card .websites-card__title .global-card__title {
+  -webkit-line-clamp: 3;
+  margin-bottom: 0;
+}
+.websites-card__details {
+  height: 100%;
+  transition: 0.3s;
+}
+
+.node--type-websites .websites-card__link:hover .websites-card__details, .node--type-websites .websites-card__link:focus .websites-card__details {
+  transform: scale(1.1);
+}
+.node--type-websites .websites-card__link:hover .global-card__title span, .node--type-websites .websites-card__link:focus .global-card__title span {
+  background-size: 100% 2px;
+}
+.node--type-websites.global-card__image {
+  display: block;
+  overflow: unset;
+}

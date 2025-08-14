@@ -1,0 +1,95 @@
+.map-image {
+  display: block;
+}
+@media (max-width: 1179.98px) {
+  .map-image {
+    display: none;
+  }
+}
+.map-image svg {
+  transform: scale(2);
+  width: 100%;
+  background-color: #c8e6ff;
+}
+.map-image svg #label,
+.map-image svg #label_2,
+.map-image svg #label_3,
+.map-image svg #label_4,
+.map-image svg #label_5 {
+  animation: none;
+  /* Remove the animation */
+  transition: transform 1s ease-in-out, opacity 0.5s ease-in-out;
+  transform: translateY(-100px);
+  opacity: 0;
+}
+.map-image svg #Black [id^=yellow_],
+.map-image svg #Blue [id^=yellow_],
+.map-image svg #Yellow [id^=yellow_],
+.map-image svg #yellow {
+  opacity: 0;
+  transition: opacity 0.1s ease-in;
+  cursor: pointer;
+}
+.map-image svg [id^=Tooltip_],
+.map-image svg [id^=Arrow_],
+.map-image svg #Arrow {
+  display: none;
+}
+.map-image svg #Black path[id^=yellow_]:hover + g g,
+.map-image svg #Black path[id^=yellow_]:hover + g path,
+.map-image svg #Blue path[id^=yellow_]:hover + g g,
+.map-image svg #Blue path[id^=yellow_]:hover + g path,
+.map-image svg #Yellow path[id^=yellow_]:hover + g g,
+.map-image svg #Yellow path[id^=yellow_]:hover + g path,
+.map-image svg #yellow:hover + g g,
+.map-image svg #yellow:hover + g path {
+  display: block;
+}
+
+.zoomOut svg {
+  animation: zoomOut 1s ease-in-out forwards;
+}
+
+.add-label svg #label,
+.add-label svg #label_2,
+.add-label svg #label_3,
+.add-label svg #label_4,
+.add-label svg #label_5 {
+  opacity: 1;
+  transform: translateY(0);
+}
+.add-label svg #Black [id^=yellow_],
+.add-label svg #Blue [id^=yellow_],
+.add-label svg #Yellow [id^=yellow_],
+.add-label svg #yellow {
+  opacity: 1;
+  transition: opacity 0.1s ease-in;
+}
+
+.remove-label svg #label,
+.remove-label svg #label_2,
+.remove-label svg #label_3,
+.remove-label svg #label_4,
+.remove-label svg #label_5 {
+  animation: slideOut 0.5s ease-in-out forwards;
+}
+
+@keyframes slideOut {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100px);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+@keyframes zoomOut {
+  0% {
+    transform: scale(2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

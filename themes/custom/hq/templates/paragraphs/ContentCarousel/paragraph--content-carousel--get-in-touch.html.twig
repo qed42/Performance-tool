@@ -1,0 +1,43 @@
+{{ attach_library('hq/swiper_library') }}
+{% if is_rtl %}
+  {{ attach_library('hq/node.vm.get-in-touch-rtl') }}
+{% else %}
+  {{ attach_library('hq/node.vm.get-in-touch') }}
+{% endif %}
+
+{% set classes = [
+  'paragraph',
+  'get-in-touch-cards_container',
+  'hq-carousel-get-in-touch-card',
+  view_mode ? 'paragraph--view-mode--' ~ (view_mode|clean_class),
+  not paragraph.isPublished() ? 'paragraph--unpublished'
+] %}
+{% set disabledBtn = (content.field_items_per_view.0 <= 4) ? 'swiper-button-disabled' : '' %}
+{% block paragraph %}
+<div class="container">
+  <div {{ attributes.addClass(classes) }}>
+    {% block content %}
+      <div class="swiperHeader-wrapper">
+        {{ content.field_title }}
+
+        <span class="card-carousel-items hidden">{{ content.field_items_per_view.0 }}</span>
+        <nav class="carouselNav-wrapper">
+          <button class="swiper-button-prev btn btn-primary icon icon-arrow-left {{disabledBtn}}">
+            <span class="sr-only">swipe left</span>
+          </button>
+          <button class="swiper-button-next btn btn-primary icon icon-arrow-right {{disabledBtn}}">
+            <span class="sr-only">swipe right</span>
+          </button>
+        </nav>
+      </div>
+
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          {{ content.field_component }}
+        </div>
+        <div class="swiper-scrollbar d-md-none"></div>
+      </div>
+    {% endblock %}
+  </div>
+</div>
+{% endblock %}

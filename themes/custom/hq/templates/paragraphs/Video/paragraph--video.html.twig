@@ -1,0 +1,45 @@
+{%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]
+%}
+{{ attach_library('hq/videojs_library') }}
+
+{% block paragraph %}
+  <div{{ attributes.addClass(classes) }}>
+    {% block content %}
+      <div class="container">
+        {% if content.field_video_upload.0 %}
+          <div class="row justify-content-center text-center video-upload">
+            {% if content.field_video_container.0['#markup'] == 'c_lg' %}
+              <div class="col-12 col-md-10">
+                <video id="video_upload-{{ random(1, 1000) }}" class="video-js vjs-theme-fantasy" 
+                  controls 
+                  preload="none" 
+                  data-setup='{"aspectRatio":"920:500"}' 
+                  poster={{ content.field_poster_image[0]['#markup'] }} />
+                  <source src={{ content.field_video_upload[0]['#markup'] }} type='video/mp4' />
+                  <span class="video-title sr-only">{{ content.field_title[0]['#context'].value }}</span>
+                </video>
+              </div>
+            {% else %}
+              <div class="col-12 col-md-8">
+                <video id="video_upload-{{ random(1, 1000) }}" class="video-js vjs-theme-fantasy" 
+                  controls 
+                  preload="none" 
+                  data-setup='{"aspectRatio":"920:500"}' 
+                  poster={{ content.field_poster_image[0]['#markup'] }} />
+                  <source src={{ content.field_video_upload[0]['#markup'] }} type='video/mp4' />
+                  <span class="video-title sr-only">{{ content.field_title[0]['#context'].value }}</span>
+                </video>
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+    {% endblock %}
+  </div>
+{% endblock paragraph %}

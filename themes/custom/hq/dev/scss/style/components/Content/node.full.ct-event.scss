@@ -1,0 +1,164 @@
+@import "../../../../../node_modules/bootstrap/scss/functions";
+@import "../../../../../node_modules/bootstrap/scss/mixins/breakpoints";
+@import "../../../custom";
+@import "../../../mixins";
+
+.node--type-event {
+  &.node--view-mode-full {
+    p {
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    img {
+      margin-bottom: 25px;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      margin-top: 45px;
+    }
+
+    .field--name-field-registration-link {
+      a {
+        @include btn;
+        @include btn-primary;
+
+        display: block;
+      }
+    }
+
+    .field--name-field-event-live-link {
+      a {
+        @include btn;
+        @include btn-outline-primary;
+
+        display: block;
+      }
+    }
+
+    .event {
+      &__block {
+        padding-block: 30px;
+        border-block-end: $border-gray;
+
+        @include media-breakpoint-up(md) {
+          padding-block: 50px;
+        }
+
+        @include media-breakpoint-up(lg) {
+          padding-block: 54px;
+        }
+
+        &.map {
+          margin-top: -1px;
+          padding-block: 20px;
+          background-color: $white;
+          border-top: $border-gray;
+        }
+
+        &.hide {
+          border-top-color: $white;
+        }
+      }
+
+      &__sub-title {
+        margin-bottom: 25px;
+
+        @include media-breakpoint-up(md) {
+          margin-bottom: 44px;
+        }
+      }
+
+      &__title-h4 {
+        @include typography-h4;
+
+        color: $text-gray;
+      }
+
+      &__date-location {
+        @include media-breakpoint-down(sm) {
+          margin-top: 22px;
+        }
+      }
+
+      &__date-location-content {
+        @include typography-body-sb;
+        
+        display: flex;
+        gap: 28px;
+        border: $border-blue;
+        border-radius: 12px;
+        padding: 20px 16px;
+        color: $text-gray;
+
+        .text-blue {
+          color: $text-blue;
+          font-weight: 700;
+        }
+      }
+
+      &__agenda-content {
+        @include typography-bodyl-b;
+
+        color: $text-gray;
+      }
+    }
+
+    .addtocal-container {
+      float: none;
+      margin: 10px 0 0;
+
+      .addtocal {
+        @include typography-body-sb;
+
+        padding: 0;
+        background: none;
+        border: 0;
+        color: $blue;
+        text-transform: uppercase;
+
+        &:focus {
+          outline: 0;
+          color: $blue-100;
+        }
+
+        &:hover {
+          color: $blue-100;
+        }
+      }
+
+      .addtocal-links {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 12px 8px;
+        gap: 8px;
+        border: $border-light-gray;
+        border-radius: 4px;
+        background: $white;
+        box-shadow: 0px 8px 8px -4px rgba(16, 24, 40, 0.04), 0px 20px 24px -4px rgba(16, 24, 40, 0.10);
+      }
+
+      .addtocal-link {
+        width: 100%;
+
+        a {
+          display: block;
+          padding: 4px 8px;
+          border-radius: 2px;
+
+          &:hover,
+          &:focus {
+            text-decoration: none;
+            background-color: $frost-blue;
+          }
+        }
+      }
+    }
+  }
+}

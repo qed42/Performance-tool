@@ -1,0 +1,39 @@
+{% if is_rtl %}
+  {{ attach_library('hq/paragraph.timeline.item-rtl') }}
+{% else %}
+  {{ attach_library('hq/paragraph.timeline.item') }}
+{% endif %}
+
+<div class="timeline-filter container">
+  <div class="sticky-container">
+    <div class="timeline-title">{{ content.field_title }}</div>
+    <nav aria-label="timeline filters" class="filters">
+      <ul class="timeline-filter-wrapper row">
+        {% for year, months in content.year_month_filter_array %}
+          <li class="filter-year row">
+            <a class="year-text" href="#" aria-expanded="false" aria-controls="timeline-{{ year }}">{{ year }}</a>
+            <ul class="months row">
+              {% set printed_months = [] %} {# Track printed months #}
+              {% for item in months %}
+                {% set month = item.month %}
+                {% set preference = item.preference %}
+                {% if month not in printed_months %}
+                  {% set printed_months = printed_months|merge([month]) %} {# Add month to printed list #}
+                  <li>
+                    <a class="month-text {% if 'month' not in preference %} hidden {% endif %}" 
+                      href="#" 
+                      aria-controls="timeline-{{ year }}-{{ month|lower }}" 
+                      data-target="timeline-{{ year }}-{{ month|lower }}">
+                      {{ month|trans }}
+                    </a>
+                  </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </div>
+  {{ content|without('field_title', 'year_month_filter_array') }}
+</div>

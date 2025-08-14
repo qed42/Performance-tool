@@ -1,0 +1,42 @@
+{%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]
+%}
+{% block paragraph %}
+  <article{{ attributes.addClass(classes) }}>
+    {% block content %}
+
+      <div class="container container-small pt-3 pt-md-50 pb-3 pb-md-50">
+        <div class="row align-items-center callout-content flex-column-reverse {% if paragraph.index is even %} flex-md-row-reverse {% else %} flex-md-row {% endif %}">
+          <div class="col-md-6">
+            <div class="content-wrap mb-30 mb-md-0 {% if paragraph.index is even %} pl-md-30 {% else %} pr-md-30 {% endif %}"> 
+              <h2 {{ title_attributes }}>
+                {{ content.field_label }}
+              </h2>
+              {{ content.field_description }}
+              {{ content.field_link }}
+            </div>
+          </div>
+
+          <div class="col-md-6 d-flex">
+            <aside class="img-wrapp mb-4 mb-md-0">
+              {% if content.field_image['#items'].title %}
+                <div class="img-with-title">
+                  <div class="img-title">{{ content.field_image['#items'].title }}</div>
+                  {{ content.field_image.0 }}
+                </div>
+              {% else %}
+                {{ content.field_image.0 }}
+              {% endif %}
+            </aside>
+          </div>
+        </div>
+      </div>
+
+    {% endblock %}
+  </article>
+{% endblock paragraph %}

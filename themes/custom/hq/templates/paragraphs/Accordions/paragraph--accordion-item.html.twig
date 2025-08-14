@@ -1,0 +1,36 @@
+{% set parentId = 'paragraph-' ~ paragraph.parent_id.value%}
+{% set paragraphId = 'paragraph-' ~ paragraph.id() %}
+{% set paragraphLabel = 'paragraph-label' ~ paragraph.id() %}
+{% if paragraph.field_colour.target_id %}
+  {% set color_term = paragraph.field_colour.entity %}
+  {% set hexcode = color_term.field_hex_colour.value %}
+{% endif %}
+{% block content %}
+  <div class="accordion" id="accordion-{{ paragraphId }}">
+    <div class="card">
+      <div class="card-header d-flex justify-content-between" id="#accordion-collapse-{{ paragraphId }}">
+        <h4 class="card-title line-header collapsed" data-toggle="collapse" aria-expanded="true" href="#accordion-collapse-{{ paragraphId }}">
+          {% if content.field_icon_card.0 %}
+            <div class="card-header__img-wrapper">
+              <div class="card-header__icon" style="background-color: {{ hexcode }};">{{ content.field_icon_card }}</div>
+            </div>
+          {% endif %}
+          <div class="card-header__details-wrapper">
+            {{- content.field_label.0 -}}
+            <i class="icon-arrow-left"></i>
+          </div>
+        </h4>
+      </div>
+      <div aria-labelledby="accordion-collapse-{{ paragraphId }}" class="collapse line-body" id="accordion-collapse-{{ paragraphId }}" data-parent="#accordion-{{ paragraphId }}" role="tabpanel">
+        {{ content.field_body }}
+        {% if content.field_link_limited.0['#title'] %}
+          <div class="accordion__button-wrapper">
+            <a class="btn btn-primary accordion__button-link" href="{{ content.field_link_limited.0['#url'] }}" title="link to {{ content.field_title.0 }}">
+              {{ content.field_link_limited.0['#title'] }}
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

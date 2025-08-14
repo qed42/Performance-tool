@@ -1,0 +1,258 @@
+@import "../../../../../node_modules/bootstrap/scss/functions";
+@import "../../../../../node_modules/bootstrap/scss/mixins";
+@import "../../../custom";
+@import "../../../mixins";
+@import "../../../bootstrap-override/mixins";
+
+.global-card {
+  &__wrapper {
+    position: relative;
+    overflow: hidden;
+
+    &.bg-color__wrapper {
+      height: 100%;
+      padding-bottom: 12px;
+      background-color: $frost-blue;
+      border: 1px solid $text-disabled;
+      overflow: visible;
+      
+      .global-card__image {
+        margin: -1px;
+      }
+
+      .global-card__tag {
+        left: -1px;
+      }
+      
+      .global-card__title {
+        min-height: 54px;
+        padding-inline: $gutter;
+        margin-bottom: 24px;
+        -webkit-line-clamp: 2;
+      }
+    }
+
+    &.default {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $frost-blue;
+      flex: 0 0 100%;
+      max-width: 232px;
+      height: 168.34px;
+    }
+
+    .drupal-icon {
+      position: absolute;
+    }
+  }
+
+  &__link {
+    display: block;
+    height: 100%;
+    color: $text-gray;
+
+    &:hover,
+    &:focus {
+      .global-card__title {
+        span {
+          background-size: 100% 2px;
+        }
+      }
+
+      .global-card__tag-text {
+        filter: brightness(95%);
+      }
+
+      .global-card__image {
+        img {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+
+  &__image {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    & *:not(.websites-card__icon-image) {
+      width: 100%;
+    }
+
+    .image-container,
+    .field--type-image {
+      img {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        min-height: 130px;
+        margin-bottom: 0 !important;
+        object-fit: cover;
+        font-size: 14px;
+        line-height: normal;
+        transition: 0.3s;
+        aspect-ratio: 4 / 3;
+      }
+    }
+
+    &.publication {
+      img {
+        aspect-ratio: unset;
+      }
+    }
+  }
+
+  &__image-default {
+    position: relative;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: $ice-gray;
+    aspect-ratio: 4 / 3;
+
+    &.publication {
+      height: 328.52px;
+    }
+  }
+
+  &__tag {
+    position: relative;
+    display: inline-block;
+    left: 0;
+    bottom: 16px;
+  }
+
+  &__tag-text {
+    @include typography-tag;
+    
+    text-align: left;
+    background: $pink_new;
+    border-radius: 3px;
+
+    &:hover,
+    &:focus {
+      filter: brightness(95%);
+    }
+  }
+
+  &__title {
+    @include typography-card;
+
+    display: block;
+    margin-bottom: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    color: $text-gray;
+
+    &.publication {
+      -webkit-line-clamp: 3;
+    }
+
+    span {
+      text-decoration: none;
+      background-image: linear-gradient(to right,
+          $text-gray 0%,
+          $text-gray 100%);
+      background-position: 0px 95%;
+      background-size: 0px 2px;
+      transition: background-size 0.25s cubic-bezier(0.785, 0.135, 0.15, 0.86) 0s;
+      padding: 0.1% 0px;
+      background-repeat: no-repeat;
+    }
+
+    &.publication {
+      margin-top: 18px;
+    }
+  }
+
+  &__date {
+    @include typography-card-date;
+
+    color: $text-light-gray;
+  }
+
+  &__icon-text {
+    display: flex;
+    align-items: flex-start;
+    padding-inline: 15px;
+    margin-bottom: 12px;
+    color: $text-gray;
+
+    p {
+      margin: 0;
+    }
+
+    .drupal-icon {
+      position: relative;
+      margin-right: 12px;
+    }
+  }
+}
+
+
+.tab-publication,
+.publication-card {
+  .global-card__wrapper.default {
+    height: 328.52px;
+  }
+}
+
+.tab-website {
+  .global-card__wrapper.default {
+    height: 190px;
+  }
+}
+
+.carouselNav-wrapper {
+  a {
+    text-transform: uppercase;
+  }
+}
+
+
+.block-views-block-related-resources-related-courses,
+.block-views-block-latest-resources-by-type-publications,
+.block-views-block-latest-resources-by-type-events,
+.block-views-block-latest-resources-by-type-podcast,
+.block-views-block-latest-resources-by-type-websites,
+.block-views-block-latest-resources-by-type-videos,
+.block-views-block-related-resources-block-1,
+.block-views-block-news-and-stories-block-3,
+.block--related_articles {
+  @include make-container();
+  @include make-container-max-widths();
+
+  @include media-breakpoint-down(md) {
+    max-width: 100vw;
+  }
+
+  .swiperHeader-wrapper {
+    position: absolute;
+    top: -62px;
+    right: 0;
+    margin: 0;
+    @include media-breakpoint-down(sm) {
+      top: -55px;
+    }
+  }
+}
+
+.block-views-block-latest-resources-by-type-events,
+.block-views-block-latest-resources-by-type-publications,
+.block-views-block-latest-resources-by-type-podcast,
+.block-views-block-latest-resources-by-type-videos,
+.block-views-block-latest-resources-by-type-websites {
+  @include media-breakpoint-down(sm) {
+    h2 {
+      max-width: calc(100% - 100px);
+    }
+  }
+}

@@ -1,0 +1,28 @@
+// Override bootstrap framework variables.
+// Full list of variables in [path to themes/contrib]/bootstrap4/dist/bootstrap/4.4.1/scss/_variables.scss
+// or [path to themes/contrib]/bootstrap4/scss/_theme_variables.scss.
+
+$body-color:                #5e5a55;
+$link-color:                #009ddc;
+$link-hover-decoration:       none;
+
+
+// Typography
+// Font, line-height, and color for body text, headings, and more.
+$font-size-base:              14px;
+
+$headings-margin-bottom:      12px;
+$headings-font-family:        Bitter, "Times New Roman", Times, serif;
+$headings-font-weight:        400;
+$headings-color:              #5e5a55;
+
+
+// Breadcrumbs
+
+$breadcrumb-font-size:        11px;
+$breadcrumb-item-padding:     8px;
+
+$breadcrumb-margin-bottom:    28px;
+
+$breadcrumb-bg:              #e5e5de;
+$breadcrumb-border-radius:     0;

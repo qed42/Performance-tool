@@ -1,0 +1,29 @@
+{% if is_rtl %}
+  {{ attach_library('hq/organizer_block-rtl') }}
+{% else %}
+  {{ attach_library('hq/organizer_block') }}
+{% endif %}
+{% set classes = [
+  'paragraph',
+  'paragraph--type--' ~ (paragraph.bundle|clean_class),
+  view_mode ? 'paragraph--view-mode--' ~ (view_mode|clean_class),
+  not paragraph.isPublished() ? 'paragraph--unpublished'
+] %}
+{% block paragraph %}
+  <div{{attributes.addClass(classes)}}>
+    {% block content %}
+      <a href="{{ content.field_linked.0['#url'] }}" title="link to {{ content.field_linked.0['#title'] }}" class="organized__block-link">
+        <div class="organized__block">
+            <div class="organized__block-image">
+              {% if content.field_image.0 %}
+                {{ content.field_image }}
+              {% else %}
+                {{ content.field_linked.0['#title'] }}
+              {% endif %}
+            </div>
+          <h3 class="organized__block-title"><span>{{ content.field_linked.0['#title'] }}</span></h3>
+        </div>
+      </a>
+    {% endblock %}
+  </div>
+{% endblock paragraph %}

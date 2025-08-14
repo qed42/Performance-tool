@@ -1,0 +1,20 @@
+.paragraph--type--pull-quote {
+  margin: 40px 0;
+
+  .quote-text {
+    @include typography-h2;
+
+    padding: 28px 0;
+    border-top: 1px solid $pink_new;
+    border-bottom: 1px solid $pink_new;
+    margin: 0;
+
+    @include media-breakpoint-down(md) {
+      padding: 24px 0;
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+}

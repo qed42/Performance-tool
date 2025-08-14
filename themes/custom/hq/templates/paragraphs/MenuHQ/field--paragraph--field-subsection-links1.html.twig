@@ -1,0 +1,52 @@
+
+     {# <div class="dropdown">
+        <button class="btn btn-lg btn-menu dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown button
+        </button>
+        <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="dropdownMenuButton1">        
+           <li><a class="dropdown-item" href="#">{{ content }}</a></li>
+        </ul>
+      </div> #}
+
+{%
+  set classes = [
+    'field',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+  ]
+%}
+{%
+  set title_classes = [
+    'field__label',
+    label_display == 'visually_hidden' ? 'visually-hidden',
+  ]
+%}
+
+{% if label_hidden %}
+  {% if multiple %}
+    <ul{{ attributes.addClass(classes, 'field__items dropdown-menu') }}>
+      {% for item in items %}
+
+        <li{{ item.attributes.addClass('field__item dropdown-item') }}>{{ item.content }}</li>     
+      {% endfor %}
+    </ul>
+  {% else %}
+    {% for item in items %}
+      {{ item.content }}
+    {% endfor %}
+  {% endif %}
+{% else %}
+  <div{{ attributes.addClass(classes) }}>
+    <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
+    {% if multiple %}
+      <ul class="field__items 3">
+    {% endif %}
+    {% for item in items %}
+      <li{{ item.attributes.addClass('field__item 4') }}>{{ item.content }}</li>
+    {% endfor %}
+    {% if multiple %}
+      </ul>
+    {% endif %}
+  </div>
+{% endif %}

@@ -1,0 +1,140 @@
+.paragraph--type--card-featured {
+  padding-top: 30px;
+  padding-bottom: 30px;
+
+  .cardHighlights-header {
+    .more-link {
+      @include media-breakpoint-down(sm) {
+        display: none;
+      }
+    }
+  }
+
+  .content {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    background-color: #edf4fc;
+    min-height: 484px;
+
+    @include media-breakpoint-down(md) {
+      grid-template-columns: 1fr 240px;
+      min-height: 100%;
+    }
+
+    @include media-breakpoint-down(sm) {
+      grid-template-columns: 1fr;
+      min-height: 297px;
+    }
+
+    &-right {
+      padding: 23px 30px;
+
+      @include media-breakpoint-down(md) {
+        padding: 15px 10px 25px 10px;
+      }
+
+      @include media-breakpoint-down(sm) {
+        padding: 20px 10px;
+      }
+    }
+
+    h3 {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+
+      a {
+        --line-color: #181818;
+        text-decoration: none;
+        background-image: linear-gradient(
+          to right,
+          var(--line-color) 0%,
+          var(--line-color) 100%
+        );
+        background-position: 0px 95%;
+        background-size: 0px 2px;
+        transition: background-size 0.25s cubic-bezier(0.785, 0.135, 0.15, 0.86)
+          0s;
+        padding: 0.1% 0px;
+        background-repeat: no-repeat;
+        font-weight: 600;
+
+        &:hover {
+          background-size: 100% 2px;
+        }
+      }
+    }
+
+    .content-tag {
+      max-width: max-content;
+      margin-bottom: 20px;
+    }
+
+    .content-image {
+      width: 100%;
+      height: 100%;
+
+      @include media-breakpoint-down(sm) {
+        height: 230px;
+      }
+
+      &:hover {
+        & + .content-right {
+          h3 a {
+            background-size: 100% 2px;
+          }
+        }
+      }
+
+      img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    .field--name-field-link {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      a {
+        @include typography-link-m;
+        
+        text-transform: uppercase;
+
+        &:hover {
+          color: $blue;
+        }
+
+        &::after {
+          content: '';
+          content: '\e806';
+          font-family: 'UN-Women';
+          padding-left: 10px;
+        }
+      }
+
+      .field__item {
+        padding: 14.5px;
+        padding-left: 0;
+        border-bottom: 1px solid $black;
+
+        @include media-breakpoint-down(md) {
+          padding: 11.5px;
+          padding-left: 0;
+        }
+      }
+    }
+
+    a {
+      color: $black;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+    }
+  }
+}

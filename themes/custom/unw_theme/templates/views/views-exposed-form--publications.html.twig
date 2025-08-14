@@ -1,0 +1,38 @@
+{#
+/**
+ * @file
+ * Default theme implementation of a views exposed form.
+ *
+ * Available variables:
+ * - form: A render element representing the form.
+ *
+ * @see template_preprocess_views_exposed_form()
+ *
+ * @ingroup themeable
+ */
+#}
+
+{% if q is not empty %}
+  {#
+    This ensures that, if clean URLs are off, the 'q' is added first,
+    as a hidden form element, so that it shows up first in the POST URL.
+  #}
+{{ q }}
+{% endif %}
+<div class="search-results-bar">
+    <div class="search-form-bar">
+        <div class="form--results">
+            <div class="results-count">{{ results }}</div>
+            <div class="results-text">{{ 'results found'|t }}</div>
+        </div>
+        <div class="form--inline">
+          {{ form }}
+        </div>
+    </div>
+    {% if searched_word %}
+      <div class="form--description">
+        {{ 'Search results of '|t }}<span>{{ searched_word }}</span>
+      </div>
+    {% endif %}
+
+</div>

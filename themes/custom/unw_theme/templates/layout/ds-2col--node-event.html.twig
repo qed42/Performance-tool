@@ -1,0 +1,102 @@
+{#
+/**
+ * @file
+ * Display Suite 2 column template.
+ *
+ * Available variables:
+ * - outer_wrapper: outer wrapper element
+ * - left_wrapper: wrapper element around left region
+ * - right_wrapper: wrapper element around right region
+ * - attributes: layout attributes
+ * - left_attributes: attributes for left region
+ * - right_attributes: attributes for right region
+ * - left: content of left region
+ * - right: content of right region
+ */
+#}
+
+<{{ outer_wrapper }}{{ attributes.addClass('ds-2col', 'clearfix') }}>
+
+  {{ title_suffix.contextual_links }}
+
+  <{{ left_wrapper }}{{ left_attributes.addClass('group-left') }}>
+    <h1>{{ content.field_title['0']['#context']['value']|raw }}</h1>
+    <div class="doc-description">
+      {% if content.field_media_image|render %}
+        <a class="event-anchor" href="#event-content">{{ content.field_media_image }}</a>
+      {% endif %}
+      <div class="clearfix">
+        <div class="event-summary">
+          {% autoescape false %}
+            <em><strong>{{ content.body['#object'].body.summary }}</strong></em>
+          {% endautoescape %}
+          <a class="event-anchor" href="#event-content">{{ 'Full details ▼'|t }}</a>
+        </div>
+
+        {% if content.field_event_type|render %}
+          <div class="mb-2"><strong>{{ 'Event type: '|t }}</strong>{{ content.field_event_type.0['#title'] }}</div>
+        {% endif %}
+
+        <div class="event-dates">
+          <div><strong>{{ 'Start date: '|t }}</strong>{{ content.date.0['#start_date'] ~ ' | ' }}<strong>{{ 'Start time: '|t }}</strong>{{ content.date.0['#start_time'] ~ ' UTC '  ~ content.date.0['#timezone_p'] }}</div>
+          <div><strong>{{ 'End date: '|t }}</strong>{{ content.date.0['#end_date'] ~ ' | ' }}<strong>{{ 'End time: '|t }}</strong>{{ content.date.0['#end_time'] ~ ' UTC ' ~ content.date.0['#timezone_p'] }}</div>
+        </div>
+        <div class="event-location">
+          <strong>{{ 'Location: '|t }}</strong>
+          
+          {% if (content.field_address|render) and ((content.field_state|render) or (content.field_country_name|render) or (content.field_zip_code|render)) %}
+            {% autoescape false %}
+              <span>{{ content.field_address.0['#context'].value ~ ', '}}</span>
+            {% endautoescape %}
+          {% elseif content.field_address|render %}
+            {% autoescape false %}
+              <span>{{ content.field_address.0['#context'].value }}</span>
+            {% endautoescape %}
+          {% endif %}
+
+          {% if (content.field_state|render) and ((content.field_country_name|render) or (content.field_zip_code|render)) %}
+            <span>{{ content.field_state.0['#context'].value ~ ', '}}</span>
+          {% elseif content.field_state|render %}
+            <span>{{ content.field_state.0['#context'].value }}</span>
+          {% endif %}
+
+          {% if (content.field_country_name|render) and (content.field_zip_code|render) %}
+            <span>{{ content.field_country_name.0['#context'].value ~ ', '}}</span>
+          {% elseif content.field_country_name|render %}
+            <span>{{ content.field_country_name.0['#context'].value }}</span>
+          {% endif %}
+
+          {% if content.field_zip_code|render %}
+            <span>{{ content.field_zip_code.0['#context'].value }}</span>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    
+    <div id="event-content">
+      <h2>{{ "Event description"|t }}</h2>    
+      {{ content.body }}
+    </div>
+
+    {% if content.field_office_sponsoring|render %}
+      <div class="mb-2"><strong>{{ 'Sponsored by: '|t }}</strong>{{ content.field_office_sponsoring.0['#title'] }}</div>
+    {% endif %}
+
+    {% if content.field_co_sponsors|render %}
+      <div class="mb-2"><strong>{{ 'Other Co-Sponsors: '|t }}</strong>{{ content.field_co_sponsors.0['#context'].value }}</div>
+    {% endif %}
+    
+    {% if (content.field_contact_person|render) or (content.field_contact_email|render) or (content.field_contact_phone|render) %}
+      <div><strong>{{ 'More information:'|t }}</strong></div>
+      {{ 'Contact person: '|t ~ content.field_contact_person.0['#context'].value ~ ' ' ~ content.contact_email.0 ~ ' ' ~ content.field_contact_phone.0['#title'] }}
+    {% endif %}
+  
+  </{{ left_wrapper }}>
+
+  <{{ right_wrapper }}{{ right_attributes.addClass('group-right') }}>
+    {{ drupal_region('right_content') }}
+
+    {{ right }}
+  </{{ right_wrapper }}>
+
+</{{ outer_wrapper }}>

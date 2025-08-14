@@ -1,0 +1,269 @@
+@import "../../../../../node_modules/bootstrap/scss/functions";
+@import "../../../../../node_modules/bootstrap/scss/mixins";
+@import "../../../custom";
+@import "../../../bootstrap-override/mixins";
+@import "../../../mixins";
+
+.block-views-block-resource-by-region-block-1 {
+  margin: 40px 0;
+  padding: 54px 0 80px;
+  background: url("/themes/custom/hq/img/tabs-background.png") 0px 0px / cover no-repeat $blue-100;
+  background-blend-mode: multiply;
+
+  h2 {
+    color: $white;
+  }
+
+  .node--view-mode-region-resource-card {
+    .card_title {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+
+    &:hover,
+    &:focus {
+      img {
+        transform: scale(1.1);
+      }
+
+      .no-image {
+        img {
+          width: 52px;
+          height: 52px;
+          transform: none;
+        }
+      }
+    }
+
+    a {
+
+      &:hover,
+      &:focus {
+        .card_title {
+          span {
+            background-size: 100% 2px;
+          }
+        }
+      }
+    }
+  }
+
+  .resources-region {
+    &__wrapper {
+      margin: 0;
+      background: $white;
+      border: 1px solid $border-gray;
+
+      .nav-link,
+      .tab-heading {
+        @include typography-body;
+
+        padding: 22px 20px;
+        line-height: 36px;
+        color: $darkish-gray;
+        background: $frost-blue;
+        border: 1px solid $iron-gray;
+        border-radius: 0;
+        transition: none;
+
+        &:hover,
+        &:focus {
+          font-weight: 700;
+        }
+
+
+        &.active {
+          font-weight: 700;
+          background: $white;
+          border-right: 0;
+        }
+
+        &:not(:last-child) {
+          border-bottom: 0;
+        }
+      }
+
+      .tab-heading {
+        a {
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+          color: $darkish-gray;
+
+          &[aria-expanded="false"] {
+            .icon-arrow-left {
+              &:before {
+                transform: rotate(-90deg);
+                transition: all 0.2s 0.2s;
+              }
+            }
+          }
+
+          &[aria-expanded="true"] {
+            .icon-arrow-left {
+              &:before {
+                transform: rotate(90deg);
+                transition: all 0.2s 0.2s;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &__right-column {
+      padding: 30px;
+
+      @include media-breakpoint-down(sm) {
+        padding: 0;
+      }
+
+      .views-row {
+        margin-bottom: 30px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid $iron-gray;
+
+        @include media-breakpoint-down(md) {
+          padding-top: 0;
+        }
+
+        @include media-breakpoint-down(sm) {
+          padding: 25px 25px 0;
+        }
+      }
+
+      .more-link {
+        text-align: right;
+
+        a {
+          @include btn;
+          @include btn-primary;
+
+          &::after {
+            display: none;
+          }
+        }
+
+        @include media-breakpoint-down(sm) {
+          padding: 0 25px;
+        }
+      }
+
+      @include media-breakpoint-up(md) {
+        .collapse:not(.show) {
+          display: block;
+        }
+      }
+
+      @include media-breakpoint-down(sm) {
+        .tab-content {
+          &>.tab-pane {
+            border-bottom: 1px solid $pink_new;
+
+            &:first-child {
+              border-top: 1px solid $pink_new;
+            }
+
+            display: block;
+            opacity: 1;
+
+            .collapse {
+              margin-bottom: 40px;
+            }
+          }
+        }
+      }
+    }
+
+    &__card-image {
+      @include media-breakpoint-down(sm) {
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: center;
+      }
+      
+
+      picture,
+      .image-container {
+        width: fit-content;
+        overflow: hidden;
+        box-shadow: 2px 4px 12px 0px rgba(25, 72, 106, 0.20);
+      }
+
+      img {
+        font-size: 12px;
+        line-height: normal;
+        transition: 0.3s;
+      }
+
+      &.no-image {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
+        @include media-breakpoint-down(sm) {
+          justify-content: center;
+        }
+
+        a {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 160px;
+          width: 120px;
+          background: $icon-background;
+          box-shadow: 2px 4px 12px 0px rgba(25, 72, 106, 0.2)
+        }
+
+        img {
+          width: 50px;
+          height: 50px;
+          box-shadow: none;
+        }
+      }
+    }
+
+    &__card-download {
+      margin-bottom: 4px;
+
+      .field--name-field-download-files {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .field__item {
+        .paragraph--type--download-in {
+          a {
+            @include btn;
+            @include btn-outline-primary;
+            
+            position: relative;
+            padding: 8px 20px 8px 45px;
+
+            &::before {
+              content: "";
+              position: absolute;
+              top: 50%;
+              transform: translateY(-50%);
+              left: 22px;
+              width: 18px;
+              height: 18px;
+              background: url('/themes/custom/hq/img/download.svg') no-repeat center;
+            }
+
+            &:hover,
+            &:focus {
+              &::before {
+                background: url('/themes/custom/hq/img/download-white.svg') no-repeat center;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

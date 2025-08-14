@@ -1,0 +1,22 @@
+{%
+  set classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    attributes.id|clean_class,
+  ]
+%}
+
+{# Preventing of displaying the blocks without the content. The only exceptions are forms/inputs. #}
+{% if content|render|striptags('<input><form>')|trim|length > 0 %}
+  {% block content %}
+    {{ title_prefix }}
+    {% if label %}
+      <h2{{ title_attributes }} >
+        {{ label }}
+      </h2>
+    {% endif %}
+    {{ title_suffix }}
+
+    {{ content }}
+  {% endblock %}
+{% endif %}

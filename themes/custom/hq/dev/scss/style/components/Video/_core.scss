@@ -1,0 +1,389 @@
+@import "../../../custom";
+
+.paragraph--type--video {
+  padding: 40px 0;
+
+  @include media-breakpoint-down(sm) {
+    margin: 20px 0;
+  }
+
+  .video-js {
+    background-color: transparent;
+
+    .title-overlay-container {
+      @include typography-body;
+      
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      visibility: hidden;
+  
+      span {
+        margin: 0 !important;
+        text-shadow: none !important;
+      }
+    }
+
+    .vjs-controls-disabled .vjs-big-play-button, 
+    .vjs-error .vjs-big-play-button, 
+    .vjs-has-started .vjs-big-play-button, 
+    .vjs-using-native-controls .vjs-big-play-button,
+    .vjs-remaining-time,
+    .vjs-time-divider,
+    .vjs-fullscreen-control,
+    .vjs-picture-in-picture-control {
+      display: none;
+    }
+
+    .vjs-big-play-button .vjs-icon-placeholder::before,
+    .vjs-play-control .vjs-icon-placeholder, 
+    .vjs-icon-play,
+    .vjs-play-control.vjs-playing .vjs-icon-placeholder, 
+    .vjs-icon-pause {
+      font-family: 'UN-Women';
+    }
+
+    .vjs-big-play-button .vjs-icon-placeholder::before,
+    .vjs-play-control .vjs-icon-placeholder::before,
+    .vjs-icon-play::before {
+      content: "\e804";
+      margin: 0px 5px;
+    }
+
+    .vjs-play-control.vjs-playing .vjs-icon-placeholder::before,
+    .vjs-icon-pause::before {
+      content: "\e802";
+    }
+
+  .vjs-button > .vjs-icon-placeholder::before {
+    font-size: 2em;
+    padding-top: 5px;
+  }
+
+    .vjs-poster {
+      background-size: cover;
+    }
+
+    .vjs-control-bar {
+      background-color: transparent;
+      padding: 0 71px 0 60px;
+
+      @include media-breakpoint-down(sm) {
+        padding: 0;
+      }
+    }
+
+    .vjs-current-time,
+    .vjs-duration {
+      @include typography-label;
+
+      display: block;
+      bottom: 0;
+      position: absolute;
+      height: auto;
+    }
+
+    .vjs-current-time {
+      order: 2;
+      left: 120px;
+
+      @include media-breakpoint-down(sm) {
+        left: 60px;
+      }
+    }
+
+    .vjs-progress-control {
+      order: 3;
+    }
+
+    .vjs-duration {
+      order: 4;
+      right: 135px;
+
+      @include media-breakpoint-down(sm) {
+        right: 70px;
+      }
+    }
+
+    .vjs-load-progress div {
+      background: $white;
+    }
+
+    .vjs-mute-control .vjs-icon-placeholder::before,
+    .vjs-icon-volume-high::before {
+      font-size: 3.2em;
+    }
+
+    
+    .vjs-volume-panel {
+      margin-left: 20px;
+    }
+
+    .vjs-volume-panel .vjs-volume-control.vjs-volume-vertical {
+      width: 2.2em;
+      margin-left: 4px;
+      bottom: 7em;
+      background-color: rgba(78, 91, 112, 0.4);
+    }
+
+    .vjs-progress-holder .vjs-load-progress, 
+    .vjs-progress-holder .vjs-load-progress div, 
+    .vjs-progress-holder .vjs-play-progress {
+      border-radius: 10px;
+    }
+  }
+
+  .vjs-theme-fantasy {
+  
+    .vjs-control-bar {
+      height: 64px;
+    }
+
+    &:hover .vjs-big-play-button, 
+    .vjs-theme-fantasy.vjs-big-play-button:focus {
+      color: $blue;
+    }
+
+    .vjs-big-play-button {
+      color: $white;
+      background: rgba(51, 51, 51, 0.5);
+      border-radius: 50%;
+      width: 86px;
+      height: 86px;
+      line-height: 2.1em;
+      font-size: 40px;
+    }
+
+    .vjs-play-progress, 
+    .vjs-play-progress::before,
+    .vjs-volume-bar.vjs-slider-vertical .vjs-volume-level {
+      background: $blue;
+    }
+
+    .vjs-play-progress::before {
+      font-size: .7em;
+      border: 1px solid $white;
+      top: -0.25em;
+    }
+
+    .vjs-play-control {
+
+      .vjs-icon-placeholder::before {
+        border: 0;
+        margin-top: .3em;
+      }
+
+      &:hover .vjs-icon-placeholder::before {
+        border: none;
+      }
+    }
+
+    .vjs-volume-bar {
+      margin-top: 1.2em;
+      border-radius: 10px;
+      background: $white;
+    }
+
+    .vjs-volume-bar.vjs-slider-vertical {
+      width: .3em;
+      height: 6em;
+      margin: 1.35em auto;
+      margin-top: 1.35em;
+      background: #fff;
+    }
+  }
+}
+
+.video-upload {
+  padding: 40px 0;
+
+  @include media-breakpoint-down(sm) {
+    margin: 20px 0;
+  }
+
+  .video-js {
+    background-color: transparent;
+
+    .title-overlay-container {
+      @include typography-body;
+
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      visibility: hidden;
+  
+      span {
+        margin: 0 !important;
+        text-shadow: none !important;
+      }
+    }
+
+    .vjs-controls-disabled .vjs-big-play-button, 
+    .vjs-error .vjs-big-play-button, 
+    .vjs-has-started .vjs-big-play-button, 
+    .vjs-using-native-controls .vjs-big-play-button,
+    .vjs-remaining-time,
+    .vjs-time-divider,
+    .vjs-fullscreen-control,
+    .vjs-picture-in-picture-control {
+      display: none;
+    }
+
+    .vjs-big-play-button .vjs-icon-placeholder::before,
+    .vjs-play-control .vjs-icon-placeholder, 
+    .vjs-icon-play,
+    .vjs-play-control.vjs-playing .vjs-icon-placeholder, 
+    .vjs-icon-pause {
+      font-family: 'UN-Women';
+    }
+
+    .vjs-big-play-button .vjs-icon-placeholder::before,
+    .vjs-play-control .vjs-icon-placeholder::before,
+    .vjs-icon-play::before {
+      content: "\e804";
+    }
+
+    .vjs-play-control.vjs-playing .vjs-icon-placeholder::before,
+    .vjs-icon-pause::before {
+      content: "\e802";
+    }
+
+  .vjs-button > .vjs-icon-placeholder::before {
+    font-size: 2em;
+    padding-top: 5px;
+  }
+
+    .vjs-poster {
+      background-size: cover;
+    }
+
+    .vjs-control-bar {
+      background-color: transparent;
+      padding: 0 71px 0 60px;
+
+      @include media-breakpoint-down(sm) {
+        padding: 0;
+      }
+    }
+
+    .vjs-current-time,
+    .vjs-duration {
+      display: block;
+      bottom: 0;
+      position: absolute;
+      height: auto;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 25px;
+    }
+
+    .vjs-current-time {
+      order: 2;
+      left: 120px;
+
+      @include media-breakpoint-down(sm) {
+        left: 60px;
+      }
+    }
+
+    .vjs-progress-control {
+      order: 3;
+    }
+
+    .vjs-duration {
+      order: 4;
+      right: 135px;
+
+      @include media-breakpoint-down(sm) {
+        right: 70px;
+      }
+    }
+
+    .vjs-load-progress div {
+      background: $white;
+    }
+
+    .vjs-mute-control .vjs-icon-placeholder::before,
+    .vjs-icon-volume-high::before {
+      font-size: 3.2em;
+    }
+
+    
+    .vjs-volume-panel {
+      margin-left: 20px;
+    }
+
+    .vjs-volume-panel .vjs-volume-control.vjs-volume-vertical {
+      width: 2.2em;
+      margin-left: 4px;
+      bottom: 7em;
+      background-color: rgba(78, 91, 112, 0.4);
+    }
+
+    .vjs-progress-holder .vjs-load-progress, 
+    .vjs-progress-holder .vjs-load-progress div, 
+    .vjs-progress-holder .vjs-play-progress {
+      border-radius: 10px;
+    }
+  }
+
+  .vjs-theme-fantasy {
+  
+    .vjs-control-bar {
+      height: 64px;
+    }
+
+    &:hover .vjs-big-play-button, 
+    .vjs-theme-fantasy.vjs-big-play-button:focus {
+      color: $blue;
+    }
+
+    .vjs-big-play-button {
+      color: $white;
+      background: rgba(51, 51, 51, 0.5);
+      border-radius: 50%;
+      width: 86px;
+      height: 86px;
+      line-height: 2.1em;
+      font-size: 40px;
+    }
+
+    .vjs-play-progress, 
+    .vjs-play-progress::before,
+    .vjs-volume-bar.vjs-slider-vertical .vjs-volume-level {
+      background: $blue;
+    }
+
+    .vjs-play-progress::before {
+      font-size: .7em;
+      border: 1px solid $white;
+      top: -0.25em;
+    }
+
+    .vjs-play-control {
+
+      .vjs-icon-placeholder::before {
+        border: 0;
+        margin-top: .3em;
+      }
+
+      &:hover .vjs-icon-placeholder::before {
+        border: none;
+      }
+    }
+
+    .vjs-volume-bar {
+      margin-top: 1.2em;
+      border-radius: 10px;
+      background: $white;
+    }
+
+    .vjs-volume-bar.vjs-slider-vertical {
+      width: .3em;
+      height: 6em;
+      margin: 1.35em auto;
+      margin-top: 1.35em;
+      background: #fff;
+    }
+  }
+}

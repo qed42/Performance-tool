@@ -1,0 +1,86 @@
+/* This contains CSS from original UN Women implementation. Used for infographics */
+.page-node-type-full-html {
+  box-sizing: border-box;
+  height: 100%;
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 13px;
+  margin: 0px;
+  color: #131313;
+}
+
+.page-node-type-full-html button,
+.page-node-type-full-html input,
+.page-node-type-full-html optgroup,
+.page-node-type-full-html select,
+.page-node-type-full-html textarea {
+  font-family: inherit;
+}
+
+
+.page-node-type-full-html a:link {
+  text-decoration: none;
+  color: #0088cc;
+}
+
+.page-node-type-full-html a:hover {
+  text-decoration: underline;
+}
+
+.page-node-type-full-html #CenterColumn {
+  margin: auto;
+  padding-right: 20px;
+  padding-left: 20px;
+  max-width: 1170px;
+  min-height: 402px;
+  background: white url('-/media/Default Website/cover.ashx') no-repeat;
+  background-size: 1170px 402px;
+  text-align: left;
+}
+
+.page-node-type-full-html #InnerCenter {
+  margin: auto;
+  position: relative;
+  width: 1150px;
+  height: 700px;
+}
+
+.page-node-type-full-html #Header {
+  height: 402px;
+}
+
+.page-node-type-full-html #Footer {
+  width: 100%;
+  clear: both;
+  padding-top: 2px;
+}
+
+.page-node-type-full-html #LeftContent {
+  width: 750px;
+  text-align: justify;
+}
+
+.page-node-type-full-html #scLogo {
+  margin-top: 20px;
+}
+
+.page-node-type-full-html .contentTitle {
+  margin-top: 50px;
+  font-weight: 400;
+  font-size: 36px;
+}
+
+.page-node-type-full-html .divider {
+  background-color: #dcdcdc;
+  border: 0 none;
+  clear: both;
+  display: block;
+  height: 1px;
+  float: none;
+  margin: 50px auto;
+  width: 100%;
+}
+
+.page-node-type-full-html .contentDescription {
+  padding-right: 20px;
+  line-height: 22px;
+}

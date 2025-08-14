@@ -1,0 +1,13 @@
+{% for item in items %}
+  <li class="swiper-slide">
+    <figure class="image-slider">
+      {{ item.content }}
+
+      {% if item.content['#item'].value['caption'] %}
+        <figcaption class="caption-slider"> 
+          {{ item.content['#item'].value['caption'] }}
+        </figcaption>
+      {% endif %}
+    </figure>
+  </li>
+{% endfor %}

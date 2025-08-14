@@ -1,0 +1,39 @@
+.grid-view {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 34px;
+  position: relative;
+
+  @include media-breakpoint-down(sm) {
+    grid-template-columns: 1fr;
+  }
+
+  .more-link {
+    @include media-breakpoint-up(md) {
+      position: absolute;
+      top: -55px;
+    }
+  }
+
+  .views-element-container {
+    grid-column: 1/-1;
+  }
+
+  &--attach {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(254px, 1fr));
+    gap: 30px;
+
+    @include media-breakpoint-down(sm) {
+      grid-template-columns: 1fr;
+    }
+
+    h3 {
+      @include typography-h4;
+    }
+  }
+}
+
+.field--name-field-views-reference {
+  padding: 30px 0;
+}

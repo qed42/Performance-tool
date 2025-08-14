@@ -1,0 +1,8 @@
+{% extends "themes/custom/hq/templates/pages/listing-page.html.twig" %}
+
+{% block pageMainContent %}
+  {{ page.content }}
+  <section class="block block-system block-hq-content">
+    {{ drupal_view('resource_by_vocabs', 'resources_by_countries') }}
+  </section>
+{% endblock %}

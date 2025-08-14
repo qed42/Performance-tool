@@ -1,0 +1,60 @@
+.thematic-news-letter-sign-up-block {
+  font-size: 28px;
+  line-height: 36px;
+  font-weight: 400;
+  letter-spacing: 0;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 25px;
+  text-align: center;
+  color: #181818;
+  background-color: #EDF4FC;
+}
+@media (max-width: 1179.98px) {
+  .thematic-news-letter-sign-up-block {
+    font-size: 24px;
+    line-height: 32px;
+  }
+}
+@media (min-width: 768px) {
+  .thematic-news-letter-sign-up-block {
+    padding-block: 60px;
+  }
+}
+@media (min-width: 1180px) {
+  .thematic-news-letter-sign-up-block {
+    padding-block: 110px;
+  }
+}
+.thematic-news-letter-sign-up-block a {
+  padding: 15px 20px;
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 100%;
+  font-weight: 600;
+  text-transform: uppercase;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  background: #0397d6;
+  border: 1px solid #0397d6;
+  color: #fff;
+  transition: 0.4s;
+  margin-top: 30px;
+}
+@media (max-width: 1179.98px) {
+  .thematic-news-letter-sign-up-block a {
+    font-size: 14px;
+  }
+}
+.thematic-news-letter-sign-up-block a:hover, .thematic-news-letter-sign-up-block a:focus {
+  color: #fff;
+}
+.thematic-news-letter-sign-up-block a:hover, .thematic-news-letter-sign-up-block a:focus {
+  background-color: #027cb0;
+  border-color: #0274a4;
+  box-shadow: 1px 2px 18px 0 rgba(101, 101, 101, 0.5);
+}

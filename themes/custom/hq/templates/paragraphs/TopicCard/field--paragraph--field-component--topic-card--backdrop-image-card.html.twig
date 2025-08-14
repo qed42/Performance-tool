@@ -1,0 +1,14 @@
+{%
+  set classes = [
+    'field',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+  ]
+%}
+
+{% for item in items %}
+  <div class="paragraph-topic-card__column col-md-6 col-lg-4 swiper-slide">
+    <div{{item.attributes.addClass(classes,'field__item')}}>{{ item.content }}</div>
+  </div>
+{% endfor %}

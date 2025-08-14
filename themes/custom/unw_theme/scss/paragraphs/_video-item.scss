@@ -1,0 +1,33 @@
+.field--name-field-add-video {  
+
+  .paragraph--type--video-item {
+    .video-box {
+
+      .field--name-field-video-item {
+        img {
+          width: 100%;
+        }
+
+        .video-embed-field-launch-modal {
+          position: relative;
+
+          &::before {
+            background: url("../images/video-module-play-icon.png") no-repeat center;
+            content: "";
+            height: 100%;
+            position: absolute;
+            width: 100%;
+          }
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        .field--name-field-caption {
+          display: block;
+          padding-top: rem-calc(8);
+        }
+      }
+    }
+  }
+}

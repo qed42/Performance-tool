@@ -1,0 +1,13 @@
+{% block content %}
+<div class="carousel-item-teaser-vertical">
+
+  {{ content.field_carousel_image }}
+  <div class="content-wrap">
+    <h3 class="mb-3">{{ content.field_carousel_title.0 }}</h3>
+    {{ content.field_carousel_description }}
+    <div class="arrow-hover arrow-hover--bottom"></div>
+  </div>  
+  
+  <a href="{{ content.field_carousel_item_link.0 }}" class="link-full-content" title="{{ label.0 }}" aria-label="{{ label.0 }}"></a>
+ </div>
+{% endblock %}

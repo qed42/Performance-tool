@@ -1,0 +1,7 @@
+.ui-menu {
+  width: 213px;
+}
+.ui-menu .ui-menu-item-wrapper .item-list ol {
+  list-style-type: none;
+  margin-inline: 0;
+}

@@ -1,0 +1,49 @@
+{
+    "name": "unwhq",
+    "version": "1.1.0",
+    "description": "Theme UNW HQ bootstrap 4 + gulp.",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "gulp watch",
+        "build": "gulp"
+    },
+    "author": "UN Women",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/jquery": "^3.3.32",
+        "@types/vfile-message": "^2.0.0",
+        "autoprefixer": "^10.0.2",
+        "browser-sync": "^2.26.3",
+        "child_process": "^1.0.2",
+        "cssnano": "^4.1.10",
+        "eslint-plugin-prettier": "^3.0.1",
+        "event-stream": "^4.0.1",
+        "gulp": "^4.0.0",
+        "gulp-concat": "^2.6.1",
+        "gulp-env": "^0.4.0",
+        "gulp-eslint": "^5.0.0",
+        "gulp-plumber": "^1.2.1",
+        "gulp-postcss": "^9.0.0",
+        "gulp-sass": "^5.0.0",
+        "gulp-sourcemaps": "^2.6.4",
+        "gulp-typescript": "^6.0.0-alpha.1",
+        "postcss": "^8.1.7",
+        "prettier-plugin-twig-melody": "^0.4.6",
+        "sass": "^1.49.11",
+        "stylelint": "^12.0.1",
+        "typescript": "^3.7.5"
+    },
+    "dependencies": {
+        "@videojs/themes": "^1.0.1",
+        "bootstrap": "^4.4.1",
+        "gulp-rename": "^2.0.0",
+        "gulp-rtlcss": "^2.0.0",
+        "jquery": "^3.4.1",
+        "popper.js": "^1.16.1",
+        "prettier": "^1.19.1",
+        "rellax": "^1.12.1",
+        "video.js": "^7.10.2",
+        "videojs-overlay": "^2.1.4",
+        "videojs-titleoverlay": "^1.1.0"
+    }
+}

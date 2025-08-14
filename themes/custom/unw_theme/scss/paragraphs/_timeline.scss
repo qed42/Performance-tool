@@ -1,0 +1,111 @@
+.paragraph--type--timelines {
+  .field--name-field-title {
+    color: $makara;
+    font-family: $font-bitter;
+    font-size: rem-calc(25);
+    font-weight: $bitter-bold;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .field--name-field-timeline-item {
+    background: $white;
+    margin: rem-calc(40 0);
+    max-width: 675px;
+    position: relative;
+    width: 100%;
+
+    &:before {
+      background: #afafaf;
+      bottom: 0;
+      content: "";
+      left: 20%;
+      position: absolute;
+      top: 0;
+      width: 3px;
+    }
+
+    .paragraph--type--timeline-item {
+      overflow: hidden;
+    }
+
+    .field--name-field-year {
+      display: inline-block;
+      font-size: rem-calc(28);
+      padding: rem-calc(0 43);
+      position: relative;
+      vertical-align: top;
+      width: 28.3%;
+
+      &:after {
+        background-color: $white;
+        border: 3px solid $blue2;
+        border-radius: 100%;
+        content: "";
+        height: 24px;
+        position: absolute;
+        right: rem-calc(43);
+        top: 75%;
+        width: 24px;
+        z-index: 99;
+      }
+    }
+
+    .group-timeline-event-body {
+      border: solid 1px #777;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      display: inline-block;
+      margin: rem-calc(0 0 40 0);
+      padding: 4%;
+      position: relative;
+      vertical-align: top;
+      width: 71%;
+
+      &:before {
+        background: $white;
+        border-left: 1px solid #707070;
+        border-top: 1px solid #707070;
+        bottom: 100%;
+        content: "";
+        display: block;
+        height: 26px;
+        left: rem-calc(-14);
+        margin-bottom: rem-calc(-8);
+        position: absolute;
+        top: rem-calc(30);
+        transform: rotate(315deg);
+        transition: all 0.4s ease-in-out;
+        width: 26px;
+      }
+
+      .field--name-field-event {
+        border-bottom: solid 1px #777;
+        color: $makara;
+        font-size: rem-calc(18);
+        font-weight: $bitter-bold;
+        line-height: 1;
+        margin: rem-calc(0 0 25 0);
+        padding-bottom: rem-calc(12);
+      }
+
+      .field--name-field-description p {
+        font-size: rem-calc(14);
+        margin: rem-calc(0 0 12 0);
+      }
+    }
+  }
+}
+
+.node--view-mode-one-column,
+.node--type-complex-page,
+.page-node-type-multimedia {
+  .field--name-field-timeline-item {
+    max-width: unset;
+    &::before {
+      left: 22.4%;
+    }
+    .field--name-field-year {
+      padding: rem-calc(0 123);
+    }
+  }
+}

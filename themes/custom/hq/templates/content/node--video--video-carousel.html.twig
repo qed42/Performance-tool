@@ -1,0 +1,119 @@
+{% set media = node.field_media_remote_video.entity %}
+{% set social_media = node.field_social_media_embed.value %}
+{% set embed_url = media.field_media_oembed_video.value|replace({'watch?v=': 'embed/'}) %}
+
+<div class="swiper-data">
+  <div class="video-crousel__left vertical">  
+    <div class="video-wrapper">
+      {% if content.field_thumbnail_image %}
+        <div class="field-thumbnail-image video-poster">
+          {{ content.field_thumbnail_image }}
+          <button class="video-play-button" aria-label="Play video for {{ node.title.value|striptags }}"
+          >
+            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="30" cy="30" r="29" stroke="white" stroke-width="2"/>
+              <path d="M39 30L25.5 38.3301L25.5 21.6699L39 30Z" fill="white"/>
+            </svg>
+          </button>
+        </div>
+      {% endif %}
+      {% if social_media is not empty %}
+        <div class="embedded-social-video" data-src="{{ social_media }}">
+          {{ content.field_social_media_embed }}
+        </div>
+      {% else %}
+        <iframe
+          src="{{ embed_url }}"
+          width="920"
+          height="500"
+          frameborder="0"
+          allowfullscreen
+          allow="autoplay; encrypted-media"
+          title="{{ node.title.value }}"
+          class="video-iframe"
+          loading="lazy"
+        ></iframe>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="video-crousel__right">
+    {% if content.field_multimedia_type %}
+        <div class="video-crousel__tag">
+          <span>{{ content.field_multimedia_type }}</span>
+        </div>
+    {% endif %}
+
+    {% if  node.title.value|striptags %}
+      <a href="{{ url }}" title="{{ node.title.value|striptags }}" tabindex="0" role="link"><h6 class="video-crousel__title">{{  node.title.value|striptags }}</h6></a>
+    {% endif %}
+
+    {% if content.body %}
+      <div class="video-crousel__body"><p>{{ content.body }}</p></div>
+    {% endif %}
+
+    {% if node.field_story_publication_date.value %}
+      <div class="video-crousel__date">
+        <span>{{ node.field_story_publication_date.value|date("d F Y")|upper }}</span>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<div class="video-crousel__content vertical full-width not-swiper">
+  <div class="video-crousel__left">
+    {% if content.field_multimedia_type %}
+      <div class="video-crousel__tag">
+        <span>{{ content.field_multimedia_type }}</span>
+      </div>
+    {% endif %}
+
+    {% if  node.title.value|striptags %}
+      <a href="{{ url }}" title="{{ node.title.value|striptags }}"><h6 class="video-crousel__title">{{  node.title.value|striptags }}</h6></a>
+    {% endif %}
+
+    {% if content.body %}
+      <div class="video-crousel__body"><p>{{ content.body }}</p></div>
+    {% endif %}
+  
+    <div class="cta-button">
+      <a href="{{ url }}" class="cta-link">Read more</a>
+    </div>
+  </div>
+
+  <div class="video-crousel__right vertical">
+    <div class="video-wrapper">
+      {% if content.field_thumbnail_image %}
+        <div class="field-thumbnail-image video-poster">
+          {{ content.field_thumbnail_image }}
+          <button
+            class="video-play-button"
+            aria-label="Play video for {{ node.title.value|striptags }}"
+          >
+            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="30" cy="30" r="29" stroke="white" stroke-width="2"/>
+              <path d="M39 30L25.5 38.3301L25.5 21.6699L39 30Z" fill="white"/>
+            </svg>
+          </button>
+        </div>
+      {% endif %}
+      {% if social_media is not empty %}
+        <div class="embedded-social-video" data-src="{{ social_media }}">
+          {{ content.field_social_media_embed }}
+        </div>      
+      {% else %}
+        <iframe
+          src="{{ embed_url }}"
+          width="920"
+          height="500"
+          frameborder="0"
+          allowfullscreen
+          allow="autoplay; encrypted-media"
+          title="{{ node.title.value }}"
+          class="video-iframe"
+          loading="lazy"
+        ></iframe>
+      {% endif %}
+    </div>
+  </div>
+</div>

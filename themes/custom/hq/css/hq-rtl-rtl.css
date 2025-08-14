@@ -1,0 +1,31 @@
+.scroll-top:before {
+  transform: rotate(-90deg);
+}
+
+@media (min-width: 1180px) {
+  .top-header__wrapper .dropdown-menu.show {
+    transform: translate3d(0px, 20px, 0px) !important;
+  }
+}
+
+.more-link a::after {
+  transform: rotate(-180deg);
+}
+
+.paragraph--type--quotes .quote-text::before {
+  transform: rotate(-180deg);
+}
+
+.swiper-button-next::before,
+.swiper-button-prev::before {
+  transform: rotate(-180deg);
+}
+
+.content-publications .left-content .social-media-links--platforms {
+  justify-content: center;
+  align-items: center;
+}
+
+.block-breadcrumbs-2 .breadcrumbs-nav ol li:not(:first-child):before {
+  transform: rotate(-180deg);
+}

@@ -1,0 +1,281 @@
+.nav {
+  li {
+    list-style-image: none;
+    list-style-type: none;
+  }
+}
+
+body .dialog-off-canvas-main-canvas > footer {
+  margin-top: rem-calc(40);
+  padding: rem-calc(15) rem-calc(24) rem-calc(24);
+  @include media-breakpoint-up(lg) {
+    padding: rem-calc(15) 0 rem-calc(24);
+  }
+}
+
+footer {
+  border-top: 1px solid #666766;
+  margin-top: rem-calc(40);
+
+
+  > .container {
+    padding: 0;
+
+    .region-footer {
+      padding: 0;
+    }
+  }
+
+  .menu--social-media {
+    &.gradient-background {
+      ul.menu {
+        background: #f2ede9; /* Old browsers */
+        background: -moz-linear-gradient(top,  #f2ede9 0%, #e4ddd5 50%, #d5ccc1 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top,  #f2ede9 0%,#e4ddd5 50%,#d5ccc1 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom,  #f2ede9 0%,#e4ddd5 50%,#d5ccc1 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      }
+    }
+    h5 {
+      color: #595a5c;
+      font-family: $font-bitter;
+      font-size: rem-calc(17);
+      font-weight: 400;
+      margin-bottom: rem-calc(10);
+    }
+
+    ul.menu {
+      background: #f2ede9; /* Old browsers */
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 0 rem-calc(22);
+
+      @include media-breakpoint-up(sm) {
+        margin: 0 0 rem-calc(12);
+      }
+
+      li {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        position: relative;
+
+        @include media-breakpoint-up(sm) {
+          background: #f2ede9; /* Old browsers */
+          background: -moz-linear-gradient(top,  #f2ede9 0%, #e4ddd5 50%, #d5ccc1 100%); /* FF3.6-15 */
+          background: -webkit-linear-gradient(top,  #f2ede9 0%,#e4ddd5 50%,#d5ccc1 100%); /* Chrome10-25,Safari5.1-6 */
+          background: linear-gradient(to bottom,  #f2ede9 0%,#e4ddd5 50%,#d5ccc1 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+          border-right: 2px solid $white;
+        }
+
+        @include media-breakpoint-between(sm, md) {
+          width: calc(100% / 5);
+        }
+
+        a {
+          display: block;
+          font-size: 0;
+          height: 81px;
+          position: relative;
+          width: 90px;
+          z-index: 1;
+        }
+
+        .menu_link_content {
+          position: absolute;
+        }
+      }
+    }
+  }
+
+  .menu--main {
+    margin: 0 0 rem-calc(44);
+
+    @include media-breakpoint-up(sm) {
+      margin: 0 0 rem-calc(40);
+    }
+
+    .nav {
+      @include media-breakpoint-up(sm) {
+        border-left: 1px solid #f0ece8;
+        flex-direction: row;
+      }
+
+      @include media-breakpoint-up(lg) {
+        flex-wrap: nowrap;
+      }
+
+      > li {
+        @include media-breakpoint-up(sm) {
+          border-right: 1px solid #f0ece8;
+          padding: rem-calc(12) rem-calc(16) rem-calc(60);
+          width: calc(100% / 4);
+        }
+
+        @include media-breakpoint-up(lg) {
+          width: calc(100% / 7);
+        }
+
+        > a,
+        > span {
+          color: $orange2;
+          display: inline-block;
+          font-family: $font-bitter;
+          font-size: rem-calc(14);
+          font-weight: 400;
+          letter-spacing: rem-calc(.42);
+          margin-bottom: rem-calc(6);
+          padding: 0;
+
+          @include media-breakpoint-up(sm) {
+            margin-bottom: rem-calc(9);
+          }
+
+          &::after {
+            content: none;
+          }
+        }
+
+        ul {
+          border: 0;
+          font-size: rem-calc(11);
+          margin: 0;
+          min-width: 0;
+          padding: 0;
+
+          @include media-breakpoint-up(sm) {
+            display: block;
+          }
+
+          li {
+            margin-bottom: rem-calc(5);
+            padding: 0;
+
+            &:hover,
+            &.active {
+              background-color: transparent;
+            }
+
+            a,
+            span {
+              color: #595a5c;
+              font-family: $font-roboto;
+              line-height: rem-calc(15);
+              padding: 0;
+              white-space: normal;
+
+              &:hover {
+                background: transparent;
+                color: $blue3;
+              }
+
+              &::after {
+                content: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .dropdown-menu {
+    border: 0;
+    font-size: rem-calc(11);
+    margin: 0;
+    min-width: 0;
+    padding: 0;
+
+    @include media-breakpoint-up(sm) {
+      display: block;
+    }
+
+    li {
+      margin-bottom: rem-calc(5);
+      padding: 0;
+
+      &:hover,
+      &.active {
+        background-color: transparent;
+      }
+
+      a,
+      span {
+        color: #595a5c;
+        font-family: $font-roboto;
+        line-height: rem-calc(15);
+        white-space: normal;
+        &:hover {
+          background: transparent;
+          color: $blue3;
+        }
+      }
+
+      .dropdown-item {
+        &:hover {
+          background: transparent;
+        }
+      }
+    }
+  }
+
+  .sub-footer {
+    align-items: flex-end;
+    font-size: rem-calc(12);
+    justify-content: space-between;
+    line-height: rem-calc(10);
+
+    @include media-breakpoint-up(sm) {
+      display: flex;
+    }
+
+    .nav {
+      flex-direction: row;
+      margin-bottom: rem-calc(-3);
+
+      li {
+        letter-spacing: rem-calc(.23);
+        padding-left: rem-calc(4);
+        margin-left: rem-calc(4);
+        border-left: 1px solid #595a5c;
+
+        &:first-of-type {
+          border: 0;
+        }
+
+        a {
+          line-height: rem-calc(14);
+          padding: 0;
+        }
+      }
+    }
+  }
+
+  .logo-copyright {
+    align-items: flex-end;
+    display: flex;
+
+    img {
+      height: 31px;
+    }
+  }
+  .copyright {
+    margin-left: rem-calc(15);
+
+    .field--name-body {
+      p {
+        font-size: rem-calc(12);
+        font-family: Arial, Tahoma, Helvetica, sans-serif;
+        line-height: 1.2;
+        margin: 0;
+
+        a {
+          color: $grey-dark;
+
+          &:hover {
+            color: $blue;
+          }
+        }
+      }
+    }
+  }
+}

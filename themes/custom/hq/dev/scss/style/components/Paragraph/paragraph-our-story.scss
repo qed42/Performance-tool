@@ -1,0 +1,76 @@
+@import "../../../../../node_modules/bootstrap/scss/functions";
+@import "../../../../../node_modules/bootstrap/scss/mixins/breakpoints";
+@import "../../../custom";
+
+.paragraph--type--our-story {
+  position: relative;
+  margin-bottom: 120px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: $frost-blue;
+  }
+
+  &.default {
+    padding-block: 40px;
+  }
+
+  &.overlap-above {
+    &::before {
+      top: 80px;
+    }
+  }
+
+  .paragraph-our-story {
+    &__wrapper {
+      position: relative;
+      padding: 50px 50px 40px;
+      background: $white;
+      box-shadow: 2px 6px 30px 0px rgba(0, 105, 150, 0.2);
+
+      @include media-breakpoint-down(md) {
+        width: calc(100% - 32px);
+      }
+
+      @include media-breakpoint-down(sm) {
+        padding: 20px 20px 0;
+      }
+
+      &.overlap-above {
+        margin-top: -120px;
+      }
+    }
+
+    &__row {
+      @include media-breakpoint-down(sm) {
+        flex-direction: column-reverse;
+      }
+    }
+
+    &__column-image {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 15px;
+
+      @include media-breakpoint-down(sm) {
+        justify-content: center;
+      }
+
+      img {
+        width: 100%;
+      }
+    }
+
+    &__column-details {
+      padding-right: 0;
+
+      @include media-breakpoint-down(sm) {
+        flex-direction: 15px;
+      }
+    }
+  }
+}

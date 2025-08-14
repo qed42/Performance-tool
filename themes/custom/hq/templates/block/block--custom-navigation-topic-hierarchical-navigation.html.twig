@@ -1,0 +1,42 @@
+{#
+  Template for the custom hierarchical navigation block.
+  Theme hook suggestions are available for more specific targeting.
+  Available variables:
+  - content: Nested list JSON string.
+#}
+
+{% if is_rtl %}
+  {{ attach_library('hq/block.topic-hierarchical-navigation-rtl') }}
+{% else %}
+  {{ attach_library('hq/block.topic-hierarchical-navigation') }}
+{% endif %}
+{% set current_node_id = content.current_node %}
+{% set current_title = content.current_title %}
+{% if content.children %}
+  <div class="block-topic-hierarchical container">
+    <div class="block-topic-hierarchical__header">
+      <a data-toggle="collapse" href="#menu{{current_node_id}}" role="button" aria-expanded="false">
+        {{ current_title }}
+      </a>
+    </div>
+    <div class="block-topic-hierarchical__body collapse" id="menu{{current_node_id}}">
+      <ul>
+        {% macro renderMenu(items, current_node_id, parent_active) %}
+          {% for item in items %}
+            {%- set is_active = item.url == path('entity.node.canonical', {'node': current_node_id}) -%}
+            <li {% if is_active %} class="active" {% endif %}>
+              <a href="{{ item.url }}">{{ item.title }}</a>
+              {% if item.children %}
+                <ul class="{% if is_active or parent_active == 'active' %} show{% endif %}">
+                  {{ _self.renderMenu(item.children, current_node_id, is_active ? 'active' : parent_active) | raw }}
+                </ul>
+              {% endif %}
+            </li>
+          {% endfor %}
+        {% endmacro %}
+        {{ _self.renderMenu(content.children, current_node_id, '') | raw }}
+      </ul>
+    </div>
+  </div>
+{% endif %}
+

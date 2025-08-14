@@ -1,0 +1,185 @@
+{% if is_rtl %}
+  {{ attach_library('better_social_sharing_buttons/styling-rtl') }}
+{% else %}
+  {{ attach_library('better_social_sharing_buttons/styling') }}
+{% endif %}
+{% if items.width %}
+  {% set width = items.width ? 'width=' ~ items.width ~'' %}
+  {% set height = items.width ? 'height=' ~ items.width ~'' %}
+{% endif %}
+
+{% if items.radius %}
+    {% set radius = items.radius ? 'style=border-radius:' ~ items.radius ~';' %}
+{% endif %}
+
+<ul class="social-sharing-buttons social-media-links--platforms platforms list horizontal">
+    <!-- Facebook share button -->
+    {% if items.services.facebook %}
+      <li>
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ items.page_url }}&title={{ items.title }}" target="_blank" title="{{ 'Share to'|t }} Facebook" aria-label="{{ 'Share to'|t }} Facebook" class="social-sharing-buttons__button" rel="noopener">
+          <i class="icon-facebook"><span class="d-none">{{ 'Share to'|t }} Facebook</span></i>
+        </a>
+      </li>
+    {% endif %}
+
+    <!-- Twitter share button -->
+    {% if items.services.x %}
+      <li>
+        <a href="https://twitter.com/intent/tweet?text={{ items.title }}+{{ items.page_url }}" target="_blank" title="{{ 'Share to'|t }} Twitter" aria-label="{{ 'Share to'|t }} Twitter" class="social-sharing-buttons__button" rel="noopener">
+          <i class="icon-twitter"><span class="d-none">{{ 'Share to'|t }} Twitter</span></i>
+        </a>
+      </li>
+    {% endif %}
+
+    <!-- WhatsApp share button -->
+    {% if items.services.whatsapp %}
+      <li>
+        <a href="https://wa.me/?text={{ items.page_url }}" target="_blank" title="{{ 'Share to'|t }} WhatsApp" aria-label="{{ 'Share to'|t }} WhatsApp" class="social-sharing-buttons__button" rel="noopener">
+          <svg {{ width }} {{ height }} {{ radius }}>
+            <use href="{{ social_buttons_sprite }}#whatsapp" />
+          </svg>
+        </a>
+      </li>
+    {% endif %}
+
+    <!-- Facebook Messenger share button -->
+    {% if items.services.facebook_messenger %}
+      <li>
+        <a href="https://www.facebook.com/dialog/send?app_id={{ items.facebook_app_id }}&link={{ items.page_url }}&redirect_uri={{ url('<current>') }}" target="_blank" title="{{ 'Share to'|t }} Facebook Messenger" aria-label="{{ 'Share to'|t }} Facebook Messenger" class="social-sharing-buttons__button" rel="noopener">
+          <svg {{ width }} {{ height }} {{ radius }}>
+            <use href="{{ social_buttons_sprite }}#messenger" />
+          </svg>
+        </a>
+      </li>
+    {% endif %}
+
+    <!-- Pinterest share button -->
+    {% if items.services.pinterest %}
+      <li>
+        <a href="https://pinterest.com/pin/create/link/?url={{ items.page_url }}&description={{ items.title }}" target="_blank" title="{{ 'Share to'|t }} Pinterest" aria-label="{{ 'Share to'|t }} Pinterest" class="social-sharing-buttons__button" rel="noopener">
+          <svg {{ width }} {{ height }} {{ radius }}>
+            <use href="{{ social_buttons_sprite }}#pinterest" />
+          </svg>
+        </a>
+      </li>
+    {% endif %}
+
+    <!-- Linkedin share button -->
+    {% if items.services.linkedin %}
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ items.page_url }}&title={{ items.title }}&source={{ items.base_url }}" target="_blank" title="{{ 'Share to'|t }} Linkedin" aria-label="{{ 'Share to'|t }} Linkedin" class="social-sharing-buttons__button" rel="noopener">
+          <i class="icon-linkedin"><span class="d-none">{{ 'Share to'|t }} LinkedIn</span></i>
+        </a>
+      </li>
+    {% endif %}
+
+    <!-- Digg share button -->
+    {% if items.services.digg %}
+      <li>
+        <a href="https://www.digg.com/submit?phase=2&url={{ items.page_url }}&title={{ items.title }}" target="_blank" title="{{ 'Share to'|t }} Digg" aria-label="{{ 'Share to'|t }} Digg" class="social-sharing-buttons__button" rel="noopener">
+          <svg {{ width }} {{ height }} {{ radius }}>
+            <use href="{{ social_buttons_sprite }}#digg" />
+          </svg>
+        </a>
+      </li>
+    {% endif %}
+
+    <!-- StumbleUpon share button -->
+    {% if items.services.stumbleupon %}
+      <li>
+        <a href="https://www.stumbleupon.com/submit?url={{ items.page_url }}&title={{ items.title }}" target="_blank" title="{{ 'Share to'|t }} StumbleUpon" aria-label="{{ 'Share to'|t }} StumbleUpon" class="social-sharing-buttons__button" rel="noopener">
+          <svg {{ width }} {{ height }} {{ radius }}>
+            <use href="{{ social_buttons_sprite }}#stumbleupon" />
+          </svg>
+        </a>
+      </li>
+    {% endif %}
+
+    <!-- Slashdot share button -->
+    {% if items.services.slashdot %}
+      <li>
+        <a href="https://slashdot.org/bookmark.pl?url={{ items.page_url }}&title={{ items.title }}" target="_blank" title="{{ 'Share to'|t }} Slashdot" aria-label="{{ 'Share to'|t }} Slashdot" class="social-sharing-buttons__button" rel="noopener">
+          <svg {{ width }} {{ height }} {{ radius }}>
+            <use href="{{ social_buttons_sprite }}#slashdot" />
+          </svg>
+        </a>
+      </li>
+    {% endif %}
+
+    <!-- Tumblr share button -->
+    {% if items.services.tumblr %}
+      <li>
+        <a href="https://www.tumblr.com/share?v=3&u={{ items.page_url }}&t={{ items.title }}" target="_blank" title="{{ 'Share to'|t }} Tumblr" aria-label="{{ 'Share to'|t }} Tumblr" class="social-sharing-buttons__button" rel="noopener">
+          <svg {{ width }} {{ height }} {{ radius }}>
+            <use href="{{ social_buttons_sprite }}#tumblr" />
+          </svg>
+        </a>
+      </li>
+    {% endif %}
+
+    <!-- Reddit share button -->
+    {% if items.services.reddit %}
+      <li>
+        <a href="https://www.reddit.com/submit?url={{ items.page_url }}&title={{ items.title }}" target="_blank" title="{{ 'Share to'|t }} Reddit" aria-label="{{ 'Share to'|t }} Reddit" class="social-sharing-buttons__button" rel="noopener">
+          <svg {{ width }} {{ height }} {{ radius }}>
+            <use href="{{ social_buttons_sprite }}#reddit" />
+          </svg>
+        </a>
+      </li>
+    {% endif %}
+
+    <!-- Evernote share button -->
+    {% if items.services.evernote %}
+      <li>
+        <a href="https://www.evernote.com/clip.action?url={{ items.page_url }}&title={{ items.title }}" target="_blank" title="{{ 'Share to'|t }} Evernote" aria-label="{{ 'Share to'|t }} Evernote" class="social-sharing-buttons__button" rel="noopener">
+          <svg {{ width }} {{ height }} {{ radius }}>
+            <use href="{{ social_buttons_sprite }}#evernote" />
+          </svg>
+        </a>
+      </li>
+    {% endif %}
+
+    <!-- Email share button -->
+    {% if items.services.email %}
+      <li>
+        <a href="mailto:?subject={{ items.title }}&body={{ items.page_url }}" title="{{ 'Share to'|t }} E-mail" aria-label="{{ 'Share to'|t }} E-mail" class="social-sharing-buttons__button" target="_blank" rel="noopener">
+          <i class="icon-email"><span class="d-none">{{ 'Share to'|t }} E-mail</span></i>
+        </a>
+      </li>
+    {% endif %}
+
+    <!-- Copy link share button -->
+    {% if items.services.copy %}
+      {% if is_rtl %}
+        {{ attach_library('better_social_sharing_buttons/copy-current-url-rtl') }}
+      {% else %}
+        {{ attach_library('better_social_sharing_buttons/copy-current-url') }}
+      {% endif %}
+      <button class="btnCopy social-sharing-buttons__button">
+        <svg {{ width }} {{ height }} {{ radius }}>
+          <use href="{{ social_buttons_sprite }}#copy" />
+        </svg>
+        <div class="social-sharing-buttons__popup">{{ 'Copied to clipboard'|t }}</div>
+      </button>
+    {% endif %}
+
+  <!-- Print share button -->
+  {% if items.services.print %}
+    {% if items.print_css %}
+      {% set href = "#" %}
+      {% set rel = items.print_css %}
+      {% if is_rtl %}
+        {{ attach_library('better_social_sharing_buttons/print-css-rtl') }}
+      {% else %}
+        {{ attach_library('better_social_sharing_buttons/print-css') }}
+      {% endif %}
+    {% else %}
+      {% set href = "javascript:window.print()" %}
+    {% endif %}
+    <a href="{{ href }}" rel="{{ rel }}" id="printlink">
+      <svg {{ width }} {{ height }} {{ radius }}>
+        <use href="{{ social_buttons_sprite }}#print" />
+      </svg>
+    </a>
+  {% endif %}
+</ul>

@@ -1,0 +1,36 @@
+{%
+  set classes = [
+    "paragraph",
+    "paragraph--type--" ~ paragraph.bundle|clean_class,
+    view_mode ? "paragraph--view-mode--" ~ view_mode|clean_class,
+    not paragraph.isPublished() ? "paragraph--unpublished"
+  ]
+%}
+
+{{ attach_library('hq/videojs_library') }}
+{% block paragraph %}
+  <div{{ attributes.addClass(classes) }}>
+    {% block content %}
+      <div class="container">
+        {% if content.field_audio.0 %}
+          <div class="row justify-content-center">
+            <div class="col-12 col-md-8">
+              <audio 
+                id="audio_upload-{{ random(1, 1000) }}"
+                class="video-js vjs-audio vjs-audio-player"
+                controls preload="none"
+                data-setup='{"aspectRatio":"730:100"}'
+                aria-label="Audio Player">
+                <source src={{ content.field_audio[0]['#markup'] }} type="audio/mp3">
+                <span class="audio-title sr-only">{{ content.field_audio_title[0]["#context"].value }}</span>
+              </audio>
+              {% if content.field_body.0 %}
+                <span class='audio-caption'>{{ content.field_body }}</span>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    {% endblock %}
+  </div>
+{% endblock paragraph %}

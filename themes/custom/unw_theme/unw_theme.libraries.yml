@@ -1,0 +1,40 @@
+global-styling:
+  css:
+    theme:
+      css/style.css: {}
+      css/print.css: { media: print }
+
+global-scripts:
+  js:
+    js/custom.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - core/drupalSettings
+
+fonts:
+  css:
+    theme:
+      '//fonts.googleapis.com/css2?family=Bitter:wght@200;300;400;600&family=Roboto:wght@100;300;400;500;700&display=swap': { type: external, minified: true }
+
+color:
+  css:
+    theme:
+      css/color.css: {}
+
+unw-rtl:
+  css:
+    theme:
+      css/unw_rtl.css: {}
+
+infographic-css:
+  css:
+    theme:
+      css/default-unw.css: {}
+
+bxslider:
+  css:
+    theme:
+      css/jquery.bxslider.min.css: {}
+  js:
+    js/jquery.bxslider.min.js: {}

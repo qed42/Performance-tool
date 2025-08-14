@@ -1,0 +1,164 @@
+.search {
+  text-align: right;
+  margin-right: 30px;
+
+  label {
+    @include hidden-label;
+  }
+
+  &.active {
+    @include media-breakpoint-up(lg) {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      z-index: 999;
+      background: $white;
+      right: 0;
+
+      .search-input-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 160px;
+        gap: 5px;
+        align-items: center;
+      }
+
+      form {
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: center;
+      }
+
+      button.icon-search {
+        display: none;
+      }
+
+      + #block-donateheader {
+        display: none;
+      }
+    }
+  }
+
+  .icon-search {
+    &::before {
+      color: $blue-100;
+      font-size: 24px;
+      margin: 0;
+
+      @include media-breakpoint-down(md) {
+        font-size: 20px;
+      }
+    }
+
+    &:hover,
+    &:focus {
+      &::before {
+        color: $blue;
+      }
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    width: 100%;
+    border-bottom: 1px solid #b1b1b1;
+    margin-bottom: 30px;
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr min-content;
+    }
+  }
+
+  #header-search {
+    @include media-breakpoint-down(md) {
+      display: none;
+    }
+  }
+
+  .tablet.icon-search {
+    display: none;
+
+    @include media-breakpoint-down(md) {
+      display: block;
+    }
+  }
+
+  button {
+    position: relative;
+    background: none;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    outline: none;
+
+    &:hover,
+    &:focus {
+      color: $blue;
+    }
+  }
+
+  &-input,
+  .search-input-wrapper .form-text {
+    width: 100%;
+    height: 75px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  &-input-wrapper {
+    display: none;
+  }
+
+  .search-input-wrapper {
+    @include media-breakpoint-down(md) {
+      display: block;
+
+      #header-search-close {
+        display: none;
+      }
+    }
+
+    .form-item-search-api-fulltext {
+      position: relative;
+      span.input-border {
+        position: absolute;
+        left: 0;
+        content: '';
+        height: 2px;
+        background: $blue;
+        transition: all 0.3s linear;
+        width: 0;
+        bottom: 10px;
+        margin-left: 0;
+
+        &.input-border-transition {
+          right: 0;
+          width: calc(100% - 30px);
+        }
+      }
+    }
+  }
+
+  .wrapper {
+    display: flex;
+
+    input {
+      height: 75px;
+      margin: 0 0 0 39px;
+      padding: 0 35px 0 50px;
+      border: 0;
+    }
+  }
+
+  .search-input,
+  .search-input-wrapper .form-text {
+    @include media-breakpoint-down(md) {
+      height: 34px;
+      padding: 0;
+      margin: 0;
+      outline: 0;
+      color: #181818;
+    }
+  }
+}

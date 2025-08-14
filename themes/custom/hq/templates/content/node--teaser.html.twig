@@ -1,0 +1,40 @@
+{% set classes = [
+  'node',
+  'node--type-' ~ (node.bundle|clean_class),
+  view_mode ? 'node--view-mode-' ~ (view_mode|clean_class),
+  content.field_media_image.0 ? '' : 'no-image',
+  content.field_video_upload.0 ? '' : 'no-video',
+  content.field_story_type[0]['#plain_text'] == 'Video' ? 'has-video',
+] %}
+{{ attach_library('hq/videojs_library') }}
+<article {{ attributes.addClass(classes) }}>
+  <header class="head-wrapper">
+    <div class="image-wrapper">
+      {% if content.field_video_upload.0 %} 
+        {{ content.field_video_upload }}   
+      {% else %}
+        {{ content.field_media_image }}
+      {% endif %}
+    </div>
+    {% if content.field_tag[0] is not empty or (node.bundle == 'hq_article' and content.field_story_type is not empty) %}
+      <div class="card_tag">
+        {{ content.field_tag|default(node.bundle == 'hq_article' ? content.field_story_type : '') }}
+      </div>
+    {% endif %}
+  </header>
+
+  <div {{ content_attributes.addClass('card_wrapper') }}>
+    {{ title_prefix }}
+    <h3 class="card_title">
+      {{ label }}
+    </h3>
+    {{ title_suffix }}
+
+    {{ content.body }}
+    {{ content.field_story_publication_date }}
+  </div>
+
+  <a href="{{ url }}" class="link-full-content" aria-label="{{ node.label }}" title="{{ node.label }}">
+    <span class="sr-only">{{ node.label }}</span>
+  </a>
+</article>

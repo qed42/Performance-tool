@@ -1,0 +1,81 @@
+@import "../../../../../node_modules/bootstrap/scss/functions";
+@import "../../../../../node_modules/bootstrap/scss/mixins/breakpoints";
+@import "../../../custom";
+@import "../../../mixins";
+.node--type-video,
+.node--type-podcast {
+  .video__block {
+    iframe {
+      width: 100% !important;
+      max-width: 100% !important;
+      aspect-ratio: 16 / 9;
+      box-shadow: $box-shadow-sm;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .podcast__wrapper {
+      iframe {
+        background-color: $frost-blue;
+      }
+    }
+  }
+
+  .field--name-field-caption-image {
+    @include typography-label;
+
+    display: flex;
+    justify-content: center;
+    color: $text-gray;
+
+    a {
+      color: $text-gray;
+      text-decoration: underline;
+
+      &:hover,
+      &:focus {
+        color: $text-blue;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .field--name-body {
+    p {
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .field--name-field-watch-more {
+    a {
+      @include btn;
+      @include btn-primary;
+
+      display: inline-block;
+    }
+  }
+
+  .paragraph-list {
+    position: relative;
+
+    &::before {
+      content: '';
+      display: block;
+      width: calc(100% - 32px);
+      height: 1px;
+      margin: auto;
+      background: $border-tags;
+    }
+  }
+}
+
+.node--type-video {
+  .video__block {
+    iframe {
+      background-color: $black;
+      height: auto !important;
+    }
+  }
+}

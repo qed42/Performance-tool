@@ -1,0 +1,26 @@
+{%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]
+%}
+{% block paragraph %}
+  <div{{ attributes.addClass(classes) }}>
+    {% block content %}
+      <div class="courses-tab__card">
+        <div class="courses-tab__card-header" id="{{content.field_title.0|render|trim|clean_id}}">
+            <button class="courses-tab__btn collapsed" data-toggle="collapse" data-target="#{{content.field_title.0|render|trim|clean_id ~ 'collapse'}}" aria-expanded="false" aria-controls="{{content.field_title.0|render|trim|clean_id ~ 'collapse'}}">
+              {{content.field_title.0}}
+              <i class="icon-arrow-left"></i>
+            </button>
+        </div>
+
+        <div id="{{content.field_title.0|render|trim|clean_id ~ 'collapse'}}" class="courses-tab__content collapse" aria-labelledby="{{content.field_title.0|render|trim|clean_id}}" data-parent="#courses-tab">
+          {{content.field_body.0}}
+        </div>
+      </div>
+    {% endblock %}
+  </div>
+{% endblock paragraph %}

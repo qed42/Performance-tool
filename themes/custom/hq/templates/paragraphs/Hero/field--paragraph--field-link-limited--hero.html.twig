@@ -1,0 +1,14 @@
+{% set classes = [
+  'field',
+  'btn',
+  'btn-primary',
+  'field--name-' ~ (field_name|clean_class),
+  'field--type-' ~ (field_type|clean_class),
+  'field--label-' ~ label_display
+] %}
+
+{% for item in items %}
+  <a {{ attributes.addClass(classes, 'field__item') }} href="{{ item.content['#url_title'] }}" title="Open {{ item.content['#title'] }}" aria-label="Open page {{ item.content['#title'] }}">
+    {{ item.content['#title'] }}
+  </a>
+{% endfor %}

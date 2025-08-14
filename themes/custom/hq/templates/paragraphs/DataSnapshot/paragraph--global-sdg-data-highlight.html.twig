@@ -1,0 +1,106 @@
+{{ attach_library('hq/data-snapshot') }}
+
+{% set classes = [
+  'paragraph',
+  'paragraph--type--' ~ (paragraph.bundle|clean_class),
+  view_mode ? 'paragraph--view-mode--' ~ (view_mode|clean_class),
+  not paragraph.isPublished() ? 'paragraph--unpublished'
+] %}
+
+{% if content.field_background_colour is not empty %}
+  {% set bg_color =
+    content.field_background_colour['#items'].entity.field_hex_colour.value
+  %}
+{% else %}
+  {% set bg_color = '#ffffff' %}
+{% endif %}
+
+{% set icon_pos = content.field_icon_position[0]['#markup']|lower %}
+{% set image_pos = content.field_photo_position[0]['#markup']|lower %}
+{% set container_size =
+  content.field_container_size[0]['#markup']|lower|default('large')
+%}
+{% set show_img_icon = content.field_render_icon_or_photo[0]['#markup'] %}
+
+{% if show_img_icon == 'show_icon' %}
+  {% set icon_alignment = 'icon-' ~ (icon_pos|default('left')) %}
+{% endif %}
+
+{% if show_img_icon == 'show_photo' %}
+  {% set image_alignment = 'image-' ~ (image_pos|default('left')) %}
+{% endif %}
+
+{% if container_size == 'large' %}
+  {% set col_width = 'container-fluid' %}
+  {% set columns = 'col-md-8' %}
+{% elseif container_size == 'small' %}
+  {% set container_size = 'small-size' %}
+  {% set col_width = 'container' %}
+{% else %}
+  {% set col_width = 'container' %}
+{% endif %}
+
+{% set icon_color =
+  content.field_svg_icon_colour['#items'].entity.field_hex_colour.value|default(
+    '#0397D6'
+  )
+%}
+
+{% block paragraph %}
+  <div {{ attributes.addClass(classes) }}>
+    {% block content %}
+      <div class="data-snapshot__wrapper {{ col_width }} {{ container_size }}"
+        style="background-color: {{ bg_color }};">
+        <div class="row justify-content-center">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-12 {{ columns }}">
+                <div class="data-snapshot {{ icon_alignment }} {{
+                  image_alignment
+                  }}">
+                  {# Render the SVG Icon if it exists #}
+                  {% if
+                    content.field_svg_icon['#object'] is not empty
+                      and show_img_icon == 'show_icon' %}
+                    <div class="data-snapshot__icon"
+                      style="--icon-fill: {{ icon_color }}">
+                      {{ content.field_svg_icon }}
+                    </div>
+                  {% endif %}
+
+                  {# Render the Photo/Image if it exists #}
+                  {% if
+                    content.field_photo_image['#object'] is not empty
+                      and show_img_icon == 'show_photo' %}
+                    <div class="data-snapshot__image">
+                      {{ content.field_photo_image }}
+                    </div>
+                  {% endif %}
+
+                  <div class="data-snapshot__content">
+                    {# Render the Description if it exists #}
+                    {% if content.field_description[0] %}
+                      <div class="data-snapshot__description">
+                        {{ content.field_description[0]['#text']|raw }}
+                      </div>
+                    {% endif %}
+
+                    {# Render the Link if it exists #}
+                    {% if content.field_link_limited[0] %}
+                      {% set link_title = content.field_link_limited[0]['#title'] %}
+                      <div class="data-snapshot__cta">
+                        <a class="btn btn-primary" href="{{ link_url }}" title="{{ link_title }}">
+                          {{ link_title }}
+                        </a>
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endblock %}
+  </div>
+{% endblock %}

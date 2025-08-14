@@ -1,0 +1,55 @@
+{#
+/**
+ * @file
+ * Display Suite 2 column template.
+ *
+ * Available variables:
+ * - outer_wrapper: outer wrapper element
+ * - left_wrapper: wrapper element around left region
+ * - right_wrapper: wrapper element around right region
+ * - attributes: layout attributes
+ * - left_attributes: attributes for left region
+ * - right_attributes: attributes for right region
+ * - left: content of left region
+ * - right: content of right region
+ */
+#}
+<{{ outer_wrapper }}{{ attributes.addClass('ds-2col', 'clearfix') }}>
+
+  {{ title_suffix.contextual_links }}
+
+  <{{ left_wrapper }}{{ left_attributes.addClass('group-left') }}>
+    <h1>{{ content.field_title }}</h1>
+
+    {# {{ content.field_media_image }} #}
+    <div class="genderterm-body">
+      {{ content.body }}
+    </div>
+    {{ content.field_builder }}
+
+  </{{ left_wrapper }}>
+
+  <{{ right_wrapper }}{{ right_attributes.addClass('group-right') }}>
+    {{ drupal_region('right_content') }}
+
+    {{ right }}
+  </{{ right_wrapper }}>
+
+</{{ outer_wrapper }}>
+
+{# Set langcode to create condition to show the right view on translatable page. #}
+{% set langcode = content['#node'].get('langcode').value %}
+
+{% if langcode == 'en' %}
+  <h3 class="gender-lexicon-view-title">Gender-sensitive lexicon</h3>
+  {{ drupal_view('gender_sensitive_lexicon', 'page_1') }}
+
+{% elseif langcode == 'es' %}
+  <h3 class="gender-lexicon-view-title">Léxico sensible al género</h3>
+  {{ drupal_view('gender_sensitive_lexicon', 'page_2') }}
+
+{% elseif langcode == 'fr' %}
+  <h3 class="gender-lexicon-view-title">Lexique sensible au genre</h3>
+  {{ drupal_view('gender_sensitive_lexicon', 'page_3') }}
+
+{% endif %}

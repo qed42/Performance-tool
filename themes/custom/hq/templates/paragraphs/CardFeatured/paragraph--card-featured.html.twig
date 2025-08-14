@@ -1,0 +1,76 @@
+{% set classes = [
+  'paragraph',
+  'container',
+  'paragraph--type--' ~ (paragraph.bundle|clean_class),
+  view_mode ? 'paragraph--view-mode--' ~ (view_mode|clean_class),
+  not paragraph.isPublished() ? 'paragraph--unpublished'
+] %}
+
+{% block paragraph %}
+  <article {{ attributes.addClass(classes) }}>
+    {% block content %}
+
+      {% if content.field_title.0 or content.field_show.0['#markup'] == 'On' %}
+        <div class="cardHighlights-header">
+          {% if content.field_title.0 %}
+            <h2>{{ content.field_title.0 }}</h2>
+          {% endif %}
+          
+          {% if content.field_show.0['#markup'] == 'On' and content.field_link_limited.0 %}
+            <div class="more-link">
+              <a href="{{ content.field_link_limited.0['#url_title'] }}"
+                  aria-label="Go to {{ content.field_link_limited.0['#title'] }}"
+                  title="Go to {{ content.field_link_limited.0['#title'] }}">
+                  {{ content.field_link_limited.0['#title'] }}
+              </a>
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      <div class="content">
+        <div class="content-image">
+          {% if paragraph.field_content_reference.entity %}
+            {% if paragraph.field_content_reference.entity.field_media_image %}
+              <a href="{{ url('entity.node.canonical', {'node':  paragraph.field_content_reference.entity.id() })}}" 
+                 title="Linked image to the featured post" 
+                 aria-label="Open featured post">
+
+                <img src="{{node_img}}" alt="Featured post - image" loading="lazy"/>
+              </a>
+            {% endif %}
+          {% endif %}
+        </div>
+        <div class="content-right">
+          {% if paragraph.field_content_reference.entity.hastranslation(language) %}
+            {% set storyLabel = paragraph.field_content_reference.entity.field_tag.entity.translation(language).label() %}
+          {% else %}
+            {% set storyLabel = paragraph.field_content_reference.entity.field_tag.entity.label() %}
+          {% endif %}
+          {% if storyLabel is not empty %}
+          <div class="content-tag">
+            {{ storyLabel }}
+          </div>
+          {% endif %}
+          <h3>
+            {% if paragraph.field_content_reference.entity %}
+              {% if paragraph.field_content_reference.entity.hastranslation(language) %}
+                {% set storyTitle = paragraph.field_content_reference.entity.translation(language).getTitle() %}
+              {% else %}
+                {% set storyTitle = paragraph.field_content_reference.entity.getTitle() %}
+              {% endif %}
+
+              <a class="link" href="{{ url('entity.node.canonical', {'node':  paragraph.field_content_reference.entity.id() })}}" 
+                 title="Link to the featured post" 
+                 aria-label="Open featured post">
+                {{ storyTitle }}
+              </a>
+            {% endif %}
+          </h3>
+
+          {{ content.field_link }}
+        </div>
+      </div>
+    {% endblock %}
+  </article>
+{% endblock %}

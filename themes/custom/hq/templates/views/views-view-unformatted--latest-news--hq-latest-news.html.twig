@@ -1,0 +1,17 @@
+{% if title %}
+  <h3>{{ title }}</h3>
+{% endif %}
+
+{% for row in rows %}
+  {% if loop.first  %}
+    <div class="col-md-7">
+      {{- row.content -}}
+    </div>
+    <div class="col-md-5">
+  {% else %}
+      {{- row.content -}}  
+  {% endif %}
+  {% if loop.last %}
+    </div>
+  {% endif %}
+{% endfor %}

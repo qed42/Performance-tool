@@ -1,0 +1,38 @@
+html {
+  width: 8.5in;
+}
+
+footer,
+.header-top,
+.search-results-bar,
+.region-nav-main,
+.mmenu-bootstrap,
+.menu--secondary-navigation,
+.search-block-header form,
+#block-unw-theme-local-tasks,
+#block-languageswitcher {
+  display: none;
+}
+
+a {
+  text-decoration: none!important;
+}
+
+.node .group-right,
+.node .group-right > * {
+  display: none;
+}
+
+.search-block-header form {
+  border-color: #fff;
+  border: 0;
+}
+
+header .search-block-form,
+header .search-block-header {
+  display: none;
+}
+
+.ds-2col .group-left {
+  width: 100%;
+}

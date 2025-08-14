@@ -1,0 +1,118 @@
+@import "../../../../../node_modules/bootstrap/scss/functions";
+@import "../../../../../node_modules/bootstrap/scss/mixins/breakpoints";
+@import "../../../custom";
+@import "../../../mixins";
+
+.map-image {
+  display: block;
+
+  @include media-breakpoint-down(md) {
+    display: none;
+  }
+
+  svg {
+    transform: scale(2);
+    width: 100%;
+    background-color: $map-blue;
+
+    #label,
+    #label_2,
+    #label_3,
+    #label_4,
+    #label_5 {
+      animation: none; /* Remove the animation */
+      transition: transform 1s ease-in-out, opacity 0.5s ease-in-out;
+      transform: translateY(-100px);
+      opacity: 0;
+    }
+
+    #Black [id^="yellow_"],
+    #Blue [id^="yellow_"],
+    #Yellow [id^="yellow_"],
+    #yellow {
+      opacity: 0;
+      transition: opacity .1s ease-in;
+      cursor: pointer;
+    }
+
+    [id^="Tooltip_"],
+    [id^="Arrow_"],
+    #Arrow {
+      display: none;
+    }
+
+    #Black path[id^="yellow_"],
+    #Blue path[id^="yellow_"],
+    #Yellow path[id^="yellow_"],
+    #yellow {
+      &:hover {
+        & + g {
+          g,
+          path {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}
+
+.zoomOut {
+  svg {
+    animation: zoomOut 1s ease-in-out forwards;
+  }
+}
+
+.add-label {
+  svg {
+    #label,
+    #label_2,
+    #label_3,
+    #label_4,
+    #label_5 {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #Black [id^="yellow_"],
+    #Blue [id^="yellow_"],
+    #Yellow [id^="yellow_"],
+    #yellow {
+      opacity: 1;
+      transition: opacity .1s ease-in;
+    }
+  }
+}
+
+.remove-label {
+  svg {
+    #label,
+    #label_2,
+    #label_3,
+    #label_4,
+    #label_5 {
+      animation: slideOut 0.5s ease-in-out forwards;
+    }
+  }
+}
+
+@keyframes slideOut {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100px);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes zoomOut {
+  0% {
+    transform: scale(2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

@@ -1,0 +1,40 @@
+{#
+/**
+ * @file
+ * Display Suite 2 column template.
+ *
+ * Available variables:
+ * - outer_wrapper: outer wrapper element
+ * - left_wrapper: wrapper element around left region
+ * - right_wrapper: wrapper element around right region
+ * - attributes: layout attributes
+ * - left_attributes: attributes for left region
+ * - right_attributes: attributes for right region
+ * - left: content of left region
+ * - right: content of right region
+ */
+#}
+<{{ outer_wrapper }}{{ attributes.addClass('ds-2col', 'clearfix') }}>
+
+  {{ title_suffix.contextual_links }}
+  {% if content.slider_top %}
+    <div class="slider-homepage-style">
+      {{ content.slider_top }}
+    </div>
+  {% endif %}
+  <{{ left_wrapper }}{{ left_attributes.addClass('group-left') }}>
+    <h1>{{ content.field_title['0']['#context']['value']|raw }}</h1>
+
+    {# {{ content.field_media_image }} #}
+    {{ content.body }}
+    {{ content.rest_of_builder }}
+
+  </{{ left_wrapper }}>
+
+  <{{ right_wrapper }}{{ right_attributes.addClass('group-right') }}>
+    {{ drupal_region('right_content') }}
+
+    {{ right }}
+  </{{ right_wrapper }}>
+
+</{{ outer_wrapper }}>

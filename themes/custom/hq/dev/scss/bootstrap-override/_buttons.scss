@@ -1,0 +1,18 @@
+.btn-dropdown::after {
+  content: '\f004';
+  color: $blue;
+  font-family: 'UN-Women';
+  font-size: 17.5px;
+  transform: scale(1,1.1);
+  border: 0;
+}
+
+.btn-reset {
+  padding: 4px 16px;
+  color: #002149;
+  background-color: #E1E6EE;
+  border-radius: $border-radius;
+  font-weight: $font-weight-normal;
+  min-width: auto !important;
+  align-self: flex-end;
+}

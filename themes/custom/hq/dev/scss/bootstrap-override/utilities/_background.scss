@@ -1,0 +1,11 @@
+.bg-gradient {
+  &.bg-gradient--bottom-top {
+    background: rgb(0,0,0);
+    background: linear-gradient(0deg, rgba($black,.6) 0%, rgba($white,0) 100%);
+  }
+
+  &.bg-gradient--top-bottom {
+    background: rgb(0,0,0);
+    background: linear-gradient(0deg, rgba($white,0) 0%, rgba($black,.6) 100%);
+  }
+}

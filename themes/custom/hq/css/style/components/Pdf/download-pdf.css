@@ -1,0 +1,13 @@
+.block-glossary-listing__alphabet-filter {
+  display: none;
+}
+.block-glossary-listing .views-field-copy-icon {
+  display: none;
+}
+.block-glossary-listing .views-field-title {
+  margin-bottom: 0;
+  line-height: normal;
+}
+.block-glossary-listing--row-title {
+  width: 20px;
+}

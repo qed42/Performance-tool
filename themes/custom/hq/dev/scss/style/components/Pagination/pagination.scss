@@ -1,0 +1,191 @@
+@import "../../../../../node_modules/bootstrap/scss/functions";
+@import "../../../../../node_modules/bootstrap/scss/mixins/breakpoints";
+@import "../../../custom";
+@import "../../../mixins";
+
+nav.pager {
+  padding: 44px $gutter 80px;
+
+  ul {
+    display: flex;
+    justify-content: center;
+    max-width: 854px;
+    margin: 0 auto;
+    padding-inline-start: 0;
+    list-style-type: none;
+
+    li {
+      @include typography-h6-b;
+
+      justify-content: center;
+      padding: 6px 20px;
+      line-height: normal;
+
+      @include media-breakpoint-down(md) {
+        line-height: normal;
+      }
+
+      @include media-breakpoint-down(sm) {
+        padding: 6px $gutter;
+        line-height: normal;
+      }
+
+      &.is-active {
+        &>a {
+          color: $blue;
+        }
+      }
+      
+
+      a {
+        @include typography-card;
+        line-height: normal;
+        color: $blue-600;
+
+        &:hover,
+        &:focus {
+          color: $blue-100;
+        }
+      }
+
+      &.pager__item {
+
+        &--previous,
+        &--next {
+          display: flex;
+          border: 1px solid $blue;
+          border-radius: 8px;
+          color: $blue;
+
+          a {
+            position: relative;
+            color: $blue;
+
+            @include media-breakpoint-down(sm) {
+              span {
+                display: none;
+              }
+            }
+          }
+
+          &:hover,
+          &:focus,
+          &:focus-within {
+            border: 1px solid $blue-100;
+
+            a {
+              color: $blue-100;
+
+              &:before,
+              &:after {
+                background-image: url('/themes/custom/hq/img/icon-arrow-dark.svg');
+              }
+            }
+          }
+        }
+
+        &--last,
+        &--ellipsis,
+        &--first {
+          display: none;
+        }
+
+        &--previous {
+          margin-right: auto;
+          padding: 6px 20px 6px 36px;
+
+          @include media-breakpoint-down(sm) {
+            padding: 6px 20px;
+          }
+
+          a {
+
+            &:before {
+              content: '';
+              position: absolute;
+              top: 4px;
+              left: -24px;
+              width: 15px;
+              height: 15px;
+              transform: rotate(90deg);
+              background-image: url('/themes/custom/hq/img/icon-arrow.svg');
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+
+              @include media-breakpoint-down(sm) {
+                display: block;
+                position: relative;
+                left: auto;
+                top: auto;
+              }
+            }
+          }
+
+          a {
+
+            &:hover,
+            &:focus {
+              &:before {
+                background-image: url('/themes/custom/hq/img/icon-arrow-dark.svg');
+              }
+            }
+          }
+        }
+
+        &--next {
+          margin-left: auto;
+          padding: 6px 36px 6px 20px;
+
+          @include media-breakpoint-down(sm) {
+            padding: 6px 20px;
+          }
+
+          a {
+            &:after {
+              content: '';
+              position: absolute;
+              top: 4px;
+              right: -24px;
+              transform: rotate(-90deg);
+              width: 15px;
+              height: 15px;
+              background-image: url('/themes/custom/hq/img/icon-arrow.svg');
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+
+              @include media-breakpoint-down(sm) {
+                display: block;
+                position: relative;
+                right: auto;
+                top: auto;
+              }
+            }
+          }
+
+          a {
+
+            &:hover,
+            &:focus {
+              &:after {
+                content: '';
+                background-image: url('/themes/custom/hq/img/icon-arrow-dark.svg');
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .empty-element {
+      margin-right: auto;
+      padding: 0;
+    }
+
+    .last-empty-element {
+      margin-left: auto;
+      padding: 0;
+    }
+  }
+}

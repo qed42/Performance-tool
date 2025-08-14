@@ -1,0 +1,100 @@
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+<article{{attributes.addClass(classes)}}>
+  {% block node %}
+    {% if is_kp_active != true %}
+      <div class="block-breadcrumbs-2">
+        {{ drupal_block('system_breadcrumb_block') }}
+      </div>
+    {% endif %}
+
+    {% set basicHeroBanner = null %}
+
+    {% if content.field_hero_banner|render|length %}
+      {% set paragraph_type = content.field_hero_banner.0['#paragraph'] %}
+      {% if paragraph_type.field_select_hero_type.0.value|trim ==  'basic_hero_banner' %}
+        {% set basicHeroBanner = true %}
+      {% endif %}
+      {% if basicHeroBanner == null %}
+        <div class="container-fluid">
+          <div class="row">
+            <div class="hq-hero-banner__wrapper">
+              {{content.field_hero_banner}}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endif %}
+
+    {% if content.field_hero_banner|render|length == 0 or basicHeroBanner %}
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-8">
+            {% if content.field_page_type.0['#markup'] != 'SDG Detail page'%}
+              <header class="story-header">
+                {{ title_prefix }}
+                <h1 class="story-title">{{ label }}</h1>
+                {{ title_suffix }}
+
+                {% if content.field_subtitle.0 %}
+                  <h2 class="story-subtitle">{{ content.field_subtitle }}</h2>
+                {% endif %}
+                {{ drupal_block("social_sharing_buttons_block") }}
+              </header>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% if basicHeroBanner %}
+        <div class="container-fluid">
+          <div class="row">
+            <div class="hq-hero-banner__wrapper no-content">
+              {{content.field_hero_banner}}
+            </div>
+          </div>
+        </div>
+      {% else %}
+        {% if content.field_hero_type.0['#markup'] == 'Video' %}
+          <div class="embed-container">{{ content.field_video_hero }}</div>
+        {% elseif content.field_hero_type.0['#markup'] == 'Image' %}
+          {{ attach_library('hq/rellax_library') }}
+          <figure class="story-image parallax-image">
+            {{ content.field_media_image_hero }}
+
+            {% if media_caption %}
+              <div class="container">
+                <figcaption class="story-caption">
+                  {{ media_caption }}
+                </figcaption>
+              </div>
+            {% endif %}
+          </figure>
+        {% endif %}
+      {% endif %}
+    {% endif %}
+    <div class="container">
+      <div class="row">
+        {% if node.field_parent[0] %}
+          <div class="col-md-3">
+            {{ drupal_block('Sidebar_navigation_topic_hierarchical_navigation') }}
+          </div>
+          <div class="col-md-9 node--type-hq-complex-page__topic">
+            <div class="gap-container">
+              {{ content.field_builder }}
+            </div>
+          </div>
+        {% else %}
+          <div class="col-md-12 node--type-hq-complex-page__topic">
+            {{ content.field_builder }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+  {% endblock %}
+</article>

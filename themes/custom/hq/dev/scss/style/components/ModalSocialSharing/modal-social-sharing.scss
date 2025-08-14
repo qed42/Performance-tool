@@ -1,0 +1,100 @@
+@import "../../../../../node_modules/bootstrap/scss/functions";
+@import "../../../../../node_modules/bootstrap/scss/mixins/breakpoints";
+@import "../../../custom";
+@import "../../../mixins";
+
+.modal-social-sharing {
+  .modal-header {
+    padding: 24px 24px 0;
+    border: 0;
+  }
+
+  .btn-close {
+    display: flex;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: $gray-200;
+    border: 0;
+  }
+
+  .copy-link__btn {
+    @include btn;
+    @include btn-outline-primary;
+
+    display: flex;
+    align-items: center;
+    background-color: $white;
+  }
+
+  .modal-title {
+    @include typography-body;
+    text-transform: none;
+  }
+
+  .social-sharing-buttons {
+    margin-block: 36px;
+    padding: 0;
+    align-items: center;
+    justify-content: space-around;
+
+    a {
+      width: 34px;
+      height: 34px;
+
+      &:hover,
+      &:focus {
+        filter: brightness(50%);
+      }
+    }
+
+    .icon-twitter {
+      &::before {
+        position: static;
+        top: auto;
+      }
+    }
+  }
+
+  .modal-body {
+    padding: 0 24px 24px;
+  }
+
+  .copy-link {
+    display: flex;
+    column-gap: 16px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    p {
+      @include typography-label-sb;
+      flex: 0 0 100%;
+      margin: 0 0 5px 0;
+      color: $text-gray;
+    }
+
+    input {
+      @include typography-body;
+
+      flex: 1;
+      height: 45px;
+      padding: 10px 14px;
+      color: $text-gray;
+      border: 1px solid $text-disabled;
+      border-radius: 6px;
+      box-shadow: 0px 1px 4px 0px rgba(16, 24, 40, 0.05);
+    }
+
+    button {
+      height: 45px;
+
+      @include media-breakpoint-down(sm) {
+        width: auto;
+      }
+    }
+  }
+}

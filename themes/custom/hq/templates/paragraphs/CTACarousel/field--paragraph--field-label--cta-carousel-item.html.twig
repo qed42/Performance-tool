@@ -1,0 +1,9 @@
+<div class="card_wrapper">
+  <h3 class="card_title">
+    {% if items %}
+      {% for item in items %}
+        <span>{{ item.content }}</span>
+      {% endfor %}
+    {% endif %}
+  </h3>
+</div>

@@ -1,0 +1,179 @@
+.field--name-body {
+  h1, h2, h3, h4, h5, h6 {
+    color: #5E5A55;
+    margin: 0 0 12px 0;  
+  }
+  h3, h4, h5, h6 {
+    line-height: 1;
+    font-weight: 700;
+  }
+  h1 {
+    font: 400 33px/1.3 Bitter, "Times New Roman", Times, serif;
+  }
+  h2 {
+    font: 400 25px/1.5 Bitter, "Times New Roman", Times, serif;
+  }
+  h3 {
+    font-size: 18px;
+  }
+  h4 {
+    font-size: 16px;
+  }
+  h5 {
+    font-size: 14px;
+  }
+  h6 {
+    font-size: 12px;
+  }
+
+  ul {
+    padding-inline-start: rem-calc(20);
+  }  
+
+  li,
+  dd {
+    margin: 0 0 6px 0;
+  }
+
+  h2 {
+    font-family: $font-bitter;
+    font-size: rem-calc(25);
+    font-weight: 400;
+    line-height: 1.5;
+    margin-bottom: rem-calc(12);
+  }
+
+  a {
+    color: $blue;
+  }
+
+  p {
+    margin-bottom: rem-calc(12);
+  }
+
+  .caption {
+    margin: rem-calc(7 0 14);
+  }
+}
+
+.node {
+  .field--type-text-long {
+    a {
+      color: $blue;
+    }
+  }
+}
+
+.block-addtoany {
+  background: #e5e3dc;
+  margin: rem-calc(0 0 22);
+  padding: rem-calc(0 4 3);
+
+  .a2a_button_facebook {
+    svg {
+      background-color: #4267B2;
+    }
+  }
+
+  .a2a_button_twitter {
+    svg {
+      background-color: #1DA1F2;
+    }
+  }
+
+  .a2a_button_email {
+    svg {
+      background-color: #7D7D7D;
+    }
+  }
+
+  .a2a_button_print {
+    svg {
+      background-color: #F05D22;
+    }
+  }
+}
+
+.main-navigation-section {
+  border: 1px solid #939393;
+  margin-bottom: rem-calc(35);
+
+  h5 {
+    font-weight: 700;
+    font-size: 17px;
+    padding: 13px 12px 10px;
+    border-bottom: 5px solid #B5B6B7;
+    margin-bottom: 0;
+  }
+
+  .field--name-field-link,
+  ul.nav {
+    a {
+      font-size: 13px;
+      padding: 6px 12px 3px;
+      display: block;
+      color: #595a5c;
+      text-decoration: none;
+
+      &:hover {
+        color: #0397D6;
+      }
+    }
+  }
+
+  .parent-node {
+    display: block;
+    font-size: rem-calc(13);
+    padding: rem-calc(9 12 6);
+
+    &::after {
+      content: "\25B2";
+      font-size: rem-calc(12);
+      margin-left: rem-calc(4);
+    }
+
+    &:hover {
+      color: #595a5c;
+    }
+  }
+}
+
+.region-right-content {
+  display: flex;
+  flex-direction: column;
+
+  .block-addtoany {
+    order: 0;
+  }
+
+  .main-navigation-section {
+    order: 1;
+  }
+}
+
+.view-current-calls-for-proposals {
+  .views-field-view-node a {
+    color: $blue;
+  }
+
+  .views-field-field-rsvp-deadline-date {
+    display: flex;
+
+    .views-label-field-rsvp-deadline-date {
+      margin-right: rem-calc(3);
+    }
+  }
+}
+
+//Fix caption article page body
+.page-node-type-article {
+  .field--name-body {
+    .caption,
+    .img-container .img-caption {
+      margin-bottom: 15px;
+    }
+    .img-container {
+      margin-bottom: 0 !important;
+    }
+  }
+}

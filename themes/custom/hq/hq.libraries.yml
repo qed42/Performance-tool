@@ -1,0 +1,827 @@
+main-lib:
+  version: 1.x
+  css:
+    theme:
+      libraries/select2/css/select2-bundle.min.css: {weight: 0}
+
+  js:
+    libraries/select2/js/select2.min.js: {weight: -1, attributes: { defer: true }}
+    libraries/select2/js/i18n/es.min.js: {weight: -1, attributes: { defer: true }}
+    libraries/select2/js/i18n/fr.min.js: {weight: -1, attributes: { defer: true }}
+    js/script.js: {weight: 0, attributes: { defer: true }}
+
+  dependencies:
+    - core/jquery
+    - core/jquery.ui.dialog
+    - core/drupal
+    - core/jquery.once
+    - core/internal.underscore 
+
+ltr:
+  css:
+    theme:
+      css/style.css: {weight: -1}
+  js:
+    js/popper.min.js: {attributes: { defer: true }}
+    js/bootstrap.min.js: {attributes: { defer: true }}
+
+rtl:
+  css:
+    theme:
+      css/style-rtl.css: {weight: -1}
+      css/hq-rtl.css: {weight: -1}
+  js:
+    js/popper.min.js: {}
+    '//cdn.rtlcss.com/bootstrap/v4.4.1/js/bootstrap.bundle.min.js': { type: external, minified: true}
+
+rellax_library:
+  js:
+    libraries/rellax.min.js: {weight: -1, attributes: { defer: true }}
+
+aos_library:
+  css:
+    theme:
+      libraries/aos/aos.css: {}
+  js:
+    libraries/aos/aos.js: {weight: -1, attributes: { defer: true }}
+
+videojs_library:
+  css:
+    theme:
+      libraries/video.js/dist/video-js.min.css: {weight: -1}
+      libraries/@videojs/themes/fantasy/index.css: {weight: -1}
+  js:
+    libraries/video.js/dist/video.min.js: {weight: -1, attributes: { defer: true }}
+    libraries/videojs-titleoverlay/videojs-titleoverlay.js: {weight: -1, attributes: { defer: true }}
+    libraries/videojs-overlay/dist/videojs-overlay.min.js: {weight: -1, attributes: { defer: true }}
+
+swiper_library:
+  css:
+    theme:
+      libraries/swiper/css/swiper-bundle.min.css: {weight: -1}
+  js:
+    libraries/swiper/js/swiper.min.js: {weight: -1, attributes: { defer: true }}
+
+speaker_block:
+  css:
+    theme:
+      css/style/components/Speaker/speaker.css: {}
+
+speaker_block-rtl:
+  css:
+    theme:
+      css/style/components/Speaker/speaker-rtl.css: {}
+
+contact_block:
+  css:
+    theme:
+      css/style/components/Contact/contact.css: {}
+  js:
+    js/components/show-contact-email.js: {attributes: { defer: true }}
+
+contact_block-rtl:
+  css:
+    theme:
+      css/style/components/Contact/contact-rtl.css: {}
+  js:
+    js/components/show-contact-email.js: {attributes: { defer: true }}
+
+organizer_block:
+  css:
+    theme:
+      css/style/components/Organizer/organizer.css: {}
+
+organizer_block-rtl:
+  css:
+    theme:
+      css/style/components/Organizer/organizer-rtl.css: {}
+
+glossary:
+  css:
+    theme:
+      css/style/components/Glossary/glossary.css: {}
+  js:
+    js/components/glossary-copy-text.js: {attributes: { defer: true }}
+
+glossary-rtl:
+  css:
+    theme:
+      css/style/components/Glossary/glossary-rtl.css: {}
+  js:
+    js/components/glossary-copy-text.js: {attributes: { defer: true }}
+
+pagination:
+  css:
+    theme:
+      css/style/components/Pagination/pagination.css: {}
+
+pagination-rtl:
+  css:
+    theme:
+      css/style/components/Pagination/pagination-rtl.css: {}
+
+map_block:
+  css:
+    theme:
+      css/style/components/Google-map/google-map.css: {}
+  js:
+    js/components/google-map.js: {attributes: { defer: true }}
+
+map_block-rtl:
+  css:
+    theme:
+      css/style/components/Google-map/google-map-rtl.css: {}
+  js:
+    js/components/google-map.js: {attributes: { defer: true }}
+
+node.full.ct-video:
+  css:
+    theme:
+      css/style/components/Content/node.full.ct-video.css: {}
+
+node.full.ct-video-rtl:
+  css:
+    theme:
+      css/style/components/Content/node.full.ct-video-rtl.css: {}
+
+node.full.ct-event:
+  css:
+    theme:
+      css/style/components/Content/node.full.ct-event.css: {}
+
+node.full.ct-event-rtl:
+  css:
+    theme:
+      css/style/components/Content/node.full.ct-event-rtl.css: {}
+
+node.full.ct-courses:
+  css:
+    theme:
+      css/style/components/Content/node.full.ct-courses.css: {}
+
+node.full.ct-courses-rtl:
+  css:
+    theme:
+      css/style/components/Content/node.full.ct-courses-rtl.css: {}
+
+paragraph-ct-basic-cta:
+  css:
+    theme:
+      css/style/components/Paragraph/paragraph-ct-basic-cta.css: {}
+
+paragraph-ct-basic-cta-rtl:
+  css:
+    theme:
+      css/style/components/Paragraph/paragraph-ct-basic-cta-rtl.css: {}
+
+block.topic-hierarchical-navigation:
+  css:
+    theme:
+      css/style/components/Block/block.topic-hierarchical-navigation.css: {}
+  js:
+    js/components/topic-hierarchical.js: {attributes: { defer: true }}
+
+block.topic-hierarchical-navigation-rtl:
+  css:
+    theme:
+      css/style/components/Block/block.topic-hierarchical-navigation-rtl.css: {}
+  js:
+    js/components/topic-hierarchical.js: {attributes: { defer: true }}
+
+node.vm.websites-card:
+  css:
+    theme:
+      css/style/components/Content/node.vm.websites-card.css: {}
+
+node.vm.websites-card-rtl:
+  css:
+    theme:
+      css/style/components/Content/node.vm.websites-card-rtl.css: {}
+
+region-bt-top-header:
+  css:
+    theme:
+      css/style/components/Header/top-header.css: {}
+
+region-bt-top-header-rtl:
+  css:
+    theme:
+      css/style/components/Header/top-header-rtl.css: {}
+
+top-header-menu:
+  css:
+    theme:
+      css/style/components/HqMenu/top-header-menu.css: {}
+
+top-header-menu-rtl:
+  css:
+    theme:
+      css/style/components/HqMenu/top-header-menu-rtl.css: {}
+
+listing-search-filters:
+  css:
+    theme:
+      css/style/components/ListingSearchFilters/listing-search-filters.css: {}
+  js:
+    js/components/resource-listing.js: {attributes: { defer: true }}
+
+listing-search-filters-rtl:
+  css:
+    theme:
+      css/style/components/ListingSearchFilters/listing-search-filters-rtl.css: {}
+  js:
+    js/components/resource-listing.js: {attributes: { defer: true }}
+
+node.vm.global-card:
+  css:
+    theme:
+      css/style/components/Content/node.vm.global-card.css: {}
+
+node.vm.global-card-rtl:
+  css:
+    theme:
+      css/style/components/Content/node.vm.global-card-rtl.css: {}
+
+block.latest-news:
+  css:
+    theme:
+      css/style/components/Block/block.latest-news.css: {}
+
+block.latest-news-rtl:
+  css:
+    theme:
+      css/style/components/Block/block.latest-news-rtl.css: {}
+
+block.quicktabs.latest-resources:
+  css:
+    theme:
+      css/style/components/Block/block.quicktabs.latest-resource.css: {}
+  js:
+    js/components/quicktabs-latest-resource.js: {attributes: { defer: true }}
+
+block.quicktabs.latest-resources-rtl:
+  css:
+    theme:
+      css/style/components/Block/block.quicktabs.latest-resource-rtl.css: {}
+  js:
+    js/components/quicktabs-latest-resource.js: {attributes: { defer: true }}
+
+highlightCardCarousel:
+  css:
+    theme:
+      css/style/components/HighlightCardCarousel/highlight-card-carousel.css: {}
+  js:
+    js/components/highlightCardsCarousel.js: {attributes: { defer: true }}
+
+globalCardsCarousel:
+  css:
+    theme:
+      css/style/components/GlobalCardsCarousel/global-cards-carousel.css: {}
+  js:
+    js/components/globalCardsCarousel.js: {attributes: { defer: true }}
+
+globalCardsCarousel-rtl:
+  css:
+    theme:
+      css/style/components/GlobalCardsCarousel/global-cards-carousel-rtl.css: {}
+  js:
+    js/components/globalCardsCarousel.js: {attributes: { defer: true }}
+
+block.tabs.resources-by-region:
+  css:
+    theme:
+      css/style/components/Block/block.tabs.resources-by-region.css: {}
+  js:
+    js/components/region-resource-card.js: {attributes: { defer: true }}
+
+block.tabs.resources-by-region-rtl:
+  css:
+    theme:
+      css/style/components/Block/block.tabs.resources-by-region-rtl.css: {}
+  js:
+    js/components/region-resource-card.js: {attributes: { defer: true }}
+
+theme_card:
+  css:
+    theme:
+      css/style/components/ThemeCard/theme_card.css: {}
+
+theme_card-rtl:
+  css:
+    theme:
+      css/style/components/ThemeCard/theme_card-rtl.css: {}
+
+download-pdf:
+  css:
+    theme:
+      css/style/components/Pdf/download-pdf.css: {}
+  dependencies:
+    - hq/glossary
+
+download-pdf-rtl:
+  css:
+    theme:
+      css/style/components/Pdf/download-pdf-rtl.css: {}
+  dependencies:
+    - hq/glossary
+
+paragraph.vm.hero-banner-large:
+  css:
+    theme:
+      css/style/components/Hero/paragraph.vm.hero-banner-large.css: {}
+
+paragraph.vm.hero-banner-large-rtl:
+  css:
+    theme:
+      css/style/components/Hero/paragraph.vm.hero-banner-large-rtl.css: {}
+
+paragraph-info-card:
+  css:
+    theme:
+      css/style/components/Paragraph/paragraph-info-card.css: {}
+  js:
+    js/components/paragraph-info-card.js: {attributes: { defer: true }}
+
+paragraph-info-card-rtl:
+  css:
+    theme:
+      css/style/components/Paragraph/paragraph-info-card-rtl.css: {}
+  js:
+    js/components/paragraph-info-card.js: {attributes: { defer: true }}
+
+node.vm.featured-card:
+  css:
+    theme:
+      css/style/components/FeaturedCard/fearured-card.css: {}
+
+node.vm.featured-card-rtl:
+  css:
+    theme:
+      css/style/components/FeaturedCard/fearured-card-rtl.css: {}
+
+node.vm.get-in-touch:
+  css:
+    theme:
+      css/style/components/Content/node.vm.get-in-touch.css: {}
+  js:
+    js/components/get-in-touch-card.js: {attributes: { defer: true }}
+
+node.vm.get-in-touch-rtl:
+  css:
+    theme:
+      css/style/components/Content/node.vm.get-in-touch-rtl.css: {}
+  js:
+    js/components/get-in-touch-card.js: {attributes: { defer: true }}
+
+hq-main-header:
+  css:
+    theme:
+      css/style/components/Header/hq-header.css: {}
+  js:
+    js/components/hq-header.js: {attributes: { defer: true }}
+
+hq-main-header-rtl:
+  css:
+    theme:
+      css/style/components/Header/hq-header-rtl.css: {}
+  js:
+    js/components/hq-header.js: {attributes: { defer: true }}
+
+paragraph-topic-card:
+  css:
+    theme:
+      css/style/components/Paragraph/paragraph-topic-card.css: {}
+
+paragraph-topic-card-rtl:
+  css:
+    theme:
+      css/style/components/Paragraph/paragraph-topic-card-rtl.css: {}
+
+thematic_menu:
+  css:
+    theme:
+      css/style/components/Header/thematic_menu.css: {}
+
+thematic_menu-rtl:
+  css:
+    theme:
+      css/style/components/Header/thematic_menu-rtl.css: {}
+
+paragraph-our-story:
+  css:
+    theme:
+      css/style/components/Paragraph/paragraph-our-story.css: {}
+
+paragraph-our-story-rtl:
+  css:
+    theme:
+      css/style/components/Paragraph/paragraph-our-story-rtl.css: {}
+
+about-us-contact-form:
+  css:
+    theme:
+      css/style/components/About-us-contact-form/about-us-contact-form.css: {}
+
+about-us-contact-form-rtl:
+  css:
+    theme:
+      css/style/components/About-us-contact-form/about-us-contact-form-rtl.css: {}
+
+webform-submission-form:
+  css:
+    theme:
+      css/style/components/webform/webform-submission-form.css: {}
+  js:
+    js/components/webform-submission-form.js: {attributes: { defer: true }}
+
+webform-submission-form-rtl:
+  css:
+    theme:
+      css/style/components/webform/webform-submission-form-rtl.css: {}
+  js:
+    js/components/webform-submission-form.js: {attributes: { defer: true }}
+
+thematic-news-letter-sign-up-block:
+  css:
+    theme:
+      css/style/components/ThematicNewsLetterSignUp/thematic-news-letter-sign-up-block.css: {}
+
+thematic-news-letter-sign-up-block-rtl:
+  css:
+    theme:
+      css/style/components/ThematicNewsLetterSignUp/thematic-news-letter-sign-up-block-rtl.css: {}
+
+node.full.ct-hq-article:
+  css:
+    theme:
+      css/style/components/Content/node.full.ct-hq-article.css: {}
+
+node.full.ct-hq-article-rtl:
+  css:
+    theme:
+      css/style/components/Content/node.full.ct-hq-article-rtl.css: {}
+
+hq-listing-page:
+  css:
+    theme:
+      css/style/components/ListingSearchFilters/listing-search-filters.css: {}
+      css/style/components/Hq-listing-page/hq-listing-page.css: {}
+  js:
+    js/components/resource-listing.js: {attributes: { defer: true }}
+    js/components/listing-search-filters.js: {attributes: { defer: true }}
+  dependencies:
+    - hq/pagination
+    - hq/globalCardsCarousel
+    - hq/node.vm.global-card
+    - hq/node.vm.websites-card
+
+hq-listing-page-rtl:
+  css:
+    theme:
+      css/style/components/ListingSearchFilters/listing-search-filters-rtl.css: {}
+      css/style/components/Hq-listing-page/hq-listing-page-rtl.css: {}
+  js:
+    js/components/resource-listing.js: {attributes: { defer: true }}
+    js/components/listing-search-filters.js: {attributes: { defer: true }}
+  dependencies:
+    - hq/pagination-rtl
+    - hq/globalCardsCarousel-rtl
+    - hq/node.vm.global-card-rtl
+    - hq/node.vm.websites-card-rtl
+
+hq-publicaton-listing-page:
+  css:
+    theme:
+      css/style/components/ListingSearchFilters/listing-search-filters.css: {}
+  js:
+    js/components/resource-listing.js: {attributes: { defer: true }}
+    js/components/listing-search-filters.js: {attributes: { defer: true }}
+  dependencies:
+    - hq/pagination
+
+hq-publicaton-listing-page-rtl:
+  css:
+    theme:
+      css/style/components/ListingSearchFilters/listing-search-filters-rtl.css: {}
+  js:
+    js/components/resource-listing.js: {attributes: { defer: true }}
+    js/components/listing-search-filters.js: {attributes: { defer: true }}
+  dependencies:
+    - hq/pagination-rtl
+
+placeholder-loading:
+  css:
+    theme:
+      css/placeholder-loading.css: {}
+
+placeholder-loading-rtl:
+  css:
+    theme:
+      css/placeholder-loading-rtl.css: {}
+
+page-404-403:
+  css:
+    theme:
+      css/style/components/Page/page-404-403.css: {}
+
+page-404-403-rtl:
+  css:
+    theme:
+      css/style/components/Page/page-404-403-rtl.css: {}
+
+courses-tabs:
+  css:
+    theme:
+      css/style/components/courses-tabs/courses-tabs.css: {}
+  js:
+    js/components/courses-tabs.js: {attributes: { defer: true }}
+
+courses-tabs-rtl:
+  css:
+    theme:
+      css/style/components/courses-tabs/courses-tabs-rtl.css: {}
+  js:
+    js/components/courses-tabs.js: {attributes: { defer: true }}
+
+sdg-colors:
+  css:
+    theme:
+      css/style/components/SDGColors/sdg-colors.css: {}
+
+sdg-hero:
+  css:
+    theme:
+      css/style/components/SDGHero/sdghero.css: {}
+  dependencies:
+    - hq/sdg-colors
+
+sdg-listing:
+  css:
+    theme:
+      css/style/components/SDGListing/sdg-listing.css: {}
+  dependencies:
+    - hq/sdg-colors
+
+data-snapshot:
+  css:
+    theme:
+      css/style/components/DataSnapshot/data-snapshot.css: {}
+  dependencies:
+    - hq/sdg-colors
+
+impact-cards:
+  css:
+    theme:
+      css/style/components/ImpactCards/impact-cards.css: {}
+
+impact-cards-rtl:
+  css:
+    theme:
+      css/style/components/ImpactCards/impact-cards-rtl.css: {}
+
+modal-social-sharing:
+  css:
+    theme:
+      css/style/components/ModalSocialSharing/modal-social-sharing.css: {}
+  js:
+    js/components/modal-social-sharing.js: {attributes: { defer: true }}
+
+modal-social-sharing-rtl:
+  css:
+    theme:
+      css/style/components/ModalSocialSharing/modal-social-sharing-rtl.css: {}
+  js:
+    js/components/modal-social-sharing.js: {attributes: { defer: true }}
+
+publication-highlight:
+  css:
+    theme:
+      css/style/components/Paragraph/publication-highlight.css: {}
+
+publication-highlight-rtl:
+  css:
+    theme:
+      css/style/components/Paragraph/publication-highlight-rtl.css: {}
+
+paragraph.vm.hero-banner-global:
+  css:
+    theme:
+      css/style/components/Hero/paragraph.vm.hero-banner-global.css: {}
+
+paragraph.timeline.item:
+  css:
+    theme:
+      css/style/components/Timeline/timeline_item.css: {}
+  js:
+    js/components/timeline-component.js: {attributes: { defer: true }}
+
+paragraph.timeline.item-rtl:
+  css:
+    theme:
+      css/style/components/Timeline/timeline_item-rtl.css: {}
+  js:
+    js/components/timeline-component.js: {attributes: { defer: true }}
+
+paragraph.vm.hero-banner-global-rtl:
+  css:
+    theme:
+      css/style/components/Hero/paragraph.vm.hero-banner-global-rtl.css: {}
+
+paragraph.vm.hero-banner-global-parallax:
+  js:
+    js/components/paragraph.vm.hero-banner-global-parallax.js: {attributes: { defer: true }}
+  dependencies:
+    - hq/rellax_library
+
+paragraph.vm.hero-banner-global-slider:
+  js:
+    js/components/paragraph.vm.hero-banner-global-slider.js: {attributes: { defer: true }}
+
+paragraph.vm.hero-banner-global-slider-zoom:
+  js:
+    js/components/paragraph.vm.hero-banner-global-slider-zoom.js: {attributes: { defer: true }}
+
+paragraph-photo-slider:
+  css:
+    theme:
+      css/style/components/PhotoSlider/photo_slider.css: {}
+  js:
+    js/components/paragraph-photo_slider.js: {attributes: { defer: true }}
+    js/components/common-scroll-slider.js: {attributes: { defer: true }}
+
+paragraph-photo-slider-rtl:
+  css:
+    theme:
+      css/style/components/PhotoSlider/photo_slider-rtl.css: {}
+  js:
+    js/components/paragraph-photo_slider.js: {attributes: { defer: true }}
+    js/components/common-scroll-slider.js: {attributes: { defer: true }}
+
+charts: 
+  css:
+    theme:
+      css/style/components/Charts/charts.css: {}
+
+paragraph-image-slider:
+  css:
+    theme:
+      css/style/components/PhotoSlider/image_slider.css: {}
+
+  js:
+    js/components/paragraph-image_slider.js: {attributes: { defer: true }}
+    js/components/common-scroll-slider.js: {attributes: { defer: true }}
+
+paragraph-image-slider-rtl:
+  css:
+    theme:
+      css/style/components/PhotoSlider/image_slider-rtl.css: {}
+  js:
+    js/components/paragraph-image_slider.js: {attributes: { defer: true }}
+    js/components/common-scroll-slider.js: {attributes: { defer: true }}
+
+paragraph-vertical-image-slider:
+  css:
+    theme:
+      css/style/components/ImageSlideshow/vertical-image-slider.css: {}
+  js:
+    js/components/vertical-image-slider.js: {attributes: { defer: true }}
+    js/components/common-scroll-slider.js: {attributes: { defer: true }}
+
+paragraph-vertical-image-slider-rtl:
+  css:
+    theme:
+      css/style/components/ImageSlideshow/vertical-image-slider-rtl.css: {}
+  js:
+    js/components/vertical-image-slider.js: {attributes: { defer: true }}
+    js/components/common-scroll-slider.js: {attributes: { defer: true }}
+
+paragraph-video-carousel:
+  css:
+    theme:
+      css/style/components/VideoCarousel/video-carousel.css: {}
+  js:
+    js/components/video-carousel.js: {attributes: { defer: true }}
+
+paragraph-video-carousel-rtl:
+  css:
+    theme:
+      css/style/components/VideoCarousel/video-carousel-rtl.css: {}
+  js:
+    js/components/video-carousel.js: {attributes: { defer: true }}
+
+our-presence-modal:
+  css:
+    theme:
+      css/style/components/OurPresence/modal.css: {}
+
+our-presence-modal-rtl:
+  css:
+    theme:
+      css/style/components/OurPresence/modal-rtl.css: {}
+
+our-presence-map:
+  css:
+    theme:
+      css/style/components/OurPresence/map.css: {}
+  js:
+    js/components/our-presence-map.js: {attributes: { defer: true }}
+
+our-presence-map-rtl:
+  css:
+    theme:
+      css/style/components/OurPresence/map-rtl.css: {}
+  js:
+    js/components/our-presence-map.js: {attributes: { defer: true }}
+
+block.worldwide-listing:
+  css:
+    theme:
+      css/style/components/Block/block.worldwide-listing.css: {}
+  js:
+    js/components/worldwide-listing.js: {attributes: { defer: true }}
+
+block.worldwide-listing-rtl:
+  css:
+    theme:
+      css/style/components/Block/block.worldwide-listing-rtl.css: {}
+  js:
+    js/components/worldwide-listing.js: {attributes: { defer: true }}
+
+hq-main-navigation:
+  css:
+    theme:
+      css/style/components/Header/hq-main-navigation/hq-main-navigation.css: {}
+  js:
+    js/components/main-navigation-hq.js: {attributes: { defer: true }}
+
+hq-main-navigation-rtl:
+  css:
+    theme:
+      css/style/components/Header/hq-main-navigation/hq-main-navigation-rtl.css: {}
+  js:
+    js/components/main-navigation-hq.js: {}
+
+paragraph.vm.impact-card-backdrop:
+  js:
+    js/components/paragraph.vm.impact-card-backdrop.js: {attributes: { defer: true }}
+
+block.sidebar-navigation-topic-hierarchical-navigation:
+  css:
+    theme:
+      css/style/components/Block/block.sidebar-navigation-topic-hierarchical-navigation.css: {}
+  js:
+    js/components/block.sidebar-navigation-topic-hierarchical-navigation.js: {attributes: { defer: true }}
+
+block.sidebar-navigation-topic-hierarchical-navigation-rtl:
+  css:
+    theme:
+      css/style/components/Block/block.sidebar-navigation-topic-hierarchical-navigation-rtl.css: {}
+  js:
+    js/components/block.sidebar-navigation-topic-hierarchical-navigation.js: {attributes: { defer: true }}
+
+paragraph.vm.topic-card-backdrop:
+  css:
+    theme:
+      css/style/components/Paragraph/paragraph.vm.topic-card-backdrop.css: {}
+  js:
+    js/components/paragraph.vm.topic-card-backdrop.js: {attributes: { defer: true }}
+
+paragraph.vm.topic-card-backdrop-rtl:
+  css:
+    theme:
+      css/style/components/Paragraph/paragraph.vm.topic-card-backdrop-rtl.css: {}
+  js:
+    js/components/paragraph.vm.topic-card-backdrop.js: {attributes: { defer: true }}
+
+paragraph.vm.video-carousel-program:
+  css:
+    theme:
+      css/style/components/Paragraph/paragraph.vm.video-carousel-program.css: {}
+  js:
+    js/components/paragraph.vm.video-carousel-program.js: {attributes: { defer: true }}
+
+paragraph.vm.video-carousel-program-rtl:
+  css:
+    theme:
+      css/style/components/Paragraph/paragraph.vm.video-carousel-program-rtl.css: {}
+  js:
+    js/components/paragraph.vm.video-carousel-program.js: {attributes: { defer: true }}
+
+block.related-resources.explore-issues:
+  css:
+    theme:
+      css/style/components/Block/block.related-resources.explore-issues.css: {}
+  js:
+    js/components/block.related-resources.explore-issues.js: {attributes: { defer: true }}
+
+block.related-resources.explore-issues-rtl:
+  css:
+    theme:
+      css/style/components/Block/block.related-resources.explore-issues-rtl.css: {}
+  js:
+    js/components/block.related-resources.explore-issues.js: {attributes: { defer: true }}
+
+admin-attachment:
+  css:
+    theme:
+      css/style/components/ContentCarousel/admin-style.css: {}

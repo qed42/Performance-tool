@@ -1,0 +1,1309 @@
+@use "sass:math";
+// Variables
+//
+// Variables should follow the `$component-state-property-size` formula for
+// consistent naming. Ex: $nav-link-disabled-color and $modal-content-box-shadow-xs.
+
+// Color system
+$white: #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black: #000 !default;
+
+$grays: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$grays: map-merge(
+  (
+    '100': $gray-100,
+    '200': $gray-200,
+    '300': $gray-300,
+    '400': $gray-400,
+    '500': $gray-500,
+    '600': $gray-600,
+    '700': $gray-700,
+    '800': $gray-800,
+    '900': $gray-900
+  ),
+  $grays
+);
+$blue-100: #202056;
+$blue: #0397d6;
+$indigo: #6610f2 !default;
+$purple: #6f42c1 !default;
+$pink: #e83e8c !default;
+$red: #dc3545 !default;
+$orange: #fd6925 !default;
+$orange-1200: #ff763b !default;
+$purple-600: #cba5e3 !default;
+$gold: #F8DB7F !default;
+$aqua: #A2E8D1 !default;
+$light-blue: #C8E6FF !default;
+$light-gray: #E5E5E5 !default;
+$scroll-track: #E7EDF4 !default;
+$pink_new: #e2186f !default;
+$green: #4c9f38 !default;
+$teal: #20c997 !default;
+$cyan: #28bfe7 !default;
+$brown: #4b4b4b !default;
+$text-gray: #181818 !default;
+$text-blue: $blue-100 !default;
+$light-gray: #fbfcfc !default;
+$medium-gray: #d3dae2 !default;
+$dark-gray: #7e7e7e !default;
+$cadet-blue: #a0b4c1 !default;
+$sky-blue: #009cdb !default;
+$frost-blue: #EDF4FC !default;
+$pale-sky: #68737D !default;
+$text-light-gray: #656565 !default;
+$border-gray: #d8d8d8 !default;
+$blue-600: rgba(3,151,214,0.6) !default;
+$darkish-gray: #333333 !default;
+$iron-gray: #D0D6DA !default;
+$text-disabled: #C2C8CC !default;
+$icon-background: #f2f2f2 !default;
+$breadcrumb-color: #87929D !default;
+$border-tags: #BAC6D5 !default;
+$bg-hover: #027cb0 !default;
+$border-hover: #0274a4 !default;
+$input-background: #F5F6F6 !default;
+$red: #E35B66 !default;
+$ice-gray: #E9EBED !default;
+$map-blue: #c8e6ff !default;
+$pink-underline: #E81F77 !default;
+$bluish-gray: #dee3eb !default;
+$dark-blue-gray: #1018281A !default;
+$color-slate-steel: #49545C !default;
+$colors: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$colors: map-merge(
+  (
+    'blue-100': $blue-100,
+    'blue': $blue,
+    'indigo': $indigo,
+    'purple': $purple,
+    'pink': $pink,
+    'red': $red,
+    'orange': $orange,
+    'yellow': $pink_new,
+    'green': $green,
+    'teal': $teal,
+    'cyan': $cyan,
+    'white': $white,
+    'gray': $gray-600,
+    'brown': $brown,
+    'gray-dark': $gray-800,
+    'text-gray': $text-gray,
+    'text-blue': $text-blue,
+    'light-gray': $light-gray,
+    'medium-gray': $medium-gray,
+    'dark-gray': $dark-gray,
+    'cadet-blue': $cadet-blue,
+    'sky-blue': $sky-blue,
+    'pale-sky': $pale-sky,
+    'border-gray': $border-gray,
+    'darkish-gray': $darkish-gray,
+    'iron-gray': $iron-gray,
+    'blue-600': $blue-600,
+    'text-disabled': $text-disabled,
+    'icon-background': $icon-background,
+    'breadcrumb-color': $breadcrumb-color,
+    'border-tags': $border-tags,
+    '$pink-underline': $pink-underline,
+    '$bluish-gray': $bluish-gray,
+    '$dark-blue-gray': $dark-blue-gray,
+    '$color-slate-steel': $color-slate-steel,
+  ),
+  $colors
+);
+
+$primary: $blue;
+$secondary: $gray-600 !default;
+$success: $green !default;
+$info: $cyan !default;
+$warning: $pink_new !default;
+$danger: $red !default;
+$light: $gray-100 !default;
+$dark: $gray-800 !default;
+
+$theme-colors: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$theme-colors: map-merge(
+  (
+    'primary': $primary,
+    'secondary': $secondary,
+    'success': $success,
+    'info': $info,
+    'warning': $warning,
+    'danger': $danger,
+    'light': $light,
+    'dark': $dark
+  ),
+  $theme-colors
+);
+// Set a specific jump point for requesting color jumps
+$theme-color-interval: 8% !default;
+
+// The yiq lightness value that determines when the lightness of color changes from "dark" to "light". Acceptable values are between 0 and 255.
+$yiq-contrasted-threshold: 150 !default;
+
+// Customize the light and dark text colors for use in our YIQ color contrast function.
+$yiq-text-dark: $gray-900 !default;
+$yiq-text-light: $white !default;
+
+// Options
+//
+// Quickly modify global styling by enabling or disabling optional features.
+
+$enable-caret: true !default;
+$enable-rounded: true !default;
+$enable-shadows: false !default;
+$enable-gradients: false !default;
+$enable-transitions: true !default;
+$enable-prefers-reduced-motion-media-query: true !default;
+$enable-hover-media-query: false !default; // Deprecated, no longer affects any compiled CSS
+$enable-grid-classes: true !default;
+$enable-pointer-cursor-for-buttons: true !default;
+$enable-print-styles: false;
+$enable-responsive-font-sizes: false !default;
+$enable-validation-icons: true !default;
+$enable-deprecation-messages: true !default;
+
+// Spacing
+//
+// Control the default styling of most Bootstrap elements by modifying these
+// variables. Mostly focused on spacing.
+// You can add more entries to the $spacers map, should you need more variation.
+
+$spacer: 10px;
+$spacers: () !default;
+$paragraph-padding: 50px;
+$grid-width: 32px;
+// stylelint-disable-next-line scss/dollar-variable-default
+$spacers: map-merge(
+  (
+    0: 0,
+    1: (
+      $spacer
+    ),
+    2: (
+      $spacer * 2
+    ),
+    3: (
+      $spacer * 3
+    ),
+    4: (
+      $spacer * 4
+    ),
+    5: (
+      $spacer * 5
+    ),
+    6: (
+      $spacer * 6
+    ),
+    7: (
+      $spacer * 7
+    ),
+    8: (
+      $spacer * 8
+    ),
+    9: (
+      $spacer * 9
+    ),
+    10: (
+      $spacer * 10
+    ),
+    20: 20px,
+    30: 30px,
+    40: 40px,
+    50: 50px,
+    60: 60px,
+    75: 75px,
+    85: 85px,
+    130: 130px,
+    grid: math.div($grid-width, 2)
+  ),
+  $spacers
+);
+
+// This variable affects the `.h-*` and `.w-*` classes.
+$sizes: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$sizes: map-merge(
+  (
+    25: 25%,
+    50: 50%,
+    75: 75%,
+    100: 100%,
+    auto: auto
+  ),
+  $sizes
+);
+
+// Body
+//
+// Settings for the `<body>` element.
+
+$body-bg: $white !default;
+$body-color: $black;
+
+// Links
+//
+// Style anchor elements.
+
+$link-color: theme-color('primary') !default;
+$link-decoration: none !default;
+$link-hover-color: $link-color;
+$link-hover-decoration: $link-decoration;
+// Darken percentage for links with `.text-*` class (e.g. `.text-success`)
+$emphasized-link-hover-darken-percentage: 15% !default;
+
+// Paragraphs
+//
+// Style p element.
+
+$paragraph-margin-bottom: 1rem !default;
+
+// Grid breakpoints
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 1180px,
+  xl: 1366px
+) !default;
+
+@include _assert-ascending($grid-breakpoints, '$grid-breakpoints');
+@include _assert-starts-at-zero($grid-breakpoints, '$grid-breakpoints');
+
+// Grid containers
+//
+// Define the maximum width of `.container` for different screen sizes.
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 1024px,
+  xl: 1296px
+) !default;
+
+@include _assert-ascending($container-max-widths, '$container-max-widths');
+
+// used for container-lg
+$container-max-widths-lg: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1520px
+) !default;
+
+@include _assert-ascending(
+  $container-max-widths-lg,
+  '$container-max-widths-lg'
+);
+
+// Max-wdith variable for 1366 above viewport
+$max-width-xl: 1296px;
+
+// Grid columns
+//
+// Set the number of columns and specify the width of the gutters.
+
+$grid-columns: 12 !default;
+$grid-gutter-width: $grid-width;
+$gutter: math.div($grid-width, 2) !default;
+
+// Components
+//
+// Define common padding and border radius sizes and more.
+
+$line-height-lg: 1.5 !default;
+$line-height-sm: 1.5 !default;
+
+$border-width: 1px !default;
+$border-color: $gray-300 !default;
+$border-gray: 1px solid #BAC6D5;
+$border-blue: 1px solid $blue;
+
+$border-radius: 3px; // 3px
+$border-radius-lg: 0.3rem !default;
+$border-radius-sm: 0.2rem !default;
+$border-light-gray: 1px solid #E9EBED;
+$border-yellow: 1px solid $pink_new;
+
+$rounded-pill: 50rem !default;
+
+$box-shadow-sm: 0 0.125rem 0.25rem rgba($black, 0.075) !default;
+$box-shadow: 0 0.5rem 1rem rgba($black, 0.15) !default;
+$box-shadow-lg: 0 1rem 3rem rgba($black, 0.175) !default;
+
+$component-active-color: $white !default;
+$component-active-bg: theme-color('primary') !default;
+
+$caret-width: 0.3em !default;
+$caret-vertical-align: $caret-width * 0.85 !default;
+$caret-spacing: $caret-width * 0.85 !default;
+
+$transition-time-base: 0.3s;
+$transition-base: all 0.2s ease-in-out !default;
+$transition-fade: opacity 0.15s linear !default;
+$transition-collapse: height 0.35s ease !default;
+
+$embed-responsive-aspect-ratios: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$embed-responsive-aspect-ratios: join(
+  ((21 9), (16 9), (35 22), (4 3), (1 1)),
+  $embed-responsive-aspect-ratios
+);
+
+// Typography
+//
+// Font, line-height, and color for body text, headings, and more.
+
+// stylelint-disable value-keyword-case
+$font-family-base: 'Roboto', serif;
+// stylelint-enable value-keyword-case
+
+$font-size-base: 1.125rem;
+$font-size-lg: $font-size-base * 1.25;
+$font-size-sm: $font-size-base * 0.875 !default;
+
+$font-weight-lighter: lighter !default;
+$font-weight-light: 300 !default;
+$font-weight-normal: 400 !default;
+$font-weight-medium: 600;
+$font-weight-bold: 700;
+$font-weight-bolder: bolder !default;
+
+$font-weight-base: $font-weight-normal !default;
+$line-height-base: 1.625;
+
+$h1-font-size: 48px;
+$h2-font-size: 36px;
+$h3-font-size: 24px;
+$h4-font-size: 19px;
+$h5-font-size: 14px;
+$h6-font-size: 22px;
+
+$headings-margin-bottom: math.div($spacer, 2) !default;
+$headings-font-family: null !default;
+$headings-font-weight: $font-weight-bold;
+$headings-line-height: 1.2 !default;
+$headings-color: null !default;
+
+$display1-size: 6rem !default;
+$display2-size: 5.5rem !default;
+$display3-size: 4.5rem !default;
+$display4-size: 3.5rem !default;
+
+$display1-weight: 300 !default;
+$display2-weight: 300 !default;
+$display3-weight: 300 !default;
+$display4-weight: 300 !default;
+$display-line-height: $headings-line-height !default;
+
+$lead-font-size: $font-size-base * 1.25 !default;
+$lead-font-weight: 300 !default;
+
+$small-font-size: 80% !default;
+
+$text-muted: $gray-600 !default;
+
+$blockquote-small-color: $gray-600 !default;
+$blockquote-small-font-size: $small-font-size !default;
+$blockquote-font-size: $font-size-base * 1.25 !default;
+
+$hr-border-color: rgba($black, 0.1) !default;
+$hr-border-width: $border-width !default;
+
+$mark-padding: 0.2em !default;
+
+$dt-font-weight: $font-weight-bold !default;
+
+$kbd-box-shadow: inset 0 -0.1rem 0 rgba($black, 0.25) !default;
+$nested-kbd-font-weight: $font-weight-bold !default;
+
+$list-inline-padding: 0.5rem !default;
+
+$mark-bg: #fcf8e3 !default;
+
+$hr-margin-y: $spacer !default;
+
+// Tables
+//
+// Customizes the `.table` component with basic values, each used across all table variations.
+
+$table-cell-padding: 0.75rem !default;
+$table-cell-padding-sm: 0.3rem !default;
+
+$table-color: $body-color !default;
+$table-bg: null !default;
+$table-accent-bg: rgba($black, 0.05) !default;
+$table-hover-color: $table-color !default;
+$table-hover-bg: rgba($black, 0.075) !default;
+$table-active-bg: $table-hover-bg !default;
+
+$table-border-width: $border-width !default;
+$table-border-color: $border-color !default;
+
+$table-head-bg: $gray-200 !default;
+$table-head-color: $gray-700 !default;
+
+$table-dark-color: $white !default;
+$table-dark-bg: $gray-800 !default;
+$table-dark-accent-bg: rgba($white, 0.05) !default;
+$table-dark-hover-color: $table-dark-color !default;
+$table-dark-hover-bg: rgba($white, 0.075) !default;
+$table-dark-border-color: lighten($table-dark-bg, 7.5%) !default;
+$table-dark-color: $white !default;
+
+$table-striped-order: odd !default;
+
+$table-caption-color: $text-muted !default;
+
+$table-bg-level: -9 !default;
+$table-border-level: -6 !default;
+
+// Buttons + Forms
+//
+// Shared variables that are reassigned to `$input-` and `$btn-` specific variables.
+
+$input-btn-padding-y: 0.375rem !default;
+$input-btn-padding-x: 0.75rem !default;
+$input-btn-font-family: null !default;
+$input-btn-font-size: $font-size-base !default;
+$input-btn-line-height: $line-height-base !default;
+
+$input-btn-focus-width: 0.2rem !default;
+$input-btn-focus-color: rgba($component-active-bg, 0.25) !default;
+$input-btn-focus-box-shadow: 0 0 0 $input-btn-focus-width $input-btn-focus-color !default;
+
+$input-btn-padding-y-sm: 0.25rem !default;
+$input-btn-padding-x-sm: 0.5rem !default;
+$input-btn-font-size-sm: $font-size-sm !default;
+$input-btn-line-height-sm: $line-height-sm !default;
+
+$input-btn-padding-y-lg: 0.5rem !default;
+$input-btn-padding-x-lg: 1rem !default;
+$input-btn-font-size-lg: $font-size-lg !default;
+$input-btn-line-height-lg: $line-height-lg !default;
+
+$input-btn-border-width: $border-width !default;
+
+// Buttons
+//
+// For each of Bootstrap's buttons, define text, background, and border color.
+
+$btn-padding-y: 22px;
+$btn-padding-x: 2rem;
+$btn-font-family: $input-btn-font-family !default;
+$btn-font-size: 1rem;
+$btn-line-height: 26px;
+
+$btn-padding-y-sm: $input-btn-padding-y-sm !default;
+$btn-padding-x-sm: $input-btn-padding-x-sm !default;
+$btn-font-size-sm: $input-btn-font-size-sm !default;
+$btn-line-height-sm: $input-btn-line-height-sm !default;
+
+$btn-padding-y-lg: $input-btn-padding-y-lg !default;
+$btn-padding-x-lg: $input-btn-padding-x-lg !default;
+$btn-font-size-lg: $input-btn-font-size-lg !default;
+$btn-line-height-lg: $input-btn-line-height-lg !default;
+
+$btn-border-width: $input-btn-border-width !default;
+
+$btn-font-weight: $font-weight-bold;
+$btn-box-shadow: none;
+$btn-focus-width: $input-btn-focus-width !default;
+$btn-focus-box-shadow: none;
+$btn-disabled-opacity: 0.65 !default;
+$btn-active-box-shadow: none;
+
+$btn-link-disabled-color: $gray-600 !default;
+
+$btn-block-spacing-y: 0.5rem !default;
+
+// Allows for customizing button radius independently from global border radius
+$btn-border-radius: $border-radius !default;
+$btn-border-radius-lg: $border-radius-lg !default;
+$btn-border-radius-sm: $border-radius-sm !default;
+
+$btn-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+  border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !default;
+
+// Forms
+
+$label-margin-bottom: 0.5rem !default;
+
+$input-padding-y: $input-btn-padding-y !default;
+$input-padding-x: $input-btn-padding-x !default;
+$input-font-family: $input-btn-font-family !default;
+$input-font-size: $input-btn-font-size !default;
+$input-font-weight: $font-weight-base !default;
+$input-line-height: $input-btn-line-height !default;
+
+$input-padding-y-sm: $input-btn-padding-y-sm !default;
+$input-padding-x-sm: $input-btn-padding-x-sm !default;
+$input-font-size-sm: $input-btn-font-size-sm !default;
+$input-line-height-sm: $input-btn-line-height-sm !default;
+
+$input-padding-y-lg: $input-btn-padding-y-lg !default;
+$input-padding-x-lg: $input-btn-padding-x-lg !default;
+$input-font-size-lg: $input-btn-font-size-lg !default;
+$input-line-height-lg: $input-btn-line-height-lg !default;
+
+$input-bg: $white !default;
+$input-disabled-bg: $gray-200 !default;
+
+$input-color: $black;
+$input-border-color: $gray-400 !default;
+$input-border-width: $input-btn-border-width !default;
+$input-box-shadow: none;
+
+$input-border-radius: $border-radius !default;
+$input-border-radius-lg: $border-radius-lg !default;
+$input-border-radius-sm: $border-radius-sm !default;
+
+$input-focus-bg: $input-bg !default;
+$input-focus-border-color: lighten($component-active-bg, 25%) !default;
+$input-focus-color: $input-color !default;
+$input-focus-width: $input-btn-focus-width !default;
+$input-focus-box-shadow: none;
+
+$input-placeholder-color: $white;
+$input-plaintext-color: $body-color !default;
+
+$input-height-border: $input-border-width * 2 !default;
+
+$input-height-inner: calc(
+  #{$input-line-height * 1em} + #{$input-padding-y * 2}
+) !default;
+$input-height-inner-half: calc(
+  #{$input-line-height * 0.5em} + #{$input-padding-y}
+) !default;
+$input-height-inner-quarter: calc(
+  #{$input-line-height * 0.25em} + #{math.div($input-padding-y, 2)}
+) !default;
+
+$input-height: calc(
+  #{$input-line-height * 1em} + #{$input-padding-y * 2} + #{$input-height-border}
+) !default;
+$input-height-sm: calc(
+  #{$input-line-height-sm * 1em} + #{$input-btn-padding-y-sm * 2} + #{$input-height-border}
+) !default;
+$input-height-lg: calc(
+  #{$input-line-height-lg * 1em} + #{$input-btn-padding-y-lg * 2} + #{$input-height-border}
+) !default;
+
+$input-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !default;
+
+$form-text-margin-top: 0.25rem !default;
+
+$form-check-input-gutter: 1.25rem !default;
+$form-check-input-margin-y: 0.3rem !default;
+$form-check-input-margin-x: 0.25rem !default;
+
+$form-check-inline-margin-x: 0.75rem !default;
+$form-check-inline-input-margin-x: 0.3125rem !default;
+
+$form-grid-gutter-width: 10px !default;
+$form-group-margin-bottom: 1rem !default;
+
+$input-group-addon-color: $input-color !default;
+$input-group-addon-bg: $gray-200 !default;
+$input-group-addon-border-color: $input-border-color !default;
+
+$custom-forms-transition: background-color 0.15s ease-in-out,
+  border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !default;
+
+$custom-control-gutter: 0.5rem !default;
+$custom-control-spacer-x: 1rem !default;
+
+$custom-control-indicator-size: 1rem !default;
+$custom-control-indicator-bg: $input-bg !default;
+
+$custom-control-indicator-bg-size: 70% 70%;
+$custom-control-indicator-box-shadow: $input-box-shadow !default;
+$custom-control-indicator-border-color: $gray-500 !default;
+$custom-control-indicator-border-width: 2px;
+
+$custom-control-indicator-disabled-bg: $input-disabled-bg !default;
+$custom-control-label-disabled-color: $gray-600 !default;
+
+$custom-control-indicator-checked-color: $component-active-color !default;
+$custom-control-indicator-checked-bg: $component-active-bg !default;
+$custom-control-indicator-checked-disabled-bg: rgba(
+  theme-color('primary'),
+  0.5
+) !default;
+$custom-control-indicator-checked-box-shadow: none !default;
+$custom-control-indicator-checked-border-color: $custom-control-indicator-checked-bg !default;
+
+$custom-control-indicator-focus-box-shadow: $input-focus-box-shadow !default;
+$custom-control-indicator-focus-border-color: $input-focus-border-color !default;
+
+$custom-control-indicator-active-color: $component-active-color !default;
+$custom-control-indicator-active-bg: lighten(
+  $component-active-bg,
+  35%
+) !default;
+$custom-control-indicator-active-box-shadow: none !default;
+$custom-control-indicator-active-border-color: $custom-control-indicator-active-bg !default;
+
+$custom-checkbox-indicator-border-radius: $border-radius !default;
+$custom-checkbox-indicator-icon-checked: str-replace(
+  url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='#{$custom-control-indicator-checked-color}' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e"),
+  '#',
+  '%23'
+) !default;
+
+$custom-checkbox-indicator-indeterminate-bg: $component-active-bg !default;
+$custom-checkbox-indicator-indeterminate-color: $custom-control-indicator-checked-color !default;
+$custom-checkbox-indicator-icon-indeterminate: str-replace(
+  url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 4'%3e%3cpath stroke='#{$custom-checkbox-indicator-indeterminate-color}' d='M0 2h4'/%3e%3c/svg%3e"),
+  '#',
+  '%23'
+) !default;
+$custom-checkbox-indicator-indeterminate-box-shadow: none !default;
+$custom-checkbox-indicator-indeterminate-border-color: $custom-checkbox-indicator-indeterminate-bg !default;
+
+$custom-radio-indicator-border-radius: 50% !default;
+$custom-radio-indicator-icon-checked: str-replace(
+  url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='#{$custom-control-indicator-checked-color}'/%3e%3c/svg%3e"),
+  '#',
+  '%23'
+) !default;
+
+$custom-switch-width: $custom-control-indicator-size * 1.75 !default;
+$custom-switch-indicator-border-radius: math.div($custom-control-indicator-size, 2) !default;
+$custom-switch-indicator-size: calc(
+  #{$custom-control-indicator-size} - #{$custom-control-indicator-border-width *
+    4}
+) !default;
+
+$custom-select-padding-y: $input-padding-y !default;
+$custom-select-padding-x: $input-padding-x !default;
+$custom-select-font-family: $input-font-family !default;
+$custom-select-font-size: $input-font-size !default;
+$custom-select-height: $input-height !default;
+$custom-select-indicator-padding: 1rem !default; // Extra padding to account for the presence of the background-image based indicator
+$custom-select-font-weight: $input-font-weight !default;
+$custom-select-line-height: $input-line-height !default;
+$custom-select-color: $input-color !default;
+$custom-select-disabled-color: $gray-600 !default;
+$custom-select-bg: $input-bg !default;
+$custom-select-disabled-bg: $gray-200 !default;
+$custom-select-bg-size: 8px 10px !default; // In pixels because image dimensions
+$custom-select-indicator-color: $gray-800 !default;
+$custom-select-indicator: str-replace(
+  url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='#{$custom-select-indicator-color}' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e"),
+  '#',
+  '%23'
+) !default;
+$custom-select-background: $custom-select-indicator no-repeat right
+  $custom-select-padding-x center / $custom-select-bg-size !default; // Used so we can have multiple background elements (e.g., arrow and feedback icon)
+
+$custom-select-feedback-icon-padding-right: calc(
+  (1em + #{2 * $custom-select-padding-y}) * 3 / 4 + #{$custom-select-padding-x +
+    $custom-select-indicator-padding}
+) !default;
+$custom-select-feedback-icon-position: center right
+  ($custom-select-padding-x + $custom-select-indicator-padding) !default;
+$custom-select-feedback-icon-size: $input-height-inner-half
+  $input-height-inner-half !default;
+
+$custom-select-border-width: $input-border-width * 2;
+$custom-select-border-color: $input-border-color !default;
+$custom-select-border-radius: $border-radius !default;
+$custom-select-box-shadow: inset 0 1px 2px rgba($black, 0.075) !default;
+
+$custom-select-focus-border-color: $input-focus-border-color !default;
+$custom-select-focus-width: $input-focus-width !default;
+$custom-select-focus-box-shadow: 0 0 0 $custom-select-focus-width
+  $input-btn-focus-color !default;
+
+$custom-select-padding-y-sm: $input-padding-y-sm !default;
+$custom-select-padding-x-sm: $input-padding-x-sm !default;
+$custom-select-font-size-sm: $input-font-size-sm !default;
+$custom-select-height-sm: $input-height-sm !default;
+
+$custom-select-padding-y-lg: $input-padding-y-lg !default;
+$custom-select-padding-x-lg: $input-padding-x-lg !default;
+$custom-select-font-size-lg: $input-font-size-lg !default;
+$custom-select-height-lg: $input-height-lg !default;
+
+$custom-range-track-width: 100% !default;
+$custom-range-track-height: 0.5rem !default;
+$custom-range-track-cursor: pointer !default;
+$custom-range-track-bg: $gray-300 !default;
+$custom-range-track-border-radius: 1rem !default;
+$custom-range-track-box-shadow: inset 0 0.25rem 0.25rem rgba($black, 0.1) !default;
+
+$custom-range-thumb-width: 1rem !default;
+$custom-range-thumb-height: $custom-range-thumb-width !default;
+$custom-range-thumb-bg: $component-active-bg !default;
+$custom-range-thumb-border: 0 !default;
+$custom-range-thumb-border-radius: 1rem !default;
+$custom-range-thumb-box-shadow: 0 0.1rem 0.25rem rgba($black, 0.1) !default;
+$custom-range-thumb-focus-box-shadow: 0 0 0 1px $body-bg,
+  $input-focus-box-shadow !default;
+$custom-range-thumb-focus-box-shadow-width: $input-focus-width !default; // For focus box shadow issue in IE/Edge
+$custom-range-thumb-active-bg: lighten($component-active-bg, 35%) !default;
+$custom-range-thumb-disabled-bg: $gray-500 !default;
+
+$custom-file-height: $input-height !default;
+$custom-file-height-inner: $input-height-inner !default;
+$custom-file-focus-border-color: $input-focus-border-color !default;
+$custom-file-focus-box-shadow: $input-focus-box-shadow !default;
+$custom-file-disabled-bg: $input-disabled-bg !default;
+
+$custom-file-padding-y: $input-padding-y !default;
+$custom-file-padding-x: $input-padding-x !default;
+$custom-file-line-height: $input-line-height !default;
+$custom-file-font-family: $input-font-family !default;
+$custom-file-font-weight: $input-font-weight !default;
+$custom-file-color: $input-color !default;
+$custom-file-bg: $input-bg !default;
+$custom-file-border-width: $input-border-width !default;
+$custom-file-border-color: $input-border-color !default;
+$custom-file-border-radius: $input-border-radius !default;
+$custom-file-box-shadow: $input-box-shadow !default;
+$custom-file-button-color: $custom-file-color !default;
+$custom-file-button-bg: $input-group-addon-bg !default;
+$custom-file-text: (
+  en: 'Browse'
+) !default;
+
+// Form validation
+
+$form-feedback-margin-top: $form-text-margin-top !default;
+$form-feedback-font-size: $small-font-size !default;
+$form-feedback-valid-color: theme-color('success') !default;
+$form-feedback-invalid-color: theme-color('danger') !default;
+
+$form-feedback-icon-valid-color: $form-feedback-valid-color !default;
+$form-feedback-icon-valid: str-replace(
+  url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='#{$form-feedback-icon-valid-color}' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e"),
+  '#',
+  '%23'
+) !default;
+$form-feedback-icon-invalid-color: $form-feedback-invalid-color !default;
+$form-feedback-icon-invalid: str-replace(
+  url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='#{$form-feedback-icon-invalid-color}' viewBox='-2 -2 7 7'%3e%3cpath stroke='#{$form-feedback-icon-invalid-color}' d='M0 0l3 3m0-3L0 3'/%3e%3ccircle r='.5'/%3e%3ccircle cx='3' r='.5'/%3e%3ccircle cy='3' r='.5'/%3e%3ccircle cx='3' cy='3' r='.5'/%3e%3c/svg%3E"),
+  '#',
+  '%23'
+) !default;
+
+$form-validation-states: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$form-validation-states: map-merge(
+  (
+    'valid': (
+      'color': $form-feedback-valid-color,
+      'icon': $form-feedback-icon-valid
+    ),
+    'invalid': (
+      'color': $form-feedback-invalid-color,
+      'icon': $form-feedback-icon-invalid
+    )
+  ),
+  $form-validation-states
+);
+
+// Z-index master list
+//
+// Warning: Avoid customizing these values. They're used for a bird's eye view
+// of components dependent on the z-axis and are designed to all work together.
+
+$zindex-dropdown: 100;
+$zindex-sticky: 120;
+$zindex-fixed: 130;
+$zindex-modal-backdrop: 140;
+$zindex-modal: 150;
+$zindex-popover: 160;
+$zindex-tooltip: 170;
+
+// Navs
+
+$nav-link-padding-y: 0.5rem !default;
+$nav-link-padding-x: 1rem !default;
+$nav-link-disabled-color: $gray-600 !default;
+
+$nav-tabs-border-color: $gray-300 !default;
+$nav-tabs-border-width: $border-width !default;
+$nav-tabs-border-radius: $border-radius !default;
+$nav-tabs-link-hover-border-color: $gray-200 $gray-200 $nav-tabs-border-color !default;
+$nav-tabs-link-active-color: $gray-700 !default;
+$nav-tabs-link-active-bg: $body-bg !default;
+$nav-tabs-link-active-border-color: $gray-300 $gray-300 $nav-tabs-link-active-bg !default;
+
+$nav-pills-border-radius: $border-radius !default;
+$nav-pills-link-active-color: $component-active-color !default;
+$nav-pills-link-active-bg: $component-active-bg !default;
+
+$nav-divider-color: $gray-200 !default;
+$nav-divider-margin-y: math.div($spacer, 2) !default;
+
+// Navbar
+
+$navbar-padding-y: math.div($spacer, 2) !default;
+$navbar-padding-x: $spacer !default;
+
+$navbar-nav-link-padding-x: 0.5rem !default;
+
+$navbar-brand-font-size: $font-size-lg !default;
+
+$navbar-toggler-padding-y: 0.25rem !default;
+$navbar-toggler-padding-x: 0.75rem !default;
+$navbar-toggler-font-size: $font-size-lg !default;
+$navbar-toggler-border-radius: $btn-border-radius !default;
+
+$navbar-dark-color: rgba($white, 0.5) !default;
+$navbar-dark-hover-color: rgba($white, 0.75) !default;
+$navbar-dark-active-color: $white !default;
+$navbar-dark-disabled-color: rgba($white, 0.25) !default;
+$navbar-dark-toggler-icon-bg: str-replace(
+  url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='#{$navbar-dark-color}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"),
+  '#',
+  '%23'
+) !default;
+$navbar-dark-toggler-border-color: rgba($white, 0.1) !default;
+
+$navbar-light-color: rgba($black, 0.5) !default;
+$navbar-light-hover-color: rgba($black, 0.7) !default;
+$navbar-light-active-color: rgba($black, 0.9) !default;
+$navbar-light-disabled-color: rgba($black, 0.3) !default;
+$navbar-light-toggler-icon-bg: str-replace(
+  url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='#{$navbar-light-color}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"),
+  '#',
+  '%23'
+) !default;
+$navbar-light-toggler-border-color: rgba($black, 0.1) !default;
+
+$navbar-light-brand-color: $navbar-light-active-color !default;
+$navbar-light-brand-hover-color: $navbar-light-active-color !default;
+$navbar-dark-brand-color: $navbar-dark-active-color !default;
+$navbar-dark-brand-hover-color: $navbar-dark-active-color !default;
+
+// Dropdowns
+//
+// Dropdown menu container and contents.
+
+$dropdown-min-width: 10rem !default;
+$dropdown-padding-y: 0.5rem !default;
+$dropdown-spacer: 0.125rem !default;
+$dropdown-font-size: $font-size-base !default;
+$dropdown-color: $body-color !default;
+$dropdown-bg: $white !default;
+$dropdown-border-color: rgba($black, 0.15) !default;
+$dropdown-border-radius: $border-radius !default;
+$dropdown-border-width: $border-width !default;
+$dropdown-inner-border-radius: calc(
+  #{$dropdown-border-radius} - #{$dropdown-border-width}
+) !default;
+$dropdown-divider-bg: $gray-200 !default;
+$dropdown-divider-margin-y: $nav-divider-margin-y !default;
+$dropdown-box-shadow: 0 0.5rem 1rem rgba($black, 0.175) !default;
+
+$dropdown-link-color: $gray-900 !default;
+$dropdown-link-hover-color: darken($gray-900, 5%) !default;
+$dropdown-link-hover-bg: $gray-100 !default;
+
+$dropdown-link-active-color: $component-active-color !default;
+$dropdown-link-active-bg: $component-active-bg !default;
+
+$dropdown-link-disabled-color: $gray-600 !default;
+
+$dropdown-item-padding-y: 0.25rem !default;
+$dropdown-item-padding-x: 1.5rem !default;
+
+$dropdown-header-color: $gray-600 !default;
+
+// Pagination
+
+$pagination-padding-y: 0.5rem !default;
+$pagination-padding-x: 0.75rem !default;
+$pagination-padding-y-sm: 0.25rem !default;
+$pagination-padding-x-sm: 0.5rem !default;
+$pagination-padding-y-lg: 0.75rem !default;
+$pagination-padding-x-lg: 1.5rem !default;
+$pagination-line-height: 1.25 !default;
+
+$pagination-color: $link-color !default;
+$pagination-bg: $white !default;
+$pagination-border-width: $border-width !default;
+$pagination-border-color: $gray-300 !default;
+
+$pagination-focus-box-shadow: $input-btn-focus-box-shadow !default;
+$pagination-focus-outline: 0 !default;
+
+$pagination-hover-color: $link-hover-color !default;
+$pagination-hover-bg: $gray-200 !default;
+$pagination-hover-border-color: $gray-300 !default;
+
+$pagination-active-color: $component-active-color !default;
+$pagination-active-bg: $component-active-bg !default;
+$pagination-active-border-color: $pagination-active-bg !default;
+
+$pagination-disabled-color: $gray-600 !default;
+$pagination-disabled-bg: $white !default;
+$pagination-disabled-border-color: $gray-300 !default;
+
+// Jumbotron
+
+$jumbotron-padding: 2rem !default;
+$jumbotron-color: null !default;
+$jumbotron-bg: $gray-200 !default;
+
+// Cards
+
+// $card-spacer-y: auto;
+// $card-spacer-x: 35px 30px 40px 30px;
+$card-border-width: 0;
+$card-border-radius: $border-radius-lg !default;
+$card-border-color: #c6cbd0;
+$card-inner-border-radius: calc(
+  #{$card-border-radius} - #{$card-border-width}
+) !default;
+$card-cap-bg: rgba($black, 0.03) !default;
+$card-cap-color: null !default;
+$card-color: null !default;
+$card-bg: $white !default;
+
+$card-img-overlay-padding: 1.25rem !default;
+
+$card-group-margin: math.div($grid-gutter-width, 2) !default;
+$card-deck-margin: $card-group-margin !default;
+
+$card-columns-count: 3 !default;
+$card-columns-gap: 1.25rem !default;
+// $card-columns-margin: $card-spacer-y !default;
+//
+// Tooltips
+
+$tooltip-font-size: $font-size-sm !default;
+$tooltip-max-width: 200px !default;
+$tooltip-color: $white !default;
+$tooltip-bg: $black !default;
+$tooltip-border-radius: $border-radius !default;
+$tooltip-opacity: 0.9 !default;
+$tooltip-padding-y: 0.25rem !default;
+$tooltip-padding-x: 0.5rem !default;
+$tooltip-margin: 0 !default;
+
+$tooltip-arrow-width: 0.8rem !default;
+$tooltip-arrow-height: 0.4rem !default;
+$tooltip-arrow-color: $tooltip-bg !default;
+
+// Form tooltips must come after regular tooltips
+$form-feedback-tooltip-padding-y: $tooltip-padding-y !default;
+$form-feedback-tooltip-padding-x: $tooltip-padding-x !default;
+$form-feedback-tooltip-font-size: $tooltip-font-size !default;
+$form-feedback-tooltip-line-height: $line-height-base !default;
+$form-feedback-tooltip-opacity: $tooltip-opacity !default;
+$form-feedback-tooltip-border-radius: $tooltip-border-radius !default;
+
+// Popovers
+
+$popover-font-size: $font-size-sm !default;
+$popover-bg: $white !default;
+$popover-max-width: 276px !default;
+$popover-border-width: $border-width !default;
+$popover-border-color: rgba($black, 0.2) !default;
+$popover-border-radius: $border-radius-lg !default;
+$popover-box-shadow: 0 0.25rem 0.5rem rgba($black, 0.2) !default;
+
+$popover-header-bg: darken($popover-bg, 3%) !default;
+$popover-header-color: $headings-color !default;
+$popover-header-padding-y: 0.5rem !default;
+$popover-header-padding-x: 0.75rem !default;
+
+$popover-body-color: $body-color !default;
+$popover-body-padding-y: $popover-header-padding-y !default;
+$popover-body-padding-x: $popover-header-padding-x !default;
+
+$popover-arrow-width: 1rem !default;
+$popover-arrow-height: 0.5rem !default;
+$popover-arrow-color: $popover-bg !default;
+
+$popover-arrow-outer-color: fade-in($popover-border-color, 0.05) !default;
+
+// Toasts
+
+$toast-max-width: 350px !default;
+$toast-padding-x: 0.75rem !default;
+$toast-padding-y: 0.25rem !default;
+$toast-font-size: 0.875rem !default;
+$toast-color: null !default;
+$toast-background-color: rgba($white, 0.85) !default;
+$toast-border-width: 1px !default;
+$toast-border-color: rgba(0, 0, 0, 0.1) !default;
+$toast-border-radius: 0.25rem !default;
+$toast-box-shadow: 0 0.25rem 0.75rem rgba($black, 0.1) !default;
+
+$toast-header-color: $gray-600 !default;
+$toast-header-background-color: rgba($white, 0.85) !default;
+$toast-header-border-color: rgba(0, 0, 0, 0.05) !default;
+
+// Badges
+
+$badge-font-size: 75% !default;
+$badge-font-weight: $font-weight-bold !default;
+$badge-padding-y: 0.25em !default;
+$badge-padding-x: 0.4em !default;
+$badge-border-radius: $border-radius !default;
+
+$badge-transition: $btn-transition !default;
+$badge-focus-width: $input-btn-focus-width !default;
+
+$badge-pill-padding-x: 0.6em !default;
+// Use a higher than normal value to ensure completely rounded edges when
+// customizing padding or font-size on labels.
+$badge-pill-border-radius: 10rem !default;
+
+// Modals
+
+// Padding applied to the modal body
+$modal-inner-padding: 1rem !default;
+
+$modal-dialog-margin: 0.5rem !default;
+$modal-dialog-margin-y-sm-up: 1.75rem !default;
+
+$modal-title-line-height: $line-height-base !default;
+
+$modal-content-color: null !default;
+$modal-content-bg: $white !default;
+$modal-content-border-color: rgba($black, 0.2) !default;
+$modal-content-border-width: $border-width !default;
+$modal-content-border-radius: $border-radius-lg !default;
+$modal-content-box-shadow-xs: 0 0.25rem 0.5rem rgba($black, 0.5) !default;
+$modal-content-box-shadow-sm-up: 0 0.5rem 1rem rgba($black, 0.5) !default;
+
+$modal-backdrop-bg: $black !default;
+$modal-backdrop-opacity: 0.5 !default;
+$modal-header-border-color: $border-color !default;
+$modal-footer-border-color: $modal-header-border-color !default;
+$modal-header-border-width: $modal-content-border-width !default;
+$modal-footer-border-width: $modal-header-border-width !default;
+$modal-header-padding-y: 1rem !default;
+$modal-header-padding-x: 1rem !default;
+$modal-header-padding: $modal-header-padding-y $modal-header-padding-x !default; // Keep this for backwards compatibility
+
+$modal-xl: 1296px !default;
+$modal-lg: 800px !default;
+$modal-md: 500px !default;
+$modal-sm: 300px !default;
+
+$modal-fade-transform: translate(0, -50px) !default;
+$modal-show-transform: none !default;
+$modal-transition: transform 0.3s ease-out !default;
+
+// Alerts
+//
+// Define alert colors, border radius, and padding.
+
+$alert-padding-y: 0.75rem !default;
+$alert-padding-x: 1.25rem !default;
+$alert-margin-bottom: 1rem !default;
+$alert-border-radius: $border-radius !default;
+$alert-link-font-weight: $font-weight-bold !default;
+$alert-border-width: $border-width !default;
+
+$alert-bg-level: -10 !default;
+$alert-border-level: -9 !default;
+$alert-color-level: 6 !default;
+
+// Progress bars
+
+$progress-height: 1rem !default;
+$progress-font-size: $font-size-base * 0.75 !default;
+$progress-bg: $gray-200 !default;
+$progress-border-radius: $border-radius !default;
+$progress-box-shadow: inset 0 0.1rem 0.1rem rgba($black, 0.1) !default;
+$progress-bar-color: $white !default;
+$progress-bar-bg: theme-color('primary') !default;
+$progress-bar-animation-timing: 1s linear infinite !default;
+$progress-bar-transition: width 0.6s ease !default;
+
+// List group
+
+$list-group-color: null !default;
+$list-group-bg: $white !default;
+$list-group-border-color: rgba($black, 0.125) !default;
+$list-group-border-width: $border-width !default;
+$list-group-border-radius: $border-radius !default;
+
+$list-group-item-padding-y: 0.75rem !default;
+$list-group-item-padding-x: 1.25rem !default;
+
+$list-group-hover-bg: $gray-100 !default;
+$list-group-active-color: $component-active-color !default;
+$list-group-active-bg: $component-active-bg !default;
+$list-group-active-border-color: $list-group-active-bg !default;
+
+$list-group-disabled-color: $gray-600 !default;
+$list-group-disabled-bg: $list-group-bg !default;
+
+$list-group-action-color: $gray-700 !default;
+$list-group-action-hover-color: $list-group-action-color !default;
+
+$list-group-action-active-color: $body-color !default;
+$list-group-action-active-bg: $gray-200 !default;
+
+// Image thumbnails
+
+$thumbnail-padding: 0.25rem !default;
+$thumbnail-bg: $body-bg !default;
+$thumbnail-border-width: $border-width !default;
+$thumbnail-border-color: $gray-300 !default;
+$thumbnail-border-radius: $border-radius !default;
+$thumbnail-box-shadow: 0 1px 2px rgba($black, 0.075) !default;
+
+// Figures
+
+$figure-caption-font-size: 90% !default;
+$figure-caption-color: $gray-600 !default;
+
+// Breadcrumbs
+
+$breadcrumb-padding-y: 0.75rem !default;
+$breadcrumb-padding-x: 1rem !default;
+$breadcrumb-item-padding: 0.5rem !default;
+
+$breadcrumb-margin-bottom: 1rem !default;
+
+$breadcrumb-bg: $gray-200 !default;
+$breadcrumb-divider-color: $gray-600 !default;
+$breadcrumb-active-color: $gray-600 !default;
+$breadcrumb-divider: quote('/') !default;
+
+$breadcrumb-border-radius: $border-radius !default;
+
+// Carousel
+
+$carousel-control-color: $white !default;
+$carousel-control-width: 15%;
+$carousel-control-opacity: 0.5 !default;
+$carousel-control-hover-opacity: 0.9 !default;
+$carousel-control-transition: opacity 0.15s ease !default;
+
+$carousel-indicator-width: 12px;
+$carousel-indicator-height: 12px;
+$carousel-indicator-hit-area-height: 12px;
+$carousel-indicator-spacer: 12px;
+$carousel-indicator-active-bg: #e0e6ef;
+$carousel-indicator-transition: opacity 0.6s ease !default;
+
+$carousel-caption-width: 70% !default;
+$carousel-caption-color: $white !default;
+
+$carousel-control-icon-width: 20px !default;
+
+$carousel-control-prev-icon-bg: str-replace(
+  url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='#{$carousel-control-color}' viewBox='0 0 8 8'%3e%3cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3e%3c/svg%3e"),
+  '#',
+  '%23'
+) !default;
+$carousel-control-next-icon-bg: str-replace(
+  url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='#{$carousel-control-color}' viewBox='0 0 8 8'%3e%3cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3e%3c/svg%3e"),
+  '#',
+  '%23'
+) !default;
+
+$carousel-transition-duration: 0.6s;
+$carousel-transition: transform $carousel-transition-duration ease-in-out !default; // Define transform transition first if using multiple transitions (e.g., `transform 2s ease, opacity .5s ease-out`)
+
+// Spinners
+
+$spinner-width: 2rem !default;
+$spinner-height: $spinner-width !default;
+$spinner-border-width: 0.25em !default;
+
+$spinner-width-sm: 1rem !default;
+$spinner-height-sm: $spinner-width-sm !default;
+$spinner-border-width-sm: 0.2em !default;
+
+// Close
+
+$close-font-size: $font-size-base * 1.5 !default;
+$close-font-weight: $font-weight-bold !default;
+$close-color: $black !default;
+$close-text-shadow: 0 1px 0 $white !default;
+
+// Code
+
+$code-font-size: 87.5% !default;
+$code-color: $pink !default;
+
+$kbd-padding-y: 0.2rem !default;
+$kbd-padding-x: 0.4rem !default;
+$kbd-font-size: $code-font-size !default;
+$kbd-color: $white !default;
+$kbd-bg: $gray-900 !default;
+
+$pre-color: $gray-900 !default;
+$pre-scrollable-max-height: 340px !default;
+
+// Utilities
+
+$displays: none, inline, inline-block, block, table, table-row, table-cell, flex,
+  inline-flex !default;
+$overflows: auto, hidden !default;
+$positions: static, relative, absolute, fixed, sticky !default;
+
+// Printing
+
+$print-page-size: a3 !default;
+$print-body-min-width: map-get($grid-breakpoints, 'lg') !default;
+
+
+// icons
+$e-date-icon: url("data:image/svg+xml,%0A%3Csvg width='49' height='49' viewBox='0 0 49 49' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='24.5' cy='24.5' r='24.5' fill='%2319486A'/%3E%3Cg clip-path='url(%23clip0_2926_37356)'%3E%3Cpath d='M32 14H31V13C31 12.7348 30.8946 12.4804 30.7071 12.2929C30.5196 12.1054 30.2652 12 30 12C29.7348 12 29.4804 12.1054 29.2929 12.2929C29.1054 12.4804 29 12.7348 29 13V14H21V13C21 12.7348 20.8946 12.4804 20.7071 12.2929C20.5196 12.1054 20.2652 12 20 12C19.7348 12 19.4804 12.1054 19.2929 12.2929C19.1054 12.4804 19 12.7348 19 13V14H18C16.6744 14.0016 15.4036 14.5289 14.4662 15.4662C13.5289 16.4036 13.0016 17.6744 13 19L13 31C13.0016 32.3256 13.5289 33.5964 14.4662 34.5338C15.4036 35.4711 16.6744 35.9984 18 36H32C33.3256 35.9984 34.5964 35.4711 35.5338 34.5338C36.4711 33.5964 36.9984 32.3256 37 31V19C36.9984 17.6744 36.4711 16.4036 35.5338 15.4662C34.5964 14.5289 33.3256 14.0016 32 14ZM15 19C15 18.2044 15.3161 17.4413 15.8787 16.8787C16.4413 16.3161 17.2044 16 18 16H32C32.7956 16 33.5587 16.3161 34.1213 16.8787C34.6839 17.4413 35 18.2044 35 19V20H15V19ZM32 34H18C17.2044 34 16.4413 33.6839 15.8787 33.1213C15.3161 32.5587 15 31.7956 15 31V22H35V31C35 31.7956 34.6839 32.5587 34.1213 33.1213C33.5587 33.6839 32.7956 34 32 34Z' fill='white'/%3E%3Cpath d='M25 28.5C25.8284 28.5 26.5 27.8284 26.5 27C26.5 26.1716 25.8284 25.5 25 25.5C24.1716 25.5 23.5 26.1716 23.5 27C23.5 27.8284 24.1716 28.5 25 28.5Z' fill='white'/%3E%3Cpath d='M20 28.5C20.8284 28.5 21.5 27.8284 21.5 27C21.5 26.1716 20.8284 25.5 20 25.5C19.1716 25.5 18.5 26.1716 18.5 27C18.5 27.8284 19.1716 28.5 20 28.5Z' fill='white'/%3E%3Cpath d='M30 28.5C30.8284 28.5 31.5 27.8284 31.5 27C31.5 26.1716 30.8284 25.5 30 25.5C29.1716 25.5 28.5 26.1716 28.5 27C28.5 27.8284 29.1716 28.5 30 28.5Z' fill='white'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_2926_37356'%3E%3Crect width='24' height='24' fill='white' transform='translate(13 12)'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E%0A");
+$location-icon: url("data:image/svg+xml,%0A%3Csvg width='48' height='48' viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='48' height='48' rx='24' fill='%2319486A'/%3E%3Cpath d='M17 29H16C15.4696 29 14.9609 28.7893 14.5858 28.4142C14.2107 28.0391 14 27.5304 14 27V17C14 16.4696 14.2107 15.9609 14.5858 15.5858C14.9609 15.2107 15.4696 15 16 15H32C32.5304 15 33.0391 15.2107 33.4142 15.5858C33.7893 15.9609 34 16.4696 34 17V27C34 27.5304 33.7893 28.0391 33.4142 28.4142C33.0391 28.7893 32.5304 29 32 29H31M24 27L29 33H19L24 27Z' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+$user-icon: url("data:image/svg+xml,%0A%3Csvg width='77' height='76' viewBox='0 0 77 76' fill='none' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Crect x='0.5' width='76' height='76' fill='url(%23pattern0)'/%3E%3Cdefs%3E%3Cpattern id='pattern0' patternContentUnits='objectBoundingBox' width='1' height='1'%3E%3Cuse xlink:href='%23image0_2897_5726' transform='scale(0.00666667)'/%3E%3C/pattern%3E%3Cimage id='image0_2897_5726' width='150' height='150' xlink:href='data:image/png;base64,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'/%3E%3C/defs%3E%3C/svg%3E%0A");
+$video-icon: url("data:image/svg+xml,%0A%3Csvg width='65' height='65' viewBox='0 0 65 65' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle opacity='0.3' cx='32.5' cy='32.5' r='32.5'/%3E%3Ccircle cx='32.5' cy='32.5' r='30.5' stroke='white' stroke-width='4'/%3E%3Cpath d='M45.3877 32.2198L26.4761 43.1385L26.4761 21.3012L45.3877 32.2198Z' fill='white'/%3E%3C/svg%3E%0A");
+$video-icon-default: url("data:image/svg+xml,%0A%3Csvg width='94' height='94' viewBox='0 0 94 94' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M46.9937 0C21.077 0 0 21.0864 0 47.0063C0 72.923 21.0801 94 46.9937 94C72.9073 94 94.0062 72.9199 94.0062 47.0063C94.0062 21.0864 72.9105 0 46.9937 0ZM46.9937 90.6271C22.9389 90.6271 3.37278 71.0674 3.37278 47.0063C3.37278 22.9452 22.9389 3.37278 46.9937 3.37278C71.0548 3.37278 90.6334 22.9452 90.6334 47.0063C90.6334 71.0674 71.0548 90.6271 46.9937 90.6271ZM68.1836 42.5551L38.7591 26.2208C34.75 23.9921 30.9101 26.3556 30.9101 30.8443V63.1587C30.9101 66.4595 32.8065 68.682 35.6245 68.682C36.6401 68.682 37.6997 68.381 38.7654 67.7886L68.1836 51.448C70.1301 50.3697 71.2522 48.7491 71.2522 47.0094C71.2522 45.2697 70.1301 43.6459 68.1836 42.5551ZM66.5441 48.4952L37.1323 64.8358C36.5744 65.143 36.0603 65.306 35.6277 65.306C34.4648 65.306 34.2861 63.9644 34.2861 63.1557V30.8443C34.2861 30.0419 34.4648 28.7003 35.6277 28.7003C36.0634 28.7003 36.5775 28.8664 37.1323 29.1705L66.5441 45.5048C67.3654 45.9624 67.8795 46.5392 67.8795 47.0063C67.8763 47.4671 67.3623 48.0407 66.5441 48.4952Z' fill='%2300AD74'/%3E%3C/svg%3E%0A");
+$podcast-icon: url("data:image/svg+xml,%0A%3Csvg width='104' height='94' viewBox='0 0 104 94' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M51.8369 65.7202H52.1614C61.1168 65.7202 68.3791 58.462 68.3791 49.5066V16.4159C68.3791 7.46147 61.1168 0.200195 52.1614 0.200195H51.8369C42.8783 0.200195 35.6191 7.46147 35.6191 16.4159V49.5066C35.6191 58.462 42.8783 65.7202 51.8369 65.7202ZM40.2991 16.4159C40.2991 10.0563 45.4752 4.8802 51.8369 4.8802H52.1614C58.5231 4.8802 63.6991 10.0563 63.6991 16.4159V49.5066C63.6991 55.8641 58.5231 61.0402 52.1614 61.0402H51.8369C45.4752 61.0402 40.2991 55.8641 40.2991 49.5066V16.4159Z' fill='%23FF763B'/%3E%3Cpath d='M73.0598 32.96V49.5979C73.0598 61.0691 63.7289 70.4 52.2556 70.4H51.7439C40.2706 70.4 30.9398 61.0691 30.9398 49.5979V32.96H26.2598V49.5979C26.2598 62.9681 36.561 73.9141 49.6598 74.9739V89.12H35.6198V93.8H68.3798V89.12H54.3398V74.9739C67.4386 73.9131 77.7398 62.9681 77.7398 49.5979V32.96H73.0598Z' fill='%23FF763B'/%3E%3C/svg%3E%0A");
+$download-icon: url("data:image/svg+xml,%0A%3Csvg width='94' height='94' viewBox='0 0 94 94' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M84.2115 0H29.3782C23.981 0 19.5865 4.3945 19.5865 9.79167V27.4167H0.00317383V82.25C0.00317383 88.7282 5.27501 94 11.7532 94H82.2532C88.7313 94 94.0032 88.7282 94.0032 82.25V9.79167C94.0032 4.3945 89.6087 0 84.2115 0ZM19.5865 82.25C19.5865 86.5701 16.0733 90.0833 11.7532 90.0833C7.43309 90.0833 3.91984 86.5701 3.91984 82.25V31.3333H19.5865V82.25ZM90.0865 82.25C90.0865 86.5701 86.5733 90.0833 82.2532 90.0833H20.503C22.3673 88.0036 23.5032 85.258 23.5032 82.25V9.79167C23.5032 6.55258 26.1391 3.91667 29.3782 3.91667H84.2115C87.4506 3.91667 90.0865 6.55258 90.0865 9.79167V82.25ZM58.7532 27.4167H82.2532V31.3333H58.7532V27.4167ZM31.3365 43.0833H82.2532V47H31.3365V43.0833ZM31.3365 58.75H82.2532V62.6667H31.3365V58.75ZM31.3365 74.4167H82.2532V78.3333H31.3365V74.4167ZM50.9198 11.75H31.3365V31.3333H50.9198V11.75ZM47.0032 27.4167H35.2532V15.6667H47.0032V27.4167Z' fill='%2300AD74'/%3E%3C/svg%3E%0A");
+$event-icon: url("data:image/svg+xml,%0A%3Csvg width='68' height='68' viewBox='0 0 68 68' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14.8776 13.4809H53.1305C57.8399 13.4809 61.6312 17.2722 61.6312 21.9816V53.142C61.6312 57.8514 57.8399 61.6427 53.1305 61.6427H14.8776C10.1683 61.6427 6.37695 57.8514 6.37695 53.142V21.9816C6.37695 17.2722 10.1683 13.4809 14.8776 13.4809Z' stroke='%2319486A' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M22.2096 21.7688C19.8549 21.7688 17.9593 19.8731 17.9593 17.5184V10.6117C17.9593 8.257 19.8549 6.36133 22.2096 6.36133C24.5644 6.36133 26.46 8.257 26.46 10.6117V12.8032M45.7857 21.7688C43.431 21.7688 41.5354 19.8731 41.5354 17.5184V10.6117C41.5354 8.257 43.431 6.36133 45.7857 6.36133C48.1404 6.36133 50.0361 8.257 50.0361 10.6117V12.8032' stroke='%2319486A' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M34.032 48.1278C31.4787 48.1313 28.5392 52.172 26.4706 50.6753C24.402 49.1786 27.3194 45.1232 26.5236 42.6965C25.7299 40.2696 20.9651 38.7219 21.7494 36.292C22.5337 33.8622 27.3068 35.3841 29.3695 33.8792C31.4323 32.3744 31.4363 27.3787 33.9895 27.3738C36.5428 27.3701 36.5661 32.3644 38.6347 33.8612C40.7033 35.3581 45.4631 33.8178 46.2568 36.2449C47.0505 38.6717 42.2992 40.2375 41.5149 42.6673C40.7307 45.0972 43.6639 49.1411 41.6017 50.6459C39.539 52.1506 36.5853 48.1229 34.032 48.1278Z' stroke='%2319486A' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+$course-icon: url("data:image/svg+xml,%0A%3Csvg width='85' height='109' viewBox='0 0 85 109' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.38652 1.91699C2.2027 2.02861 1.19899 3.13728 1.20412 4.32751V94.7222C1.20425 95.9843 2.35141 97.1326 3.61228 97.1327H34.4292C35.7015 97.1508 36.8717 95.9958 36.8717 94.7222C36.8717 93.4485 35.7015 92.2937 34.4292 92.3117H6.02045V6.7381H78.2653V92.3117H77.0989C75.8266 92.2936 74.6564 93.4485 74.6564 94.7222C74.6564 95.9958 75.8266 97.1508 77.0989 97.1327H80.6735C81.9344 97.1326 83.0815 95.9843 83.0817 94.7222V4.32751C83.0815 3.06539 81.9344 1.91711 80.6735 1.91699C54.916 1.91699 29.1281 1.91699 3.38652 1.91699ZM15.4273 12.7644C14.1663 12.8233 13.0725 14.0256 13.1316 15.2879C13.1907 16.5502 14.392 17.6448 15.6531 17.5854H68.6327C69.905 17.6034 71.0751 16.4485 71.0751 15.1749C71.0751 13.9013 69.905 12.7464 68.6327 12.7644C50.9028 12.7644 33.1411 12.7644 15.4273 12.7644ZM15.4273 24.817C14.1663 24.8759 13.0725 26.0782 13.1316 27.3405C13.1907 28.6028 14.392 29.6975 15.6531 29.6381H57.796C59.0682 29.6561 60.2384 28.5012 60.2384 27.2275C60.2384 25.9539 59.0682 24.799 57.796 24.817C43.6786 24.817 29.5284 24.817 15.4273 24.817ZM15.4273 36.8696C14.1663 36.9285 13.0725 38.1308 13.1316 39.3932C13.1907 40.6555 14.392 41.7501 15.6531 41.6907H67.4662C68.7385 41.7088 69.9087 40.5538 69.9087 39.2801C69.9087 38.0065 68.7385 36.8516 67.4662 36.8696C50.1252 36.8696 32.7523 36.8696 15.4273 36.8696ZM15.4273 48.9223C14.1663 48.9811 13.0725 50.1835 13.1316 51.4458C13.1907 52.7081 14.392 53.8028 15.6531 53.7433H38.5307C39.8029 53.7613 40.9731 52.6064 40.9731 51.3328C40.9731 50.0591 39.8029 48.9042 38.5307 48.9223C30.8364 48.9222 23.1049 48.9223 15.4273 48.9223ZM55.3878 51.3328C45.4414 51.3328 37.3266 59.4555 37.3266 69.4117C37.3266 79.3679 45.4414 87.4906 55.3878 87.4906C65.3342 87.4906 73.449 79.3679 73.449 69.4117C73.449 59.4555 65.3342 51.3328 55.3878 51.3328ZM55.3878 56.1539C62.7313 56.1539 68.6327 62.061 68.6327 69.4117C68.6327 76.7624 62.7313 82.6696 55.3878 82.6696C48.0443 82.6696 42.1429 76.7624 42.1429 69.4117C42.1429 62.061 48.0443 56.1539 55.3878 56.1539ZM61.1824 63.3477C60.5765 63.4103 59.9986 63.7134 59.6021 64.1764L52.8667 71.8598L49.8565 68.8845C48.9665 67.9682 47.3152 67.961 46.4174 68.87C45.5196 69.7786 45.5449 71.4313 46.4701 72.3121L51.2864 77.1331C52.2158 78.0784 53.956 78.0227 54.8234 77.02L63.2143 67.3778C63.8735 66.6617 64.0315 65.5276 63.5932 64.6581C63.1549 63.7888 62.1496 63.2424 61.1824 63.3477ZM43.0836 87.453C41.9003 87.5832 40.9132 88.7099 40.9388 89.9013V105.57C40.9637 107.3 43.272 108.502 44.7016 107.528L55.3878 100.146L66.074 107.528C67.5036 108.502 69.8119 107.3 69.8368 105.57V89.9013C69.8548 88.6277 68.701 87.4564 67.4286 87.4564C66.1562 87.4564 65.0025 88.6277 65.0204 89.9013V100.975L56.7424 95.2118C55.9494 94.6719 54.8262 94.6719 54.0332 95.2118L45.7551 100.975V89.9013C45.7846 88.5338 44.4418 87.3032 43.0836 87.453Z' fill='%2377278B' stroke='%23F2F2F2' stroke-width='2'/%3E%3C/svg%3E%0A");
+$publication-icon: url("data:image/svg+xml,%0A%3Csvg width='94' height='94' viewBox='0 0 94 94' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M84.2115 0H29.3782C23.981 0 19.5865 4.3945 19.5865 9.79167V27.4167H0.00317383V82.25C0.00317383 88.7282 5.27501 94 11.7532 94H82.2532C88.7313 94 94.0032 88.7282 94.0032 82.25V9.79167C94.0032 4.3945 89.6087 0 84.2115 0ZM19.5865 82.25C19.5865 86.5701 16.0733 90.0833 11.7532 90.0833C7.43309 90.0833 3.91984 86.5701 3.91984 82.25V31.3333H19.5865V82.25ZM90.0865 82.25C90.0865 86.5701 86.5733 90.0833 82.2532 90.0833H20.503C22.3673 88.0036 23.5032 85.258 23.5032 82.25V9.79167C23.5032 6.55258 26.1391 3.91667 29.3782 3.91667H84.2115C87.4506 3.91667 90.0865 6.55258 90.0865 9.79167V82.25ZM58.7532 27.4167H82.2532V31.3333H58.7532V27.4167ZM31.3365 43.0833H82.2532V47H31.3365V43.0833ZM31.3365 58.75H82.2532V62.6667H31.3365V58.75ZM31.3365 74.4167H82.2532V78.3333H31.3365V74.4167ZM50.9198 11.75H31.3365V31.3333H50.9198V11.75ZM47.0032 27.4167H35.2532V15.6667H47.0032V27.4167Z' fill='%2300AD74'/%3E%3C/svg%3E%0A");
+$resource-icon: url("data:image/svg+xml,%0A%3Csvg width='94' height='94' viewBox='0 0 94 94' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M80.2946 0H62.6696C58.3495 0 54.8363 3.51325 54.8363 7.83333V14.8246C54.8363 15.4434 55.13 16.0309 55.6274 16.3952C56.1248 16.7712 56.7672 16.8808 57.3625 16.6968C59.6929 15.9839 61.7453 15.6628 62.6657 15.6628C64.8238 15.6628 66.5824 17.4174 66.5824 19.5794C66.5824 21.7414 64.8238 23.4961 62.6657 23.4961C61.7453 23.4961 59.6929 23.1749 57.3625 22.4621C56.7633 22.278 56.1248 22.3837 55.6274 22.7637C55.13 23.1318 54.8363 23.7154 54.8363 24.3342V31.3255C54.8363 35.6456 58.3495 39.1588 62.6696 39.1588H67.1189C66.7821 40.6824 66.5863 42.0728 66.5863 43.0755C66.5863 47.3956 70.0995 50.9088 74.4196 50.9088C78.7397 50.9088 82.2529 47.3956 82.2529 43.0755C82.2529 42.0728 82.0571 40.6824 81.7203 39.1588H86.1696C90.4897 39.1588 94.0029 35.6456 94.0029 31.3255V13.7083C94.0029 6.14917 87.8538 0 80.2946 0ZM90.0863 31.3333C90.0863 33.4953 88.3277 35.25 86.1696 35.25H79.1784C78.5595 35.25 77.9759 35.5438 77.6038 36.0412C77.2357 36.5386 77.1221 37.1848 77.3023 37.7763C78.0112 40.1067 78.3324 42.159 78.3324 43.0794C78.3324 45.2414 76.5738 46.9961 74.4157 46.9961C72.2576 46.9961 70.499 45.2414 70.499 43.0794C70.499 42.159 70.8241 40.1028 71.5291 37.7763C71.7093 37.1848 71.5996 36.5386 71.2275 36.0412C70.8554 35.5438 70.2719 35.25 69.653 35.25H62.6618C60.5037 35.25 58.7451 33.4953 58.7451 31.3333V26.8801C60.2687 27.2208 61.663 27.4167 62.6618 27.4167C66.9818 27.4167 70.4951 23.9034 70.4951 19.5833C70.4951 15.2633 66.9818 11.75 62.6618 11.75C61.663 11.75 60.2687 11.9458 58.7451 12.2866V7.83333C58.7451 5.67133 60.5037 3.91667 62.6618 3.91667H80.2868C85.6839 3.91667 90.0784 8.30725 90.0784 13.7083V31.3333H90.0863ZM66.5863 54.8333H59.595C58.9762 54.8333 58.3926 55.1271 58.0205 55.6245C57.6523 56.1219 57.5388 56.7682 57.7189 57.3596C58.4278 59.69 58.749 61.7423 58.749 62.6628C58.749 64.8248 56.9904 66.5794 54.8323 66.5794C52.6743 66.5794 50.9157 64.8248 50.9157 62.6628C50.9157 61.7423 51.2408 59.6861 51.9458 57.3596C52.1259 56.7682 52.0163 56.1219 51.6442 55.6245C51.2721 55.1271 50.6885 54.8333 50.0697 54.8333H39.1618V27.4167C39.1618 23.0966 35.6485 19.5833 31.3284 19.5833H13.7113C6.1521 19.5833 0.00292969 25.7325 0.00292969 33.2917V80.2917C0.00292969 87.8508 6.1521 94 13.7113 94H60.7113C68.2704 94 74.4196 87.8508 74.4196 80.2917V62.6667C74.4196 58.3466 70.9063 54.8333 66.5863 54.8333ZM3.9196 33.2917C3.9196 27.8906 8.3141 23.5 13.7113 23.5H31.3363C33.4943 23.5 35.2529 25.2547 35.2529 27.4167V54.8333H26.8869C27.2238 53.3097 27.4196 51.9193 27.4196 50.9167C27.4196 46.5966 23.9063 43.0833 19.5863 43.0833C15.2662 43.0833 11.7529 46.5966 11.7529 50.9167C11.7529 51.9193 11.9488 53.3097 12.2856 54.8333H3.9196V33.2917ZM35.2529 90.0833H13.7113C8.3141 90.0833 3.9196 85.6927 3.9196 80.2917V58.75H14.8275C15.4463 58.75 16.0299 58.4563 16.402 57.9588C16.7702 57.4614 16.8838 56.8152 16.7036 56.2238C15.9947 53.8933 15.6735 51.841 15.6735 50.9206C15.6735 48.7586 17.4321 47.0039 19.5902 47.0039C21.7483 47.0039 23.5068 48.7586 23.5068 50.9206C23.5068 51.841 23.1818 53.8973 22.4768 56.2238C22.2966 56.8152 22.4063 57.4614 22.7783 57.9588C23.1504 58.4563 23.734 58.75 24.3528 58.75H35.2608V67.1199C33.7372 66.7792 32.3428 66.5833 31.3441 66.5833C27.024 66.5833 23.5108 70.0966 23.5108 74.4167C23.5108 78.7368 27.024 82.25 31.3441 82.25C32.3428 82.25 33.7372 82.0542 35.2608 81.7134V90.0833H35.2529ZM70.5029 80.2917C70.5029 85.6927 66.1084 90.0833 60.7113 90.0833H39.1696V79.1754C39.1696 78.5566 38.8758 77.9691 38.3784 77.6048C37.881 77.2288 37.2348 77.1231 36.6433 77.3033C34.3129 78.0161 32.2606 78.3372 31.3402 78.3372C29.1821 78.3372 27.4235 76.5826 27.4235 74.4206C27.4235 72.2586 29.1821 70.5039 31.3402 70.5039C32.2606 70.5039 34.3129 70.8251 36.6433 71.5379C37.2348 71.7142 37.8771 71.6084 38.3784 71.2363C38.8758 70.8682 39.1696 70.2846 39.1696 69.6658V58.7578H47.5356C47.1988 60.2814 47.0029 61.6718 47.0029 62.6745C47.0029 66.9946 50.5162 70.5078 54.8363 70.5078C59.1563 70.5078 62.6696 66.9946 62.6696 62.6745C62.6696 61.6718 62.4738 60.2814 62.1369 58.7578H66.5863C68.7443 58.7578 70.5029 60.5125 70.5029 62.6745V80.2995V80.2917Z' fill='%23FF763B'/%3E%3C/svg%3E%0A");
+$default-icon: url("data:image/svg+xml,%0A%3Csvg width='94' height='94' viewBox='0 0 94 94' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M80.2946 0H62.6696C58.3495 0 54.8363 3.51325 54.8363 7.83333V14.8246C54.8363 15.4434 55.13 16.0309 55.6274 16.3952C56.1248 16.7712 56.7672 16.8808 57.3625 16.6968C59.6929 15.9839 61.7453 15.6628 62.6657 15.6628C64.8238 15.6628 66.5824 17.4174 66.5824 19.5794C66.5824 21.7414 64.8238 23.4961 62.6657 23.4961C61.7453 23.4961 59.6929 23.1749 57.3625 22.4621C56.7633 22.278 56.1248 22.3837 55.6274 22.7637C55.13 23.1318 54.8363 23.7154 54.8363 24.3342V31.3255C54.8363 35.6456 58.3495 39.1588 62.6696 39.1588H67.1189C66.7821 40.6824 66.5863 42.0728 66.5863 43.0755C66.5863 47.3956 70.0995 50.9088 74.4196 50.9088C78.7397 50.9088 82.2529 47.3956 82.2529 43.0755C82.2529 42.0728 82.0571 40.6824 81.7203 39.1588H86.1696C90.4897 39.1588 94.0029 35.6456 94.0029 31.3255V13.7083C94.0029 6.14917 87.8538 0 80.2946 0ZM90.0863 31.3333C90.0863 33.4953 88.3277 35.25 86.1696 35.25H79.1784C78.5595 35.25 77.9759 35.5438 77.6038 36.0412C77.2357 36.5386 77.1221 37.1848 77.3023 37.7763C78.0112 40.1067 78.3324 42.159 78.3324 43.0794C78.3324 45.2414 76.5738 46.9961 74.4157 46.9961C72.2576 46.9961 70.499 45.2414 70.499 43.0794C70.499 42.159 70.8241 40.1028 71.5291 37.7763C71.7093 37.1848 71.5996 36.5386 71.2275 36.0412C70.8554 35.5438 70.2719 35.25 69.653 35.25H62.6618C60.5037 35.25 58.7451 33.4953 58.7451 31.3333V26.8801C60.2687 27.2208 61.663 27.4167 62.6618 27.4167C66.9818 27.4167 70.4951 23.9034 70.4951 19.5833C70.4951 15.2633 66.9818 11.75 62.6618 11.75C61.663 11.75 60.2687 11.9458 58.7451 12.2866V7.83333C58.7451 5.67133 60.5037 3.91667 62.6618 3.91667H80.2868C85.6839 3.91667 90.0784 8.30725 90.0784 13.7083V31.3333H90.0863ZM66.5863 54.8333H59.595C58.9762 54.8333 58.3926 55.1271 58.0205 55.6245C57.6523 56.1219 57.5388 56.7682 57.7189 57.3596C58.4278 59.69 58.749 61.7423 58.749 62.6628C58.749 64.8248 56.9904 66.5794 54.8323 66.5794C52.6743 66.5794 50.9157 64.8248 50.9157 62.6628C50.9157 61.7423 51.2408 59.6861 51.9458 57.3596C52.1259 56.7682 52.0163 56.1219 51.6442 55.6245C51.2721 55.1271 50.6885 54.8333 50.0697 54.8333H39.1618V27.4167C39.1618 23.0966 35.6485 19.5833 31.3284 19.5833H13.7113C6.1521 19.5833 0.00292969 25.7325 0.00292969 33.2917V80.2917C0.00292969 87.8508 6.1521 94 13.7113 94H60.7113C68.2704 94 74.4196 87.8508 74.4196 80.2917V62.6667C74.4196 58.3466 70.9063 54.8333 66.5863 54.8333ZM3.9196 33.2917C3.9196 27.8906 8.3141 23.5 13.7113 23.5H31.3363C33.4943 23.5 35.2529 25.2547 35.2529 27.4167V54.8333H26.8869C27.2238 53.3097 27.4196 51.9193 27.4196 50.9167C27.4196 46.5966 23.9063 43.0833 19.5863 43.0833C15.2662 43.0833 11.7529 46.5966 11.7529 50.9167C11.7529 51.9193 11.9488 53.3097 12.2856 54.8333H3.9196V33.2917ZM35.2529 90.0833H13.7113C8.3141 90.0833 3.9196 85.6927 3.9196 80.2917V58.75H14.8275C15.4463 58.75 16.0299 58.4563 16.402 57.9588C16.7702 57.4614 16.8838 56.8152 16.7036 56.2238C15.9947 53.8933 15.6735 51.841 15.6735 50.9206C15.6735 48.7586 17.4321 47.0039 19.5902 47.0039C21.7483 47.0039 23.5068 48.7586 23.5068 50.9206C23.5068 51.841 23.1818 53.8973 22.4768 56.2238C22.2966 56.8152 22.4063 57.4614 22.7783 57.9588C23.1504 58.4563 23.734 58.75 24.3528 58.75H35.2608V67.1199C33.7372 66.7792 32.3428 66.5833 31.3441 66.5833C27.024 66.5833 23.5108 70.0966 23.5108 74.4167C23.5108 78.7368 27.024 82.25 31.3441 82.25C32.3428 82.25 33.7372 82.0542 35.2608 81.7134V90.0833H35.2529ZM70.5029 80.2917C70.5029 85.6927 66.1084 90.0833 60.7113 90.0833H39.1696V79.1754C39.1696 78.5566 38.8758 77.9691 38.3784 77.6048C37.881 77.2288 37.2348 77.1231 36.6433 77.3033C34.3129 78.0161 32.2606 78.3372 31.3402 78.3372C29.1821 78.3372 27.4235 76.5826 27.4235 74.4206C27.4235 72.2586 29.1821 70.5039 31.3402 70.5039C32.2606 70.5039 34.3129 70.8251 36.6433 71.5379C37.2348 71.7142 37.8771 71.6084 38.3784 71.2363C38.8758 70.8682 39.1696 70.2846 39.1696 69.6658V58.7578H47.5356C47.1988 60.2814 47.0029 61.6718 47.0029 62.6745C47.0029 66.9946 50.5162 70.5078 54.8363 70.5078C59.1563 70.5078 62.6696 66.9946 62.6696 62.6745C62.6696 61.6718 62.4738 60.2814 62.1369 58.7578H66.5863C68.7443 58.7578 70.5029 60.5125 70.5029 62.6745V80.2995V80.2917Z' fill='%23FF763B'/%3E%3C/svg%3E%0A");
+$language-icon: url("data:image/svg+xml,%0A%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14 13H18V15H14V13ZM10.078 5.709L12.5 16H10.447L9.741 13H6.26L5.554 16H3.501L5.94 5.638C6.227 4.401 7.565 3.63 8.877 4.18C9.504 4.443 9.926 5.046 10.079 5.708L10.078 5.709ZM9.269 11L8.113 6.09C8.101 6.037 8.054 6 8 6C7.946 6 7.899 6.037 7.887 6.09L6.731 11H9.27H9.269ZM24 3V20H17.147L13.301 23.18C12.939 23.502 12.476 23.665 12.009 23.665C11.533 23.665 11.053 23.496 10.671 23.156L6.923 20H0V3C0 1.346 1.346 0 3 0H21C22.654 0 24 1.346 24 3ZM22 3C22 2.448 21.552 2 21 2H3C2.449 2 2 2.448 2 3V18H7.654L11.98 21.645L16.429 18H22V3ZM14 11H20V9H14V11ZM14 7H20V5H14V7Z' fill='%230397D6'/%3E%3C/svg%3E%0A");
+$dollor-icon: url("data:image/svg+xml,%0A%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 0C5.383 0 0 5.383 0 12C0 18.617 5.383 24 12 24C18.617 24 24 18.617 24 12C24 5.383 18.617 0 12 0ZM12 22C6.486 22 2 17.514 2 12C2 6.486 6.486 2 12 2C17.514 2 22 6.486 22 12C22 17.514 17.514 22 12 22ZM16 14C16 15.654 14.654 17 13 17V18C13 18.553 12.553 19 12 19C11.447 19 11 18.553 11 18V17H10.732C9.665 17 8.669 16.426 8.134 15.501C7.857 15.022 8.021 14.411 8.498 14.135C8.977 13.856 9.589 14.022 9.864 14.499C10.043 14.809 10.375 15 10.731 15H12.999C13.551 15 13.999 14.552 13.999 14C13.999 13.622 13.728 13.302 13.355 13.24L10.314 12.733C8.972 12.51 7.999 11.36 7.999 10C7.999 8.346 9.345 7 10.999 7V6C10.999 5.448 11.446 5 11.999 5C12.552 5 12.999 5.448 12.999 6V7H13.267C14.334 7 15.33 7.575 15.865 8.5C16.142 8.978 15.978 9.589 15.501 9.866C15.021 10.143 14.41 9.979 14.135 9.501C13.956 9.192 13.624 9.001 13.268 9.001H11C10.448 9.001 10 9.45 10 10.001C10 10.379 10.271 10.699 10.644 10.761L13.685 11.268C15.027 11.491 16 12.641 16 14.001V14Z' fill='%230397D6'/%3E%3C/svg%3E%0A");
+$global-icon: url("data:image/svg+xml,%0A%3Csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M21 11C21 16.5228 16.5228 21 11 21M21 11C21 5.47715 16.5228 1 11 1M21 11H1M11 21C5.47715 21 1 16.5228 1 11M11 21C13.5013 18.2616 14.9228 14.708 15 11C14.9228 7.29203 13.5013 3.73835 11 1M11 21C8.49872 18.2616 7.07725 14.708 7 11C7.07725 7.29203 8.49872 3.73835 11 1M1 11C1 5.47715 5.47715 1 11 1' stroke='%230397D6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+$share-icon: url("data:image/svg+xml,%0A%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='baseIcons'%3E%3Cpath id='Icon' d='M7.15833 11.2582L12.85 14.5748M12.8417 5.42484L7.15833 8.7415M17.5 4.1665C17.5 5.54722 16.3807 6.6665 15 6.6665C13.6193 6.6665 12.5 5.54722 12.5 4.1665C12.5 2.78579 13.6193 1.6665 15 1.6665C16.3807 1.6665 17.5 2.78579 17.5 4.1665ZM7.5 9.99984C7.5 11.3805 6.38071 12.4998 5 12.4998C3.61929 12.4998 2.5 11.3805 2.5 9.99984C2.5 8.61913 3.61929 7.49984 5 7.49984C6.38071 7.49984 7.5 8.61913 7.5 9.99984ZM17.5 15.8332C17.5 17.2139 16.3807 18.3332 15 18.3332C13.6193 18.3332 12.5 17.2139 12.5 15.8332C12.5 14.4525 13.6193 13.3332 15 13.3332C16.3807 13.3332 17.5 14.4525 17.5 15.8332Z' stroke='%230397D6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/g%3E%3C/svg%3E%0A");
+$date-icon: url("data:image/svg+xml,%0A%3Csvg width='18' height='19' viewBox='0 0 18 19' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.3333 1.1665V4.49984M5.66667 1.1665V4.49984M1.5 7.83317H16.5M3.16667 2.83317H14.8333C15.7538 2.83317 16.5 3.57936 16.5 4.49984V16.1665C16.5 17.087 15.7538 17.8332 14.8333 17.8332H3.16667C2.24619 17.8332 1.5 17.087 1.5 16.1665V4.49984C1.5 3.57936 2.24619 2.83317 3.16667 2.83317Z' stroke='%230397D6' stroke-width='1.67' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+$time-icon: url("data:image/svg+xml,%0A%3Csvg width='20' height='19' viewBox='0 0 20 19' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10.0013 4.49984V9.49984L13.3346 11.1665M18.3346 9.49984C18.3346 14.1022 14.6037 17.8332 10.0013 17.8332C5.39893 17.8332 1.66797 14.1022 1.66797 9.49984C1.66797 4.89746 5.39893 1.1665 10.0013 1.1665C14.6037 1.1665 18.3346 4.89746 18.3346 9.49984Z' stroke='%230397D6' stroke-width='1.67' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+$copy-icon: url("data:image/svg+xml,%0A%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='baseIcons' clip-path='url(%23clip0_4482_3753)'%3E%3Cpath id='Icon' d='M4.16797 12.4998H3.33464C2.89261 12.4998 2.46868 12.3242 2.15612 12.0117C1.84356 11.6991 1.66797 11.2752 1.66797 10.8332V3.33317C1.66797 2.89114 1.84356 2.46722 2.15612 2.15466C2.46868 1.8421 2.89261 1.6665 3.33464 1.6665H10.8346C11.2767 1.6665 11.7006 1.8421 12.0131 2.15466C12.3257 2.46722 12.5013 2.89114 12.5013 3.33317V4.1665M9.16797 7.49984H16.668C17.5884 7.49984 18.3346 8.24603 18.3346 9.1665V16.6665C18.3346 17.587 17.5884 18.3332 16.668 18.3332H9.16797C8.24749 18.3332 7.5013 17.587 7.5013 16.6665V9.1665C7.5013 8.24603 8.24749 7.49984 9.16797 7.49984Z' stroke='%230397D6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_4482_3753'%3E%3Crect width='20' height='20' fill='white'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E%0A");
+$close-icon: url("data:image/svg+xml,%0A%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='baseIcons'%3E%3Cpath id='Icon' d='M15 5L5 15M5 5L15 15' stroke='%2387929D' stroke-width='1.66667' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/g%3E%3C/svg%3E%0A");
+$download-arrow-icon: url("data:image/svg+xml,%0A%3Csvg width='21' height='20' viewBox='0 0 21 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='baseIcons'%3E%3Cpath id='Icon' d='M18 12.5V15.8333C18 16.2754 17.8244 16.6993 17.5118 17.0118C17.1993 17.3244 16.7754 17.5 16.3333 17.5H4.66667C4.22464 17.5 3.80072 17.3244 3.48816 17.0118C3.17559 16.6993 3 16.2754 3 15.8333V12.5M6.33333 8.33333L10.5 12.5M10.5 12.5L14.6667 8.33333M10.5 12.5V2.5' stroke='%230397D6' stroke-width='1.67' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/g%3E%3C/svg%3E%0A");
+
+// SDG Colors
+$sdg-1: #e63146;
+$sdg-2: #dda83a;
+$sdg-3: #4c9f38;
+$sdg-4: #c21e32;
+$sdg-5: #ef3f2a;
+$sdg-6: #03adda;
+$sdg-7: #fdb616;
+$sdg-8: #8e1837;
+$sdg-9: #f26c24;
+$sdg-10: #e32071;
+$sdg-11: #f89c24;
+$sdg-12: #cf8d28;
+$sdg-13: #46763b;
+$sdg-14: #007cbb;
+$sdg-15: #3faf49;
+$sdg-16: #00558a;
+$sdg-17: #183567;

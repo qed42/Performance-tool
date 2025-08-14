@@ -1,0 +1,48 @@
+{%
+  set classes = [
+    'paragraph container timeLine-container',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished',
+  ]
+%}
+
+{{ attach_library('hq/swiper_library') }}
+
+{% block paragraph %}
+  <div{{ attributes.addClass(classes) }}>
+    {% block content %}
+    <div class="row">
+      <div class="col-md-12">
+        <div class="swiperHeader-wrapper">
+          {% if content.field_title.0 %}
+            <h2>{{ content.field_title.0 }}</h2>
+          {% endif %}
+
+          <nav class="carouselNav-wrapper">
+            <button class="swiper-button-prev btn btn-primary icon icon-arrow-left"><span class="sr-only">swipe left</span></button>
+            <button class="swiper-button-next btn btn-primary icon icon-arrow-right"><span class="sr-only">swipe right</span></button>
+          </nav>
+        </div>
+
+        <div class="swiper-pagination"></div>
+        {% for item in content.field_component['#items'] %}
+          <span class="pagination-title" bullet="{{ loop.index0 }}">{{ item.entity.field_label.getValue()[0]['value'] }}</span>
+        {% endfor %}
+
+        <select id="timeLineSelects{{ random(1, 1000) }}" class="timeLine-select" name="years" id="title">
+          {% for item in content.field_component['#items'] %}
+            <option value="{{ item.entity.field_label.getValue()[0]['value'] }}">{{ item.entity.field_label.getValue()[0]['value'] }}</option>
+          {% endfor %}
+        </select>
+
+        <div class="swiper-container-timeLine">
+          <ul class="swiper-wrapper">
+            {{ content|without('field_title') }}
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+  </div>
+{% endblock paragraph %}

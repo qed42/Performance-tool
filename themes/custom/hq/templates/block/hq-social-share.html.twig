@@ -1,0 +1,10 @@
+{% if is_rtl %}
+  {{ attach_library('hq/modal-social-sharing-rtl') }}
+{% else %}
+  {{ attach_library('hq/modal-social-sharing') }}
+{% endif %}
+
+<button type="button" class="btn-share" data-toggle="modal" data-target="#shareitModal">
+    <i class="drupal-icon share-icon" tabindex="-1" focusable="false"></i>
+    {{'Share'|t}}
+</button>

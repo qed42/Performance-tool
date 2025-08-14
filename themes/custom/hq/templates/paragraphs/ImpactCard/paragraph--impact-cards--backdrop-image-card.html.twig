@@ -1,0 +1,34 @@
+{% set classes = [
+  'paragraph',
+  'impactCards_container',
+  'paragraph--type--' ~ (paragraph.bundle|clean_class),
+  view_mode ? 'paragraph--view-mode--' ~ (view_mode|clean_class),
+  not paragraph.isPublished() ? 'paragraph--unpublished'
+] %}
+
+{{ attach_library('hq/swiper_library') }}
+{{ attach_library('hq/paragraph.vm.impact-card-backdrop') }}
+{% block paragraph %}
+  <div {{ attributes.addClass(classes) }}>
+    {% block content %}
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 impact-cards impact-cards-backdrop">
+            {% if content.field_title.0|length %}
+              <div class="impact-cards__heading">
+                <h3>
+                  {{ content.field_title.0 }}
+                </h3>
+              </div>
+            {% endif %}
+            <div class="swiper-container row">
+              <div class="swiper-wrapper impact-cards__inner">
+                {{ content.field_impact_card_item }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endblock %}
+  </div>
+{% endblock %}

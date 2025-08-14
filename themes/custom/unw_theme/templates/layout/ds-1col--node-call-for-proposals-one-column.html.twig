@@ -1,0 +1,56 @@
+{#
+/**
+ * @file
+ * Display Suite 1 column template.
+ *
+ * Available variables:
+ * - ds_content_wrapper: wrapper around content
+ * - attributes: content region attributes
+ * - ds_content: content region
+ */
+#}
+<{{ ds_content_wrapper }}{{ attributes.addClass('ds-1col', 'clearfix') }}>
+
+  <h1>{{ content.field_title['0']['#context']['value']|raw }}</h1>
+
+    {% if content.field_rsvp_deadline_date.0['#attributes'].datetime %}
+      <p><strong>{{ 'Submission deadline: '|t}}</strong><span>{{ content.field_rsvp_deadline_date.0['#attributes'].datetime|date("d F Y") }}</span>
+    {% endif %}
+
+    {% if content.field_subheader_long %}
+      {{ content.field_subheader_long }}
+    {% endif %}
+
+    {% if content.body %}
+      {{ content.body }}
+    {% endif %}
+
+    {% if content.field_attachments %}
+      <div class="cfp-documents">
+        <h2>{{ 'Documents'|t}}</h2>
+      {{ content.field_attachments }}
+      </div>
+    {% endif %}
+
+    {% if content.field_contact_person or content.field_contact_email or content.field_contact_phone %}
+      {% if content.field_contact_person.0['#context'].value or content.field_contact_email.0['#context'].value or content.field_contact_phone.0['#title'] %}
+        <div class="cfp-contact-information">
+          <h2>{{ 'Contact information'|t }}</h2>
+          <ul>
+            {% if content.field_contact_person.0['#context'].value %}
+              <li><strong>{{ 'Contact person: '|t }}</strong>{{ content.field_contact_person.0['#context'].value }}</li>
+            {% endif %}
+
+            {% if content.field_contact_email.0['#context'].value %}
+              <li><strong>{{ 'Email: '|t }}</strong>{{ content.contact_email.0 }}</li>
+            {% endif %}
+
+            {% if content.field_contact_phone.0['#title'] %}
+              <li><strong>{{ 'Telephone: '|t }}</strong>{{ content.field_contact_phone.0['#title'] }}</li>
+            {% endif %}
+          </ul>
+        </div>
+      {% endif %}
+    {% endif %}
+
+</{{ ds_content_wrapper }}>

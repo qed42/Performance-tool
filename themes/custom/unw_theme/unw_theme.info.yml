@@ -1,0 +1,33 @@
+name: 'UN Women'
+type: theme
+description: 'UN Women subtheme based on Bootstrap 4 theme.'
+core: 8.x
+core_version_requirement: '^8 || ^9 || ^10'
+'base theme': bootstrap4
+
+# Stylesheets.
+stylesheets-remove:
+  - '@bootstrap4/css/style.css'
+
+# Libraries.
+libraries:
+  - unw_theme/bxslider
+  - unw_theme/global-styling
+  - unw_theme/global-scripts
+  - unw_theme/fonts
+  - unw_theme/color
+  - unw_theme/infographic-css
+
+# Regions.
+regions:
+  header_top: Header Top
+  header: Header
+  nav_branding: 'Navigation branding region'
+  nav_main: 'Main navigation region'
+  nav_additional: 'Additional navigation region (eg search form, social icons, etc)'
+  breadcrumb: Breadcrumbs
+  content: 'Main content'
+  sidebar_first: 'Sidebar first'
+  right_content: 'Right'
+  footer: Footer
+  sub_footer: 'Sub Footer'

@@ -1,0 +1,27 @@
+<div class="row justify-content-center block-glossary-listing--row">
+  <div class="col-12 col-md-8">
+    {% if title %}
+      <div class="block-glossary-listing--row-title">{{ title }}</div>
+    {% endif %}
+    {% for row in rows %}
+      {%
+        set row_classes = [
+          default_row_class ? 'views-row',
+          'block-glossary-listing--row-details',
+        ]
+      %}
+      {% if default_row_class %}
+        <div{{ row.attributes.addClass(row_classes) }}>
+          {{- row.content -}}
+        </div>
+      {% else %}
+        {{- row.content -}}
+      {% endif %}
+      <button class="views-field views-field-copy-icon">
+        <div id="copy-quote" class="views-field views-field-copy-quote">
+          <img src="/{{ directory }}/img/copy.svg" alt="{{'Copy text above'|t}}" loading="lazy">{{'Copy text above'|t}}
+        </div>
+      </button>
+    {% endfor %}
+  </div>
+</div>

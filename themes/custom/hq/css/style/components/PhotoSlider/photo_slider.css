@@ -1,0 +1,124 @@
+.photo-slider__wrapper {
+  background-color: #EDF4FC;
+  padding-block: 32px;
+}
+@media (min-width: 1180px) {
+  .photo-slider__wrapper {
+    padding-block: 100px;
+    cursor: pointer;
+  }
+}
+.photo-slider__images .swiper-slide {
+  opacity: 0.25;
+}
+.photo-slider__images .swiper-slide .field--name-field-caption-image {
+  opacity: 0;
+}
+.photo-slider__images .swiper-slide.swiper-slide-active {
+  opacity: 1;
+}
+.photo-slider__images .swiper-slide.swiper-slide-active .field--name-field-caption-image {
+  opacity: 1;
+}
+.photo-slider__images .field--name-field-caption-image {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  letter-spacing: 0;
+  margin-top: 5px;
+  color: #181818;
+}
+.photo-slider__images img {
+  width: 100%;
+  max-height: unset !important;
+}
+@media (min-width: 1180px) {
+  .photo-slider__content {
+    display: flex;
+    height: 400px;
+    overflow: hidden;
+  }
+  .photo-slider__content .swiper-slide {
+    overflow: hidden;
+  }
+}
+@media (min-width: 1180px) {
+  .photo-slider__content .paragraph-left .field--name-field-caption-image {
+    display: none;
+  }
+}
+.photo-slider__content .paragraph--type--photo-slider-item {
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width: 1180px) {
+  .photo-slider__content .paragraph--type--photo-slider-item {
+    justify-content: center;
+  }
+}
+@media (min-width: 1180px) {
+  .photo-slider__content .field--name-field-media-image {
+    display: none;
+  }
+}
+.photo-slider__content .field--name-field-media-image img {
+  width: 100%;
+  max-height: unset !important;
+}
+.photo-slider__content .field--name-field-caption-image {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  letter-spacing: 0;
+  margin-top: 5px;
+  color: #181818;
+}
+.photo-slider__content .field--name-field-title {
+  font-size: 36px;
+  line-height: 44px;
+  font-weight: 700;
+  letter-spacing: -2%;
+  margin-block: 20px;
+  color: #181818;
+}
+@media (max-width: 1179.98px) {
+  .photo-slider__content .field--name-field-title {
+    font-size: 32px;
+  }
+}
+@media (min-width: 1180px) {
+  .photo-slider__content .field--name-field-title {
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    margin-top: 0;
+    overflow: hidden;
+  }
+}
+.photo-slider__content .field--name-field-description {
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 400;
+  letter-spacing: 0;
+  margin-bottom: 20px;
+  color: #181818;
+}
+@media (max-width: 1179.98px) {
+  .photo-slider__content .field--name-field-description {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+.photo-slider__content .field--name-field-description p:last-child {
+  margin-bottom: 0;
+}
+.photo-slider__content .carouselNav-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.paragraph-list > section:first-child.paragraph--section--photo-slider {
+  margin-top: -40px;
+}

@@ -1,0 +1,43 @@
+{% set thClasses = [
+  'table-cell',
+  'table-cell--header'
+]%}
+
+{% set tdClasses = [
+  'table-cell',
+  'table-cell--row'
+]%}
+
+<table>
+  {% if header %}
+    <thead>
+      <tr class="table-row" style="--columns-number: {{ header|length-1 }}">
+        {% for cell in header %}
+          <{{ cell.tag }}{{ cell.attributes.addClass(thClasses) }}>
+            {{- cell.content -}}
+          </{{ cell.tag }}>
+        {% endfor %}
+      </tr>
+    </thead>
+  {% endif %}
+
+  {% if rows %}
+    <tbody>
+      {% for row in rows %}
+        <tr class="table-row" style="--columns-number: {{ header|length-1 }}">
+          {% for cell in row.cells %}
+            <{{ cell.tag }}{{ cell.attributes.addClass(tdClasses, loop.parent.loop.index0 is odd ? 'odd' : 'even') }}>
+              {{- cell.content -}}
+            </{{ cell.tag }}>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </tbody>
+  {% endif %}
+
+  {% if caption %}
+    <caption class="table-caption">
+      {{ caption }}
+    </caption>
+  {% endif %}
+</table>

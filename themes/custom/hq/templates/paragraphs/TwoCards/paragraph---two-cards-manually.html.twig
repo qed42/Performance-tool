@@ -1,0 +1,104 @@
+{%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]
+%}
+
+{% block paragraph %}
+  <div{{ attributes.addClass(classes) }}>
+    {% block content %}
+      <div class="container mt-3">
+        {% if content.field_show.0 ['#markup'] == 'On' %}
+          <div class="cardHighlights-header">
+            {% if content.field_title.0 %}
+              <h2>{{ content.field_title.0 }}</h2>
+            {% endif %}
+            {% if content.field_link_limited.0 %}
+              <div class="more-link">
+                <a href="{{ content.field_link_limited.0['#url_title'] }}" 
+                  aria-label="Go to {{ content.field_link_limited.0['#title']|raw }}" 
+                  title="Go to {{ content.field_link_limited.0['#title']|raw }}">
+                  {{ content.field_link_limited.0['#title']|raw }}
+                </a>
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+        <ul class="row">
+          <li class="field field--name-field-content-reference-two field--type-entity-reference field--label-hidden col-12 col-md-6 field__item">
+            <article class="contextual-region node node--type-news-and-stories node--view-mode-teaser">
+              <header class="head-wrapper">
+                <div class="image-wrapper">
+                  <div class="field field--name-field-image field--type-image field--label-hidden field__item quickedit-field paragraph-two-cards-image">
+                    {{content.field_image_card1.0}}
+                  </div>
+                </div>
+                <div class="card_tag">{{content.field_tag_card1.0['#context']['value']|raw}}</div>
+              </header>
+
+              <div class="card_wrapper">
+                <h3 class="card_title">
+                  <span class="quickedit-field">{{content.field_title_card1.0['#context']['value']|raw}}<br>
+                  </span>
+                </h3>
+                <div class="field field--name-field-story-publication-date field--type-datetime field--label-hidden field__item quickedit-field">
+                  <time datetime="">{{content.field_date_card1.0['#context']['value']|raw}}</time>
+                </div>
+              </div>
+
+              <a href="{{content.field_link_card1.0['#title']}}" class="link-full-content" 
+              aria-label="{{content.field_title_card1.0}}" title="{{content.field_title_card1.0}}" tabindex="-1">
+                <span class="sr-only">{{content.field_title_card1.0['#context']['value']|raw}}</span>
+              </a>
+            </article>
+          </li>
+
+          <li class="field field--name-field-content-reference-two field--type-entity-reference field--label-hidden col-12 col-md-6 field__item">
+            <article class="contextual-region node node--type-news-and-stories node--view-mode-teaser">
+              <header class="head-wrapper">
+                <div class="image-wrapper">
+                  <div class="field field--name-field-image field--type-image field--label-hidden field__item quickedit-field paragraph-two-cards-image">
+                    {{content.field_image_card2.0}}
+                  </div>
+                </div>
+                <div class="card_tag">{{content.field_tag_card2.0['#context']['value']|raw}}</div>
+              </header>
+
+              <div class="card_wrapper">
+                <h3 class="card_title">
+                  <span class="quickedit-field">{{content.field_title_card2.0['#context']['value']|raw}}<br>
+                  </span>
+                </h3>
+                <div class="field field--name-field-story-publication-date field--type-datetime field--label-hidden field__item quickedit-field">
+                  <time datetime="">{{content.field_date_card2.0['#context']['value']|raw}}</time>
+                </div>
+              </div>
+
+              <a href="{{content.field_link_card2.0['#title']}}" class="link-full-content" 
+              aria-label="{{content.field_title_card2.0}}" title="{{content.field_title_card2.0}}" tabindex="-1">
+                <span class="sr-only">{{content.field_title_card2.0['#context']['value']|raw}}</span>
+              </a>
+            </article>
+          </li>
+        </ul>
+
+        {% if content.field_show_additional.0 ['#markup'] == 'On' and content.field_link_limited.0 %}
+          <div class="cardHighlights-header mobile">
+            {% if content.field_link_limited.0 %}
+              <div class="more-link">
+                <a href="{{ content.field_link_limited.0['#url_title'] }}" 
+                  aria-label="Go to {{ content.field_link_limited.0['#title']|raw }}" 
+                  title="Go to {{ content.field_link_limited.0['#title']|raw }}">
+                  {{ content.field_link_limited.0['#title']|raw }}
+                </a>
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+    {% endblock %}
+  </div>
+{% endblock paragraph %}

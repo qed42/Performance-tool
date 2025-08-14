@@ -1,0 +1,48 @@
+.about-us__contact-wrapper {
+  padding-block: 40px;
+}
+@media (min-width: 768px) {
+  .about-us__contact-wrapper {
+    padding-block: 55px;
+  }
+}
+@media (min-width: 1180px) {
+  .about-us__contact-wrapper {
+    padding-block: 110px;
+  }
+}
+.about-us__contact-img {
+  height: 100%;
+  text-align: center;
+}
+@media (max-width: 1179.98px) {
+  .about-us__contact-img {
+    margin-bottom: 40px;
+  }
+}
+.about-us__contact-img div,
+.about-us__contact-img article,
+.about-us__contact-img picture {
+  display: block;
+  height: 100%;
+}
+.about-us__contact-img img {
+  width: 100%;
+  height: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: center;
+     object-position: center;
+}
+.about-us__contact-form .field--name-field-contact .field__label {
+  font-size: 36px;
+  line-height: 44px;
+  font-weight: 700;
+  letter-spacing: -2%;
+  margin-bottom: 32px;
+}
+@media (max-width: 1179.98px) {
+  .about-us__contact-form .field--name-field-contact .field__label {
+    font-size: 32px;
+  }
+}

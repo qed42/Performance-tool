@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display source summary block total count.
+ *
+ * Available variables:
+ * - count: The total number of records retrieved.
+ */
+#}
+
+{% if count != 0 %}
+
+<div class="search-results">  
+  <span class="source-summary-count search-results__number">
+  {% trans %}1 resource match your search {{ search_text }}{% plural count %}{{ count }} resources match your search {{ search_text }}{% endtrans %}
+  </span>
+</div>
+
+{% endif %}

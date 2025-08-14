@@ -1,0 +1,169 @@
+@import "../../../../../node_modules/bootstrap/scss/functions";
+@import "../../../../../node_modules/bootstrap/scss/mixins";
+@import "../../../custom";
+@import "../../../mixins";
+
+
+.block-views-block-related-resources-explore-issues {
+
+  .swiperHeader-wrapper {
+    position: absolute;
+    top: -82px;
+    right: 0;
+    margin: 0;
+
+    a {
+      @include typography-select2-sb;
+
+      margin-right: 20px;
+      transition: all 0.3s ease;
+
+      &:hover,
+      &:focus {
+        margin-right: 30px;
+      }
+
+      @include media-breakpoint-down(sm) {
+        margin-right: 0;
+        margin-left: 10px;
+      }
+    }
+
+    @include media-breakpoint-down(sm) {
+      display: none;
+    }
+  }
+
+  .swiper-container {
+    width: calc((100vw - 66%) / 2 + 66%);
+    overflow: hidden;
+
+    @include media-breakpoint-down(sm) {
+      width: 100%;
+      margin-top: 40px
+    }
+  }
+
+  .hq-carousel-global-card {
+    margin-top: 20px;
+    @include media-breakpoint-down(sm) {
+      padding-bottom: 0;
+    }
+  }
+
+  .views-exposed-form {
+    margin-top: 20px;
+
+    .form-composite {
+      legend {
+        @include typography-h6-b;
+        position: relative;
+        margin-bottom: 22px;
+        padding: 10px 16px;
+        color: $text-gray;
+        border-bottom: 2px solid $pink-underline;
+
+        @include media-breakpoint-down(sm) {
+          @include typography-select2;
+          position: relative;
+          margin-bottom: 0;
+          border: 1px solid $pink-underline;
+          border-radius: 8px;
+          cursor: pointer;
+
+          &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            transition: transform 0.5s ease-in-out;
+            transform: translateY(-50%);
+            right: 20px;
+            width: 16px;
+            height: 10px;
+            background: url('/themes/custom/hq/img/caret-down.svg') no-repeat center;
+            transition: transform 0.3s ease;
+          }
+        }
+      }
+
+      &.open {
+        &>legend::after {
+          transform: translateY(-50%) rotate(180deg);
+        }
+
+        .fieldset-wrapper {
+          display: block;
+          width: 100%;
+          margin-top: 0;
+          padding: 16px;
+          background: $white;
+          box-shadow: 0px 12px 16px -4px $dark-blue-gray;
+          border-radius: 0 0 6px 6px;
+        }
+      }
+    }
+
+    .fieldset-wrapper {
+      .form-checkboxes {
+        .form-checkboxes {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          padding: 0 12px;
+          max-height: 248px;
+          overflow-y: auto;
+          padding-right: 4px;
+          scrollbar-gutter: stable;
+
+          .form-item {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 12px;
+
+            .form-checkbox {
+              position: relative;
+              width: 18px;
+              height: 18px;
+              appearance: none;
+              margin-top: 5px;
+
+              &:before {
+                content: "";
+                position: absolute;
+                top: -2px;
+                left: -2px;
+                width: 20px;
+                height: 20px;
+                background: $white;
+                border-radius: 6px;
+                border: 1px solid $gray-500;
+              }
+
+              &[checked="checked"] {
+                &::before {
+                  content: "";
+                  background: url('/themes/custom/hq/img/checked.svg') no-repeat center;
+                  border: none;
+                }
+              }
+            }
+
+            label {
+              @include typography-body-m;
+              width: 88%;
+              color: $color-slate-steel;
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+
+      @include media-breakpoint-down(sm) {
+        display: none;
+        margin-top: 1rem;
+      }
+    }
+  }
+}

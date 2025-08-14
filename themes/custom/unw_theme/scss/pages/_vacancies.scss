@@ -1,0 +1,308 @@
+.vacancies-undp-jobs {
+  .views-exposed-form {
+    .form--inline {
+      display: flex;
+      flex-direction: row-reverse;
+      div {
+        display: flex;
+
+        label {
+          display: flex;
+          height: rem-calc(24);
+          align-items: center;
+          font-size: rem-calc(13);
+          margin-bottom: 0;
+          margin-right: rem-calc(4);
+        }
+      }
+      .form-actions {
+        display: none;
+        flex: 0;
+      }
+      .form-item-items-per-page {
+        margin-right: auto;
+        select {
+          font-size: rem-calc(13);
+          height: rem-calc(24);
+          line-height: rem-calc(16);
+          transition: border linear 0.2s, box-shadow linear 0.2s;
+          border-radius: 0;
+          padding: 0;
+          &:focus {
+            border-color: rgba(82, 168, 236, 0.8);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.08),
+              0 0 8px rgba(82, 168, 236, 0.68);
+            outline: 0;
+          }
+        }
+      }
+      .form-item-combine {
+        input {
+          font-size: rem-calc(13);
+          height: rem-calc(24);
+          line-height: rem-calc(16);
+          transition: border linear 0.2s, box-shadow linear 0.2s;
+          border-radius: 0;
+          &:focus {
+            border-color: rgba(82, 168, 236, 0.8);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.08),
+              0 0 8px rgba(82, 168, 236, 0.68);
+            outline: 0;
+          }
+        }
+      }
+    }
+  }
+  table {
+    margin-bottom: rem-calc(4);
+    thead {
+      tr {
+        th {
+          background: $makara;
+          position: relative;
+          color: $white;
+          text-align: left;
+          padding: rem-calc(10);
+          border: 1px solid #ebe0e0;
+          a {
+            font-size: rem-calc(13);
+            color: $white;
+
+            text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            flex: 1;
+            .tablesort {
+              color: $white;
+              &.tablesort--desc {
+                background: url("../images/icons/sort_asc.png");
+              }
+              &.tablesort--asc {
+                background: url("../images/icons/sort_desc.png");
+              }
+            }
+          }
+          &:not(.is-active) {
+            a {
+              position: relative;
+              padding-right: rem-calc(20);
+              &:after {
+                content: "";
+                position: absolute;
+                background: url("../images/icons/sort_both.png");
+                right: 0;
+                top: 0;
+                width: rem-calc(19);
+                height: rem-calc(19);
+              }
+            }
+          }
+          &.views-field-field-city {
+            min-width: rem-calc(116) !important;
+            max-width: rem-calc(116) !important;
+          }
+          &.views-field-field-rss-country {
+            min-width: rem-calc(116) !important;
+            max-width: rem-calc(116) !important;
+          }
+          &.views-field-field-deadline {
+            min-width: rem-calc(116) !important;
+            max-width: rem-calc(116) !important;
+          }
+          &.views-field-field-job-type {
+            min-width: rem-calc(96) !important;
+            max-width: rem-calc(96) !important;
+          }
+          &.views-field-nothing {
+            display: none;
+          }
+
+          @include media-breakpoint-down(sm) {
+            &.views-field-field-city {
+              display: none;
+            }
+            &.views-field-field-rss-country {
+              display: none;
+            }
+            &.views-field-field-deadline {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+    tbody {
+      tr {
+        td {
+          vertical-align: middle;
+          color: $makara;
+          &.is-active {
+            background-color: inherit;
+          }
+          a {
+            color: $link-color;
+          }
+
+          &.views-field-field-city {
+            min-width: rem-calc(116) !important;
+            max-width: rem-calc(116) !important;
+          }
+          &.views-field-field-rss-country {
+            min-width: rem-calc(116) !important;
+            max-width: rem-calc(116) !important;
+          }
+          &.views-field-field-deadline {
+            min-width: rem-calc(116) !important;
+            max-width: rem-calc(116) !important;
+          }
+          &.views-field-field-job-type {
+            min-width: rem-calc(96) !important;
+            max-width: rem-calc(96) !important;
+          }
+          &.views-field-nothing {
+            display: none;
+          }
+          &.row-detail-item {
+            display: none;
+          }
+        }
+        &.row-child {
+          display: none;
+        }
+        @include media-breakpoint-down(sm) {
+          td {
+            &.views-field-field-city {
+              display: none;
+            }
+            &.views-field-field-rss-country {
+              display: none;
+            }
+            &.views-field-field-deadline {
+              display: none;
+            }
+          }
+
+          &.collapsible-row.event-click-attached {
+            .trigger-wrapper {
+              > * {
+                display: flex;
+              }
+              position: relative;
+              display: flex;
+              flex-direction: row;
+              .collapsible-trigger {
+                padding: rem-calc(8);
+                width: rem-calc(16);
+                height: rem-calc(16);
+
+                &::before {
+                  top: 9px;
+                  left: 4px;
+                  height: 14px;
+                  width: 14px;
+                  position: absolute;
+                  color: white;
+                  border: 2px solid white;
+                  border-radius: 14px;
+                  box-shadow: 0 0 3px #444;
+                  box-sizing: content-box;
+                  text-align: center;
+                  text-indent: 1px !important;
+                  line-height: 13px;
+                  content: "+";
+                  background-color: #31b131;
+                }
+                &.enabled::before {
+                  content: "-";
+                  background-color: #d33333;
+                }
+              }
+            }
+          }
+          &.row-child {
+            &.visible {
+              display: table-row;
+              .row-detail-item {
+                display: table-cell;
+              }
+            }
+            .row-detail-item {
+              padding-top: rem-calc(6);
+              padding-bottom: rem-calc(6);
+              display: none;
+              ul {
+                text-align: left;
+                font-size: rem-calc(13);
+                color: #5e5a55;
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                li {
+                  b {
+                    display: inline-block;
+                    min-width: rem-calc(75);
+                  }
+                  border-bottom: 1px solid #efefef;
+                  padding: rem-calc(6) 0;
+                  &:last-of-type {
+                    border-bottom: none;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .table-footer-wrapper {
+    .table-footer {
+      div {
+        font-size: rem-calc(13);
+      }
+    }
+    nav.pager {
+      margin-bottom: 0;
+      .btn-group {
+        float: right;
+        margin-bottom: 0;
+        li {
+          position: relative;
+          border-radius: rem-calc(4);
+          &:not(.active):not(:hover) {
+            background-color: transparent;
+            border-color: transparent;
+          }
+
+          &:not(.pager__item--ellipsis) {
+            padding: 0;
+          }
+          a {
+            display: flex;
+            padding: rem-calc(8) rem-calc(12);
+            font-size: rem-calc(13);
+          }
+          &.pager__item--ellipsis {
+            pointer-events: none;
+          }
+        }
+      }
+    }
+  }
+  &.collapsible-row-table {
+    table {
+      tbody {
+        tr {
+          &.odd {
+            background-color: rgba(0, 0, 0, 0.05);
+          }
+          &.even {
+            background: #d7d7d7;
+          }
+        }
+      }
+    }
+  }
+}

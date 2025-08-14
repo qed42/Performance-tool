@@ -1,0 +1,133 @@
+@import "../../../../../node_modules/bootstrap/scss/functions";
+@import "../../../../../node_modules/bootstrap/scss/mixins";
+@import "../../../custom";
+@import "../../../bootstrap-override/mixins";
+@import "../../../mixins";
+
+.photo-slider {
+  &__wrapper {
+    background-color: $frost-blue;
+    padding-block: 32px;
+
+    @include media-breakpoint-up(lg) {
+      padding-block: 100px;
+      cursor: pointer;
+    }
+  }
+
+  &__images {
+    .swiper-slide {
+      opacity: 0.25;
+
+      .field--name-field-caption-image {
+        opacity: 0;
+      }
+
+      &.swiper-slide-active {
+        opacity: 1;
+
+        .field--name-field-caption-image {
+          opacity: 1;
+        }
+      }
+    }
+
+    .field--name-field-caption-image {
+      @include typography-label;
+
+      margin-top: 5px;
+      color: $text-gray;
+    }
+
+    img {
+      width: 100%;
+      max-height: unset !important;
+    }
+  }
+
+  &__content {
+    @include media-breakpoint-up(lg) {
+      display: flex;
+      height: 400px;
+      overflow: hidden;
+
+      .swiper-slide {
+        overflow: hidden;
+      }
+    }
+
+    .paragraph-left {
+      .field--name-field-caption-image {
+        @include media-breakpoint-up(lg) {
+          display: none;
+        }
+      }
+    }
+
+    .paragraph--type--photo-slider-item {
+      display: flex;
+      flex-direction: column;
+
+      @include media-breakpoint-up(lg) {
+        justify-content: center;
+      }
+    }
+
+    .field--name-field-media-image {
+      @include media-breakpoint-up(lg) {
+        display: none;
+      }
+
+      img {
+        width: 100%;
+        max-height: unset !important;
+      }
+    }
+
+    .field--name-field-caption-image {
+      @include typography-label;
+
+      margin-top: 5px;
+      color: $text-gray;
+    }
+
+    .field--name-field-title {
+      @include typography-h2;
+
+      margin-block: 20px;
+      color: $text-gray;
+
+      @include media-breakpoint-up(lg) {
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        margin-top: 0;
+        overflow: hidden;
+      }
+    }
+
+    .field--name-field-description {
+      @include typography-body;
+      
+      margin-bottom: 20px;
+      color: $text-gray;
+
+      p:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .carouselNav-wrapper {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+  }
+}
+
+.paragraph-list {
+  & > section:first-child.paragraph--section--photo-slider {
+    margin-top: -40px;
+  }
+}

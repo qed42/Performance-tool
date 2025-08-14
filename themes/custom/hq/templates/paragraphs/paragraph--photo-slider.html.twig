@@ -1,0 +1,102 @@
+{%
+set classes = [
+'paragraph',
+'paragraph--type--' ~ paragraph.bundle|clean_class,
+view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+not paragraph.isPublished() ? 'paragraph--unpublished'
+]
+%}
+
+{{ attach_library('hq/swiper_library') }}
+
+{% set hexcode = content.background_hex_code ? content.background_hex_code : '#EDF4FC'  %}
+{% if content.field_photo_slider_variation|render|striptags|trim == 'Photo Slider' %}
+  <div class="photo-slider__wrapper" style="background-color: {{ hexcode }};" tabindex="0" aria-label="{{'image carousel press enter for slide change'|t}}">
+    <div class="container">
+      {% if is_rtl %}
+      {{ attach_library('hq/paragraph-photo-slider-rtl') }}
+      {% else %}
+      {{ attach_library('hq/paragraph-photo-slider') }}
+      {% endif %}
+        <div class="row align-items-center">
+          <div class="col-12 col-lg-6 d-none d-lg-block">
+            <div class="photo-slider__images">
+              <div class="swiper-container photo-slider-container">
+                <div class="swiper-wrapper">
+                  {% for image in content.slider_images %}
+                    <div class="swiper-slide">
+                      {{ image }}
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-lg-5 offset-lg-1 d-none d-lg-block">
+            <div class="photo-slider__content">
+              <div class="swiper-container swiper-container-vertical photo-slider-vertical">
+                <div class="swiper-wrapper">
+                  {% for image in content.slider_images %}
+                    <div class="swiper-slide">
+                      {{content.field_photo_slider_items[loop.index0]}}
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 d-block d-lg-none">
+            <div class="photo-slider__content">
+              <div class="swiper-container photo-slider-mobile">
+                <div class="swiper-wrapper">
+                  <span class="sr-only carousel-count">{{content.slider_images|length}}</span>
+                  {% for image in content.slider_images %}
+                    <div class="swiper-slide">
+                      {{content.field_photo_slider_items[loop.index0]}}
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+              <nav class="carouselNav-wrapper">
+                <button class="swiper-button-prev btn btn-primary icon icon-arrow-left"><span class="sr-only">swipe left</span></button>
+                <button class="swiper-button-next btn btn-primary icon icon-arrow-right"><span class="sr-only">swipe right</span></button>
+              </nav>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+{# END Photo slider #}
+{% else %}
+  <div class="image-carousel__wrapper" style="background-color: {{ hexcode }};" tabindex="0" aria-label="{{'image carousel press enter for slide change'|t}}">
+    <div class="container">
+      {# Start image slider #}
+      {% if is_rtl %}
+      {{ attach_library('hq/paragraph-image-slider-rtl') }}
+      {% else %}
+      {{ attach_library('hq/paragraph-image-slider') }}
+      {% endif %}
+      <div class="row">
+        <div class="col-12">
+          <div class="swiper-container image-carousel-container">
+            <div class="swiper-wrapper">
+              <span class="sr-only carousel-count">{{content.slider_images|length}}</span>
+              {% for image in content.slider_images %}
+                <div class="swiper-slide">
+                  <div class="image-carousel__content">
+                    {{content.field_photo_slider_items[loop.index0]}}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+          <nav class="carouselNav-wrapper">
+            <button class="swiper-button-prev btn btn-primary icon icon-arrow-left"><span class="sr-only">swipe left</span></button>
+            <button class="swiper-button-next btn btn-primary icon icon-arrow-right"><span class="sr-only">swipe right</span></button>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+  {# End image slider #}
+{% endif %}

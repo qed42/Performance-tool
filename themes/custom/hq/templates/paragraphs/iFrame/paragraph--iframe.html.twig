@@ -1,0 +1,49 @@
+{%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]
+%}
+
+{% block paragraph %}
+  <div{{ attributes.addClass(classes) }}>
+    {% block content %}
+      <div class="container-fluid">
+        {% if content.field_video.0 %}
+          <div class="row justify-content-center video-iframe">
+            {% if content.field_video_container.0['#markup'] == 'c_lg' %}
+              <div class="col-12">
+                <div class="container-iframe">
+                  {{ content.field_video }}
+                </div>
+              </div>
+            {% else %}
+              <div class="col-12 col-md-8">
+                <div class="container-iframe">
+                  {{ content.field_video }}
+                </div>
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% if content.field_body.0 %}
+          <div class="row justify-content-center video-iframe">
+            {% if content.field_video_container.0['#markup'] == 'c_lg' %}
+              <div class="col-12 col-md-10">
+                {{ content.field_body }}
+              </div>
+            {% else %}
+              <div class="col-12 col-md-8">
+                {{ content.field_body }}
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+
+      </div>
+    {% endblock %}
+  </div>
+{% endblock paragraph %}

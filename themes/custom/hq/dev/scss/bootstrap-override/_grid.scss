@@ -1,0 +1,6 @@
+@if $enable-grid-classes {
+  .container-lg {
+    @include make-container();
+    @include make-container-max-widths-lg();
+  }
+}

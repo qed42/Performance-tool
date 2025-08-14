@@ -1,0 +1,30 @@
+{#
+/**
+ * @file
+ * Display Suite 2 column template.
+ *
+ * Available variables:
+ * - outer_wrapper: outer wrapper element
+ * - left_wrapper: wrapper element around left region
+ * - right_wrapper: wrapper element around right region
+ * - attributes: layout attributes
+ * - left_attributes: attributes for left region
+ * - right_attributes: attributes for right region
+ * - left: content of left region
+ * - right: content of right region
+ */
+#}
+<{{ outer_wrapper }}{{ attributes.addClass('ds-2col', 'clearfix', 'video-content-page') }}>
+
+  <{{ left_wrapper }}{{ left_attributes.addClass('group-left') }}>
+
+    <h1>{{ content.title['0']['#context']['value']|raw }}</h1>
+    {{ left }}
+
+  </{{ left_wrapper }}>
+
+  <{{ right_wrapper }}{{ right_attributes.addClass('group-right') }}>
+    {{ right }}
+  </{{ right_wrapper }}>
+
+</{{ outer_wrapper }}>
