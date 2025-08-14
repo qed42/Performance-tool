@@ -3,12 +3,28 @@
 import os
 import re
 import yaml
+import sys
 
 
 # ============================
 # Get Theme Path from User
 # ============================
 def get_custom_theme_path():
+    """Get the theme path from CLI arg or default."""
+    default_path = "./themes/custom/"
+    if len(sys.argv) > 1:
+        custom_path = sys.argv[1].strip()
+    else:
+        custom_path = default_path
+
+    if not custom_path.endswith("/"):
+        custom_path += "/"
+
+    if not os.path.exists(custom_path):
+        print(f"❗ Error: Path '{custom_path}' does not exist.")
+        exit(1)
+
+    return custom_path
     """Get the theme path from user input."""
     default_path = "./themes/custom/"
     custom_path = input(f"Enter the path to your custom theme folder (default: {default_path}): ").strip()

@@ -1,0 +1,16 @@
+name: "Performance Tool"
+description: "Scans a Drupal theme for performance issues"
+author: "Rahul Savaria"
+inputs:
+  theme-path:
+    description: "Path to your custom theme folder"
+    required: true
+    default: "./themes/custom/"
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.theme-path }}
+branding:
+  icon: "zap"
+  color: "blue"

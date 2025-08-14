@@ -1,0 +1,17 @@
+name: Test Performance Tool Action
+
+on:
+  workflow_dispatch: # lets you run manually from GitHub UI
+
+jobs:
+  run-test:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Checkout this repo
+      - uses: actions/checkout@v4
+
+      # Step 2: Run the action from this repo
+      - name: Run local action
+        uses: ./
+        with:
+          theme-path: ./themes/custom/my_theme
