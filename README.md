@@ -20,7 +20,7 @@ The tool performs the following checks:
 ## GitHub Workflows
 This repository includes GitHub workflows to automate testing and validation:
 
-- **Test Performance Tool Action**: This workflow, defined in [`.github/workflows/test.yml`](.github/workflows/test.yml), allows you to manually trigger a test of the performance tool using the `workflow_dispatch` event. It runs the tool against the specified theme directory (`./themes/custom/hq` by default) to ensure it functions as expected.
+- **Test Performance Tool Action**: This workflow, defined in [`.github/workflows/test.yml`](.github/workflows/test.yml), allows you to manually trigger a test of the performance tool using the `workflow_dispatch` event. It runs the tool against the specified theme directory (`./themes/custom/custom-theme` by default) to ensure it functions as expected.
 
 ## Installation
 1. Clone the repository:
