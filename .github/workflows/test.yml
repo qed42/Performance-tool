@@ -14,4 +14,4 @@ jobs:
       - name: Run local action
         uses: ./
         with:
-          theme-path: ./themes/custom/hq
+          theme-path: ./themes/custom/custom-theme
