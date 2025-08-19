@@ -40,7 +40,8 @@ This repository includes GitHub workflows to automate testing and validation:
 ## Usage as a GitHub Action
 You can use this tool directly in your GitHub workflows without needing to install anything locally.
 
-```name: Performance Checks
+```
+name: Performance Checks
 
 on:
   pull_request:
