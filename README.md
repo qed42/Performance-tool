@@ -37,6 +37,32 @@ This repository includes GitHub workflows to automate testing and validation:
 2. Replace `<path-to-theme-directory>` with the path to the theme folder you want to analyze.
 3. Review the output for identified issues and recommendations.
 
+## Usage as a GitHub Action
+You can use this tool directly in your GitHub workflows without needing to install anything locally.
+
+```name: Performance Checks
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  performance-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Performance Tool
+        uses: qed42/performance-tool@v1
+        with:
+          theme-path: ./themes/custom/my_theme
+```
+1. qed42/performance-tool@v1 → points to the Action.
+2. theme-path → path to your theme folder in the repository.
+
+The action will run automatically on PRs and pushes, printing warnings in the workflow logs if issues are found.
+
 ## Contributing
 Contributions are welcome! To contribute:
 1. Fork the repository.
