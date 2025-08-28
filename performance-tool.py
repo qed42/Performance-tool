@@ -252,7 +252,7 @@ def main():
         },
         "Non-Optimized Images (CSS & Twig)": {
             "warnings": check_image_formats(custom_theme_path),
-            "icon": "🖼️",
+            "icon": "🖼️ ",
         },
         "Inline CSS/JS in Twig": {
             "warnings": check_inline_styles_scripts(custom_theme_path),
@@ -269,20 +269,42 @@ def main():
     }
 
     has_warnings = False
+    summary_counts = {}
 
-    # Print grouped warnings with different icons
+    # Print grouped warnings with details
     for check_name, check_info in grouped_warnings.items():
         warnings = check_info["warnings"]
         icon = check_info["icon"]
+        count = len(warnings)
+        summary_counts[check_name] = (icon, count)
 
         if warnings:
             has_warnings = True
-            print(f"\n{icon} {check_name} Warnings:\n")
+            print(f"\n{icon} {check_name} Warnings ({count}):\n")
             for warning in warnings:
                 print(f"{warning}\n")
 
+    # Print summary as table
+    print("\n========================")
+    print("📊 Scan Summary")
+    print("========================")
+
+    # Table header
+    print(f"{'Category':40}| {'Count'}")
+    print("-" * 50)
+
+    total = 0
+    for check_name, (icon, count) in summary_counts.items():
+        total += count
+        print(f"{icon} {check_name:36} | {count}")
+
+    print("-" * 50)
+    print(f"{'Total':40} | {total}")
+
     if not has_warnings:
-        print("✅ All checks passed. Proceeding with commit or build.")
+        print("\n✅ All checks passed. Proceeding with commit or build.")
+    else:
+        print(f"\n⚠️ Total warnings: {total}")
 
 
 if __name__ == "__main__":
